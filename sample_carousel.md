@@ -1,73 +1,74 @@
 ---
-brand_name: "CREATIVE LABS"
+brand_name: "YOUR BRAND"
 primary_color: "#0F172A"
-accent_color: "#E11D48"
-secondary_color: "#64748B"
+accent_color: "#0D9488"
+secondary_color: "#475569"
 slide_bg: "#FFFFFF"
-browser_bg: "#F8FAFC"
-cta_text: "Follow @creativelabs"
+browser_bg: "#F1F5F9"
+cta_text: "Follow for more"
 ---
 
-[type: type-hook, pill: CRITICAL ERROR]
-# **stop building** generic designs. you are losing clients.
-Inside the exact architecture of premium brand design systems.
-
----
-
-[type: type-a, pill: THE TEASE]
-# and standard templates are **not** the answer.
-What I am about to share took us years of premium audits to discover.
+[type: type-hook, pill: THE HOOK]
+# **one line** that stops the scroll.
+Write a short teaser sentence here that makes readers want to see the next slide.
 
 ---
 
-[type: type-b, pill: THE PAIN]
-# readers scroll past **predictable** layouts.
-Most creators think client acquisition is a pricing problem.
-[image]: assets/stressed_man.png
+[type: type-a, pill: THE PROBLEM]
+# most people **struggle** with this exact thing.
+Describe the common pain or problem your audience faces every day.
 
 ---
 
 [type: type-a, pill: THE BELIEF]
-# but the truth is **positioning** beats pricing.
-When you look identical to every template on the web, you become a commodity.
+# the common advice is **completely wrong.**
+Challenge the assumption your audience holds. Flip the conventional wisdom.
+
+---
+
+[type: type-a, pill: THE TRUTH]
+# here is what **actually** works.
+Introduce your key insight or framework in one clean, direct sentence.
+
+---
+
+[type: type-b, pill: THE PROOF]
+# real results speak **louder** than theory.
+Explain how this insight plays out in a real example or case study.
+[image]: assets/laptop_on_desk_v2.png
+
+---
+
+[type: type-data, pill: THE NUMBERS]
+# the **data** confirms it.
+- 87% | Of people who apply this see results in week one
+- 3x | Average engagement lift after using this method
+- 60% | Less time wasted on things that do not move the needle
 
 ---
 
 [type: type-a, pill: THE METHOD]
-# introducing **high-agency** minimalism.
-Ditch generic colors. Embrace absolute neutral bases with one high-contrast accent.
-
----
-
-[type: type-data, pill: SYSTEM metrics]
-# the direct **impact** of clean structure.
-- 97% | Boost in reader completion rates
-- 84% | Growth in organic post saves
-- 62% | More high-value client leads
-
----
-
-[type: type-a, pill: PROOF IN ACTION]
-# real brands **never** use neon purple slop.
-Look at Apple, Stripe, or Vercel. They rely on massive spacing and razor-sharp type.
-[image]: assets/monitor.png
+# here is the **exact** step-by-step.
+- Step 1 | Start with the clearest version of your idea
+- Step 2 | Remove everything that is not essential
+- Step 3 | Deliver value before you ask for anything
 
 ---
 
 [type: type-a, pill: THE AHA MOMENT]
-# it is **not** a style problem. it is a focus problem.
-You do not need more visual decorations. You need less resistance for the reader.
+# it is not a **skill** problem. it is a clarity problem.
+Most people overcomplicate things. The best creators strip ideas down to their core.
 
 ---
 
-[type: type-a, pill: INSTANT STEPS]
-# three rules to **upgrade** today.
-- 1 | Ban all emojis from structural layouts
-- 2 | Cap accent saturation below 80 percent
-- 3 | Tint your shadows to match background hues
+[type: type-a, pill: QUICK WINS]
+# three things you can **do today.**
+- 1 | Apply this framework to your next piece of content
+- 2 | Write your hook before anything else
+- 3 | End every post with one clear call to action
 
 ---
 
 [type: type-cta, pill: JOIN US]
-# ready to **dominate** your feed?
-Save this guide and implement these premium guidelines on your next project.
+# ready to **level up** your content?
+Save this carousel and share it with someone who needs to see this.
