@@ -1,4 +1,4 @@
-# 🎠 Digi Mabble — HTML Carousel Maker
+# 🚀 Rocket Carousel Maker
 
 A lightweight tool that takes a simple text template (Markdown) and generates a **beautiful, brand-ready HTML carousel** — ready to open in your browser and screenshot for Instagram or LinkedIn.
 

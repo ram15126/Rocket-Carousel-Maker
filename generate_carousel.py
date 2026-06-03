@@ -5,7 +5,7 @@ import re
 
 """
 ===================================================================
-DIGI MABBLE CAROUSEL GENERATOR (White-Labeled & Brand-Agnostic)
+ROCKET CAROUSEL MAKER — HTML Carousel Generator
 Enforces Carousel 101 Structure & Taste / Impeccable Design Laws
 ===================================================================
 """
@@ -169,7 +169,7 @@ def parse_markdown(md_content):
 
 def generate_html(frontmatter, slides, output_path):
     # Extract frontmatter overrides or fallback to safe defaults
-    brand_name = frontmatter.get("brand_name", "Digi Mabble").upper()
+    brand_name = frontmatter.get("brand_name", "YOUR BRAND").upper()
     primary_color = frontmatter.get("primary_color", "#0F172A")
     accent_color = frontmatter.get("accent_color", "#0D9488")
     secondary_color = frontmatter.get("secondary_color", "#475569")

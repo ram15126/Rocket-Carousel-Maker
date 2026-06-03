@@ -4,7 +4,7 @@ import sys
 
 """
 ===================================================================
-DIGI MABBLE HEADLESS CAROUSEL SLIDE EXPORTER
+ROCKET CAROUSEL MAKER — Headless Slide Exporter
 Uses Playwright to screen-capture razor-sharp 1080x1350px PNGs
 ===================================================================
 """
