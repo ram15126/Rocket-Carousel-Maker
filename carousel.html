@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digi Mabble - Instagram Carousel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      /* Digi Mabble Light Theme */
+      --color-bg: #F1F5F9;           
+      --color-slide-bg: #FFFFFF;     
+      --color-primary: #0F172A;      /* Dark Blue Text */
+      --color-secondary: #475569;    
+      --color-accent: #3B82F6;       /* Vibrant Blue */
+      
+      --grid-color: rgba(15, 23, 42, 0.03);
+      --line-color: rgba(15, 23, 42, 0.1);
+      
+      --slide-width: 540px; 
+      --slide-height: 675px; 
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--color-bg);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+      overflow-y: auto; 
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 100px;
+    }
+
+    .app-header {
+      margin-top: 40px;
+      margin-bottom: 20px;
+      text-align: center;
+      padding: 12px 24px;
+    }
+    
+    .app-header h1 {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-secondary);
+      margin: 0;
+    }
+
+    .carousel-track {
+      display: flex;
+      flex-direction: column; 
+      align-items: center;
+      gap: 60px; 
+      width: 100%;
+    }
+
+    .slide {
+      flex-shrink: 0;
+      width: var(--slide-width);
+      height: var(--slide-height);
+      background-color: var(--color-slide-bg);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.05) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(249, 115, 22, 0.05) 0px, transparent 50%),
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+      background-position: center center;
+      border: 1px solid rgba(15, 23, 42, 0.05);
+      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slide-inner {
+      position: absolute;
+      top: 40px;
+      bottom: 40px;
+      left: 40px;
+      right: 40px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Header - Removed Brand Name */
+    .slide-top {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 1px dashed var(--line-color);
+      margin-bottom: 24px;
+      height: 24px; /* maintain space even without text */
+    }
+
+    /* Content Area */
+    .slide-content {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: center;
+    }
+
+    /* Typography */
+    h1, h2 {
+      font-size: 46px;
+      font-weight: 800;
+      color: var(--color-primary);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--color-secondary);
+      margin-bottom: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--color-secondary);
+      font-weight: 500;
+    }
+
+    /* Consistent Visual Highlights */
+    .highlight-gradient {
+      background: linear-gradient(135deg, #2563EB, #F97316); /* Combined blue to orange */
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
+      display: inline-block;
+    }
+
+    /* Connecting Elements */
+    .connecting-line {
+      position: absolute;
+      border-left: 2px dashed var(--line-color);
+      border-bottom: 2px dashed var(--line-color);
+      border-bottom-left-radius: 16px;
+      z-index: 0;
+    }
+
+    /* Cards / Elements */
+    .glass-card {
+      background: #FFFFFF;
+      border: 1px solid rgba(15, 23, 42, 0.05);
+      border-radius: 20px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      position: relative;
+      z-index: 10;
+      box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .glass-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(249, 115, 22, 0.1));
+      color: #2563EB;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: inset 0 2px 4px rgba(255,255,255,0.5);
+    }
+
+    .glass-card-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .glass-card-title {
+      font-weight: 800;
+      color: var(--color-primary);
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .glass-card-desc {
+      font-weight: 500;
+      color: var(--color-secondary);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    /* Integrations */
+    .integration-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .int-card {
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      border: 1px solid rgba(15, 23, 42, 0.05);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+    }
+
+    .int-icon-wrapper {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: #F1F5F9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      color: #0F172A;
+    }
+
+    /* Bottom Footer Pill */
+    .slide-bottom {
+      margin-top: auto;
+      display: flex;
+      justify-content: center;
+      padding-top: 24px;
+    }
+
+    .bottom-pill {
+      display: flex;
+      align-items: center;
+      border-radius: 100px;
+      overflow: hidden;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      border: 1px solid rgba(15, 23, 42, 0.05);
+      background: #FFFFFF;
+    }
+    
+    .bottom-pill .website {
+      color: var(--color-primary);
+      padding: 14px 24px;
+    }
+    
+    .bottom-pill .swipe-btn {
+      background: var(--color-primary);
+      color: #FFFFFF;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* CTA Button */
+    .btn-primary {
+      background: linear-gradient(135deg, #1E3A8A, #3B82F6);
+      color: white;
+      padding: 20px 40px;
+      border-radius: 100px;
+      font-weight: 800;
+      font-size: 20px;
+      border: none;
+      margin-top: 32px;
+      cursor: pointer;
+      box-shadow: 0 15px 30px rgba(37, 99, 235, 0.2);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      transition: transform 0.2s;
+    }
+    
+    .btn-primary:hover {
+      transform: scale(1.05);
+    }
+
+    .layout-center {
+      align-items: center;
+      text-align: center;
+    }
+
+    .tech-arrow {
+      background: var(--color-primary);
+      color: white;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 32px;
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.15);
+    }
+
+    /* Visual Element: Graphic Blob */
+    .visual-blob {
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.15), rgba(249, 115, 22, 0.15));
+      filter: blur(40px);
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    /* Notice Box */
+    .notice-box {
+      background: #FFFFFF;
+      border-left: 4px solid #3B82F6;
+      padding: 20px 24px;
+      border-radius: 0 16px 16px 0;
+      margin-top: 24px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+      z-index: 10;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="app-header">
+    <h1>Scroll Down to Screenshot Each Slide</h1>
+  </div>
+
+  <div class="carousel-track">
+    
+    <!-- Slide 1: Hook -->
+    <div class="slide">
+      <div class="slide-inner">
+        <div class="slide-top">
+          <!-- Removed Brand Name -->
+        </div>
+        
+        <div class="slide-content">
+          <div class="visual-blob" style="top: 10%; right: 5%;"></div>
+          
+          <h2>Is your<br>customer<br>support team<br><span class="highlight-gradient">drowning</span><br>during peak<br>hours?</h2>
+          
+          <div class="tech-arrow">
+            <i data-lucide="arrow-right" size="28"></i>
+          </div>
+        </div>
+
+        <div class="slide-bottom">
+          <div class="bottom-pill">
+            <span class="website">digimabbleai.com</span>
+            <span class="swipe-btn">SWIPE <i data-lucide="chevron-right" size="14"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2: Rehook -->
+    <div class="slide">
+      <div class="slide-inner">
+        <div class="slide-top"></div>
+        
+        <div class="slide-content">
+          <h2>Rising costs and <span class="highlight-gradient">inconsistent</span> support...</h2>
+          
+          <div class="connecting-line" style="top: 150px; left: 20px; width: 40px; height: 120px;"></div>
+
+          <p style="margin-left: 80px; margin-top: 30px; position: relative; z-index: 10;">As your customer base grows, manual support simply cannot scale fast enough across every channel.</p>
+          
+          <div style="margin-top: 40px; margin-left: 80px; position: relative; z-index: 10;">
+             <div class="glass-card-icon" style="width: 64px; height: 64px;"><i data-lucide="trending-down" size="32"></i></div>
+          </div>
+        </div>
+
+        <div class="slide-bottom">
+          <div class="bottom-pill">
+            <span class="website">digimabbleai.com</span>
+            <span class="swipe-btn">SWIPE <i data-lucide="chevron-right" size="14"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3: Mirror -->
+    <div class="slide">
+      <div class="slide-inner">
+        <div class="slide-top"></div>
+        
+        <div class="slide-content">
+          <h2>Scale your support <span class="highlight-gradient">instantly</span></h2>
+          
+          <div class="visual-blob" style="bottom: 10%; right: -10%;"></div>
+
+          <div style="margin-top: 40px; display: flex; flex-direction: column; gap: 16px;">
+            <div class="glass-card">
+              <div class="glass-card-icon"><i data-lucide="users" size="24"></i></div>
+              <div class="glass-card-text">
+                <span class="glass-card-title">No Massive Teams</span>
+                <span class="glass-card-desc">Scale without the nightmare of hiring and training hundreds of reps.</span>
+              </div>
+            </div>
+            <div class="glass-card">
+              <div class="glass-card-icon"><i data-lucide="coins" size="24"></i></div>
+              <div class="glass-card-text">
+                <span class="glass-card-title">Zero Overhead Increase</span>
+                <span class="glass-card-desc">Keep your margins high while delivering top-tier service.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-bottom">
+          <div class="bottom-pill">
+            <span class="website">digimabbleai.com</span>
+            <span class="swipe-btn">SWIPE <i data-lucide="chevron-right" size="14"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4: Reveal -->
+    <div class="slide">
+      <div class="slide-inner">
+        <div class="slide-top"></div>
+        
+        <div class="slide-content">
+          <h3>AI-Powered Solutions</h3>
+          <h2>Meet your <span class="highlight-gradient">24/7 intelligent</span> support platform.</h2>
+          
+          <div class="notice-box">
+            <i data-lucide="bot" size="32" style="color: #3B82F6; flex-shrink: 0;"></i>
+            <p style="font-size: 16px; font-weight: 600; color: var(--color-primary);">Our AI Chatbot uses advanced NLP to deliver instant, human-like responses to your customers.</p>
+          </div>
+        </div>
+
+        <div class="slide-bottom">
+          <div class="bottom-pill">
+            <span class="website">digimabbleai.com</span>
+            <span class="swipe-btn">SWIPE <i data-lucide="chevron-right" size="14"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 5: Features -->
+    <div class="slide">
+      <div class="slide-inner">
+        <div class="slide-top"></div>
+        
+        <div class="slide-content">
+          <h2 style="margin-bottom: 30px;">Smarter Conversations</h2>
+          
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div class="glass-card" style="padding: 16px 20px;">
+              <div class="glass-card-icon" style="width: 40px; height: 40px;"><i data-lucide="message-square" size="20"></i></div>
+              <div class="glass-card-text">
+                <span class="glass-card-title" style="font-size: 16px;">Natural Language</span>
+                <span class="glass-card-desc" style="font-size: 13px;">Communicates smoothly like a real person.</span>
+              </div>
+            </div>
+            
+            <div class="glass-card" style="padding: 16px 20px;">
+              <div class="glass-card-icon" style="width: 40px; height: 40px;"><i data-lucide="brain-circuit" size="20"></i></div>
+              <div class="glass-card-text">
+                <span class="glass-card-title" style="font-size: 16px;">Contextual Memory</span>
+                <span class="glass-card-desc" style="font-size: 13px;">Remembers past interactions.</span>
+              </div>
+            </div>
+
+            <div class="glass-card" style="padding: 16px 20px;">
+              <div class="glass-card-icon" style="width: 40px; height: 40px;"><i data-lucide="globe" size="20"></i></div>
+              <div class="glass-card-text">
+                <span class="glass-card-title" style="font-size: 16px;">Multilingual</span>
+                <span class="glass-card-desc" style="font-size: 13px;">Seamless global communication.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-bottom">
+          <div class="bottom-pill">
+            <span class="website">digimabbleai.com</span>
+            <span class="swipe-btn">SWIPE <i data-lucide="chevron-right" size="14"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 6: Ecosystem -->
+    <div class="slide">
+      <div class="slide-inner">
+        <div class="slide-top"></div>
+        
+        <div class="slide-content">
+          <h2>Omnichannel <span class="highlight-gradient">Presence</span></h2>
+          <p>Integrate our AI chatbot directly into your favorite platforms to meet users exactly where they are.</p>
+          
+          <div class="integration-grid">
+            <div class="int-card">
+              <div class="int-icon-wrapper"><i data-lucide="layout-dashboard" size="28"></i></div>
+              <span style="font-weight: 800; color: var(--color-primary); font-size: 15px;">Your CRM</span>
+            </div>
+            <div class="int-card">
+              <div class="int-icon-wrapper"><i data-lucide="globe-2" size="28"></i></div>
+              <span style="font-weight: 800; color: var(--color-primary); font-size: 15px;">Web & Apps</span>
+            </div>
+            <div class="int-card">
+              <div class="int-icon-wrapper"><i data-lucide="share-2" size="28"></i></div>
+              <span style="font-weight: 800; color: var(--color-primary); font-size: 15px;">Social Media</span>
+            </div>
+            <div class="int-card">
+              <div class="int-icon-wrapper"><i data-lucide="headset" size="28"></i></div>
+              <span style="font-weight: 800; color: var(--color-primary); font-size: 15px;">Helpdesks</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-bottom">
+          <div class="bottom-pill">
+            <span class="website">digimabbleai.com</span>
+            <span class="swipe-btn">SWIPE <i data-lucide="chevron-right" size="14"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 7: Value -->
+    <div class="slide">
+      <div class="slide-inner">
+        <div class="slide-top"></div>
+        
+        <div class="slide-content">
+          <h3>Business Value</h3>
+          <h2>The <span class="highlight-gradient">Results?</span></h2>
+          
+          <div class="visual-blob" style="top: 40%; left: -20px;"></div>
+
+          <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 20px;">
+            <div class="glass-card">
+              <div class="glass-card-icon"><i data-lucide="smile" size="24"></i></div>
+              <div class="glass-card-text">
+                <span class="glass-card-title">Enhanced Satisfaction</span>
+                <span class="glass-card-desc">Zero wait times means happier customers.</span>
+              </div>
+            </div>
+            
+            <div class="glass-card">
+              <div class="glass-card-icon"><i data-lucide="piggy-bank" size="24"></i></div>
+              <div class="glass-card-text">
+                <span class="glass-card-title">Cost Savings</span>
+                <span class="glass-card-desc">Cut expenses by automating routine tasks.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-bottom">
+          <div class="bottom-pill">
+            <span class="website">digimabbleai.com</span>
+            <span class="swipe-btn">SWIPE <i data-lucide="chevron-right" size="14"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 8: Takeaway -->
+    <div class="slide">
+      <div class="slide-inner">
+        <div class="slide-top"></div>
+        
+        <div class="slide-content layout-center">
+          <div class="visual-blob" style="top: -20px; left: 50%; transform: translateX(-50%); width: 200px; height: 200px; opacity: 0.5;"></div>
+          
+          <h2 style="font-size: 44px; position: relative; z-index: 10;">Don't let another lead slip through the cracks.</h2>
+          <h2 class="highlight-gradient" style="font-size: 38px; margin-top: 24px; position: relative; z-index: 10;">Automate your support today.</h2>
+        </div>
+
+        <div class="slide-bottom">
+          <div class="bottom-pill">
+            <span class="website">digimabbleai.com</span>
+            <span class="swipe-btn">SWIPE <i data-lucide="chevron-right" size="14"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 9: CTA -->
+    <div class="slide">
+      <div class="slide-inner">
+        <div class="slide-top"></div>
+        
+        <div class="slide-content layout-center">
+          <h2 style="font-size: 42px;">Ready to elevate your customer experience?</h2>
+          
+          <p style="margin-top: 16px; font-size: 20px;">Comment <strong class="highlight-gradient" style="font-size: 26px;">"CHAT"</strong><br>and we'll DM you a free interactive demo.</p>
+          
+          <button class="btn-primary">
+            Try The Demo <i data-lucide="arrow-right" size="24"></i>
+          </button>
+        </div>
+
+        <div class="slide-bottom">
+          <div class="bottom-pill">
+            <span class="website" style="border-radius: 100px;">digimabbleai.com</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Axon Carousel 2 - Claude Skills New Template</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #ff6542; 
+      --bg-orange: #ff6542; 
+    }
+    body {
+      margin: 0;
+      padding: 40px;
+      background: #222;
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+      align-items: center;
+      font-family: 'Satoshi', sans-serif;
+    }
+    .slide {
+      width: 1080px;
+      height: 1350px;
+      background-color: #f4efe6;
+      position: relative;
+      overflow: hidden;
+      box-sizing: border-box;
+      padding: 100px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    .slide-1 {
+      background: #f4efe6;
+      color: #1b3022;
+    }
+    .slide-2, .slide-3, .slide-4 {
+      background: var(--bg-orange);
+      color: white;
+    }
+    .slide-5 {
+      background: #1b3022;
+      color: #f4efe6;
+    }
+
+    .lines-bg {
+      position: absolute;
+      top: 0; right: 0; bottom: 0; width: 65%;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 15px,
+        var(--orange) 15px,
+        var(--orange) 30px
+      );
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 100%);
+      z-index: 1;
+      opacity: 0.6;
+    }
+    .slide-5 .lines-bg {
+      opacity: 0.8;
+    }
+
+    .header {
+      font-size: 36px;
+      font-weight: 400;
+      z-index: 2;
+    }
+
+    .s1-title {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 140px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -4px;
+      z-index: 2;
+      margin-top: 250px;
+    }
+    
+    .s5-title {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 130px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -4px;
+      z-index: 2;
+      margin-top: 220px;
+    }
+
+    .highlight-orange {
+      background-color: var(--orange);
+      color: #1b3022;
+      display: inline-block;
+      padding: 5px 20px;
+      margin-top: 15px;
+    }
+
+    .s2-title {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 140px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -4px;
+      z-index: 2;
+      margin-top: 150px;
+    }
+
+    .tag-black {
+      background-color: #1b3022;
+      color: #f4efe6;
+      display: inline-block;
+      font-size: 45px;
+      font-weight: 700;
+      padding: 15px 35px;
+      margin-top: 50px;
+      margin-bottom: 40px;
+      z-index: 2;
+    }
+
+    .s2-desc {
+      font-size: 55px;
+      line-height: 1.35;
+      font-weight: 400;
+      z-index: 2;
+      max-width: 850px;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 100px;
+      left: 100px;
+      display: flex;
+      flex-direction: column;
+      z-index: 2;
+    }
+    .footer-name {
+      font-size: 40px;
+      font-weight: 700;
+    }
+    .footer-handle {
+      font-size: 30px;
+      font-weight: 400;
+      opacity: 0.8;
+      margin-top: 10px;
+    }
+
+    .footer-right {
+      position: absolute;
+      bottom: 100px;
+      right: 100px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+    
+    .arrow-icon {
+      width: 140px;
+      height: 60px;
+    }
+    
+    .curved-pattern {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 400px;
+      height: 500px;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Slide 1 -->
+  <div class="slide slide-1">
+    <div class="lines-bg"></div>
+    <div class="header">Design Tips</div>
+    
+    <div class="s1-title">
+      3 Claude<br>
+      skills every<br>
+      designer<br>
+      <span class="highlight-orange">should use</span>
+    </div>
+    
+
+    <div class="footer-right">
+      <svg class="arrow-icon" viewBox="0 0 100 40" fill="none" stroke="#1b3022" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="0" y1="20" x2="95" y2="20" />
+        <polyline points="75,0 95,20 75,40" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Slide 2 -->
+  <div class="slide slide-2">
+    <svg class="curved-pattern" viewBox="0 0 400 500" fill="none">
+      <rect x="0" y="250" width="30" height="250" rx="15" fill="rgba(27,48,34,0.1)"/>
+      <rect x="50" y="170" width="30" height="330" rx="15" fill="rgba(27,48,34,0.1)"/>
+      <rect x="100" y="100" width="30" height="400" rx="15" fill="rgba(27,48,34,0.1)"/>
+      <rect x="150" y="40" width="30" height="460" rx="15" fill="rgba(27,48,34,0.1)"/>
+      <rect x="200" y="10" width="30" height="490" rx="15" fill="rgba(27,48,34,0.1)"/>
+      <rect x="250" y="0" width="30" height="500" rx="15" fill="rgba(27,48,34,0.1)"/>
+      <rect x="300" y="0" width="30" height="500" rx="15" fill="rgba(27,48,34,0.1)"/>
+      <rect x="350" y="0" width="30" height="500" rx="15" fill="rgba(27,48,34,0.1)"/>
+    </svg>
+    
+    <div class="header">Design Tips</div>
+    
+    <div class="s2-title">
+      UI UX<br>
+      Pro Max
+    </div>
+    
+    <div>
+      <div class="tag-black">Skill 1</div>
+    </div>
+    
+    <div class="s2-desc">
+      Claude can analyze your designs and suggest professional-grade UI/UX improvements instantly.
+    </div>
+    
+
+    <div class="footer-right">
+      <svg class="arrow-icon" viewBox="0 0 100 40" fill="none" stroke="#f4efe6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="0" y1="20" x2="95" y2="20" />
+        <polyline points="75,0 95,20 75,40" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Slide 3 -->
+  <div class="slide slide-3">
+    <svg class="curved-pattern" viewBox="0 0 400 500" fill="none">
+      <rect x="0" y="250" width="30" height="250" rx="15" fill="rgba(27,48,34,0.1)"/>
+      <rect x="50" y="170" width="30" height="330" rx="15" fill="rgba(27,48,34,0.1)"/>
+      <rect x="100" y="100" width="30" height="400" rx="15" fill="rgba(27,48,34,0.1)"/>
+      <rect x="150" y="40" width="30" height="460" rx="15" fill="rgba(27,48,34,0.1)"/>
+      <rect x="200" y="10" width="30" height="490" rx="15" fill="rgba(27,48,34,0.1)"/>
+      <rect x="250" y="0" width="30" height="500" rx="15" fill="rgba(27,48,34,0.1)"/>
+      <rect x="300" y="0" width="30" height="500" rx="15" fill="rgba(27,48,34,0.1)"/>
+      <rect x="350" y="0" width="30" height="500" rx="15" fill="rgba(27,48,34,0.1)"/>
+    </svg>
+    
+    <div class="header">Design Tips</div>
+    
+    <div class="s2-title">
+      Refined<br>
+      Taste
+    </div>
+    
+    <div>
+      <div class="tag-black">Skill 2</div>
+    </div>
+    
+    <div class="s2-desc">
+      It understands aesthetic nuance. Claude helps you pick color palettes and typography that scream premium.
+    </div>
+    
+
+    <div class="footer-right">
+      <svg class="arrow-icon" viewBox="0 0 100 40" fill="none" stroke="#f4efe6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="0" y1="20" x2="95" y2="20" />
+        <polyline points="75,0 95,20 75,40" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Slide 4 -->
+  <div class="slide slide-4">
+    <svg class="curved-pattern" viewBox="0 0 400 500" fill="none">
+      <rect x="0" y="250" width="30" height="250" rx="15" fill="rgba(27,48,34,0.1)"/>
+      <rect x="50" y="170" width="30" height="330" rx="15" fill="rgba(27,48,34,0.1)"/>
+      <rect x="100" y="100" width="30" height="400" rx="15" fill="rgba(27,48,34,0.1)"/>
+      <rect x="150" y="40" width="30" height="460" rx="15" fill="rgba(27,48,34,0.1)"/>
+      <rect x="200" y="10" width="30" height="490" rx="15" fill="rgba(27,48,34,0.1)"/>
+      <rect x="250" y="0" width="30" height="500" rx="15" fill="rgba(27,48,34,0.1)"/>
+      <rect x="300" y="0" width="30" height="500" rx="15" fill="rgba(27,48,34,0.1)"/>
+      <rect x="350" y="0" width="30" height="500" rx="15" fill="rgba(27,48,34,0.1)"/>
+    </svg>
+    
+    <div class="header">Design Tips</div>
+    
+    <div class="s2-title">
+      Impeccable<br>
+      Research
+    </div>
+    
+    <div>
+      <div class="tag-black">Skill 3</div>
+    </div>
+    
+    <div class="s2-desc">
+      Never design in the dark. Let Claude gather deep user insights and competitor analysis before you start.
+    </div>
+    
+
+    <div class="footer-right">
+      <svg class="arrow-icon" viewBox="0 0 100 40" fill="none" stroke="#f4efe6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="0" y1="20" x2="95" y2="20" />
+        <polyline points="75,0 95,20 75,40" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Slide 5 -->
+  <div class="slide slide-5">
+    <div class="lines-bg"></div>
+    <div class="header">Design Tips</div>
+    
+    <div class="s5-title">
+      Level up<br>
+      today.<br>
+      <span class="highlight-orange">Which skill</span><br>
+      will you use<br>
+      first?
+    </div>
+    
+
+    <div class="footer-right">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#f4efe6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 50px; height: 50px;">
+        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+      </svg>
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#f4efe6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 50px; height: 50px;">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+      </svg>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digi Mabble AI - Automation Carousel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #121212;
+      --purple: #8162f8; 
+      --text: #ffffff;
+      --font: 'Plus Jakarta Sans', sans-serif;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      font-family: var(--font);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      overflow-y: auto;
+      padding: 80px 40px;
+    }
+    .carousel-container {
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
+    }
+    
+    .slide {
+      width: 540px; 
+      height: 675px; /* 4:5 aspect ratio */
+      background-color: var(--bg);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      flex: 0 0 auto;
+      border-radius: 4px;
+    }
+    
+    /* Background Image */
+    .bg-img {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.4; /* Increased for better visibility */
+      z-index: 1;
+      filter: saturate(1.2);
+    }
+    
+    /* Grid Overlay */
+    .grid-overlay {
+      display: none; /* removed per user request */
+    }
+    
+    .content {
+      position: relative;
+      z-index: 3;
+      padding: 40px 40px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      box-sizing: border-box;
+    }
+    
+    /* Top Bar */
+    .top-bar-cover {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      width: 100%;
+    }
+    .top-bar-cover .tag {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      color: var(--text);
+      white-space: nowrap;
+    }
+    .top-bar-cover .line {
+      flex-grow: 1;
+      border-bottom: 2px dotted rgba(255,255,255,0.8);
+    }
+    
+    .top-bar-inner {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      width: 100%;
+    }
+    .top-bar-inner .line-main {
+      flex-grow: 1;
+      border-bottom: 2px dotted rgba(255,255,255,0.8);
+    }
+    .top-bar-inner .slide-number {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      color: var(--text);
+    }
+    .top-bar-inner .line-short {
+      width: 40px;
+      border-bottom: 2px dotted rgba(255,255,255,0.8);
+    }
+    
+    /* Typography */
+    .content-wrapper {
+      margin-top: 80px;
+      position: relative;
+    }
+    .headline {
+      font-size: 50px;
+      font-weight: 800;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 30px;
+      letter-spacing: -1px;
+    }
+    .headline .purple {
+      color: var(--purple);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #c4a1ff 0%, #8162f8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+    .body-text {
+      font-size: 19px;
+      line-height: 1.5;
+      font-weight: 400;
+      color: rgba(255,255,255,0.95);
+      max-width: 90%;
+    }
+    
+    /* Cover Right Arrow Button */
+    .cover-arrow-btn {
+      width: 60px;
+      height: 60px;
+      background: var(--purple);
+      border: 3px solid var(--text);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    .cover-arrow-btn svg {
+      width: 34px;
+      height: 34px;
+      fill: var(--text);
+    }
+    
+    /* SVG Accents for inner slides */
+    .accent-left, .accent-right, .accent-simple-left {
+      display: none;
+    }
+    
+    /* Bottom Pill */
+    .bottom-wrapper {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .bottom-pill {
+      display: flex;
+      border-radius: 100px;
+      overflow: hidden;
+      background: var(--text); /* Swipe part background */
+    }
+    .pill-url {
+      background: var(--purple);
+      color: var(--text);
+      padding: 12px 24px;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+    .pill-swipe {
+      background: var(--text);
+      color: var(--bg);
+      padding: 12px 24px;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+    
+    .pill-only-url {
+      background: var(--purple);
+      color: var(--text);
+      padding: 14px 28px;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      border-radius: 100px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="carousel-container">
+    
+    <!-- Slide 1: Cover -->
+    <div class="slide">
+      <img src="file:///C:/Users/acer/.gemini/antigravity-ide/brain/9e3ea87d-95c5-4f2b-89cd-8a9552acfd1e/hc_bg_cover_1780329491315.png" class="bg-img" alt="Background">
+      <div class="grid-overlay"></div>
+      
+      <div class="content">
+        <div class="top-bar-cover">
+          <span class="tag"></span>
+          <div class="line"></div>
+        </div>
+        
+        <div class="content-wrapper" style="margin-top: 50px;">
+          <div class="headline">
+            <span class="gradient-text">Patient</span><br>
+            <span class="gradient-text">Journey</span><br>
+            Automation<br>
+            That<br>
+            Works
+          </div>
+          <div class="body-text" style="font-size: 17px; margin-top: -10px;">Most healthcare brands lose patients between touchpoints. Here's how AI fixes that silently.</div>
+          
+          <div class="cover-arrow-btn">
+            <svg viewBox="0 0 24 24">
+              <polygon points="10,7 17,12 10,17" fill="white" stroke="white" stroke-width="2" stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+        
+        <div class="bottom-wrapper">
+          <div class="bottom-pill">
+            <div class="pill-url">AUTOMATION</div>
+            <div class="pill-swipe">SWIPE</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 (01) -->
+    <div class="slide">
+      <img src="file:///C:/Users/acer/.gemini/antigravity-ide/brain/9e3ea87d-95c5-4f2b-89cd-8a9552acfd1e/hc_bg_01_1780329518459.png" class="bg-img" alt="Background">
+      <div class="grid-overlay"></div>
+      
+      <div class="content">
+        <div class="top-bar-inner">
+          <div class="line-main"></div>
+          <span class="slide-number">01</span>
+          <div class="line-short"></div>
+        </div>
+        
+        <div class="content-wrapper">
+          <div class="headline"><span class="gradient-text">The Patient</span><br>Doesn't Wait</div>
+          <div class="body-text">Your marketing should be ready before they even ask. Customer Journey Automation means guiding every patient—from first click to loyal advocate—with the right message, on the right channel, at the right time.</div>
+          
+          <!-- Accent Right (like template 01) -->
+          <div class="accent-right">
+            <svg width="120" height="80" viewBox="0 0 120 80" fill="none">
+              <path d="M 120 10 L 80 10 Q 70 10 70 20 L 70 60 Q 70 70 60 70 L 10 70" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-dasharray="4 4"/>
+              <circle cx="10" cy="70" r="4" fill="#fff"/>
+            </svg>
+          </div>
+        </div>
+        
+        <div class="bottom-wrapper">
+          <div class="bottom-pill">
+            <div class="pill-url">AUTOMATION</div>
+            <div class="pill-swipe">SWIPE</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 (02) -->
+    <div class="slide">
+      <img src="file:///C:/Users/acer/.gemini/antigravity-ide/brain/9e3ea87d-95c5-4f2b-89cd-8a9552acfd1e/hc_bg_02_1780329541399.png" class="bg-img" alt="Background">
+      <div class="grid-overlay"></div>
+      
+      <div class="content">
+        <div class="top-bar-inner">
+          <div class="line-main"></div>
+          <span class="slide-number">02</span>
+          <div class="line-short"></div>
+        </div>
+        
+        <div class="content-wrapper">
+          <div class="headline"><span class="gradient-text">Browsing?</span><br>Get Personalized</div>
+          <div class="body-text">When a patient browses your service, they automatically receive a tailored recommendation that matches their needs. No more generic messaging—only what matters to them.</div>
+          
+          <!-- Accent Left & Simple Right (like template 03) -->
+          <div class="accent-left">
+            <svg width="120" height="80" viewBox="0 0 120 80" fill="none">
+              <path d="M 0 70 L 40 70 Q 50 70 50 60 L 50 20 Q 50 10 60 10 L 110 10" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-dasharray="4 4"/>
+              <circle cx="110" cy="10" r="4" fill="#fff"/>
+            </svg>
+          </div>
+        </div>
+        
+        <div class="bottom-wrapper">
+          <div class="bottom-pill">
+            <div class="pill-url">AUTOMATION</div>
+            <div class="pill-swipe">SWIPE</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4 (03) -->
+    <div class="slide">
+      <img src="file:///C:/Users/acer/.gemini/antigravity-ide/brain/9e3ea87d-95c5-4f2b-89cd-8a9552acfd1e/hc_bg_03_1780329556034.png" class="bg-img" alt="Background">
+      <div class="grid-overlay"></div>
+      
+      <div class="content">
+        <div class="top-bar-inner">
+          <div class="line-main"></div>
+          <span class="slide-number">03</span>
+          <div class="line-short"></div>
+        </div>
+        
+        <div class="content-wrapper">
+          <div class="headline"><span class="gradient-text">Doesn't Book?</span><br>Timely Follow-up</div>
+          <div class="body-text">No missed moments. If a patient leaves without booking, an automated, timely follow-up is sent to re-engage them, requiring zero manual effort from your team.</div>
+          
+          <!-- Accent Right (like template 04) -->
+          <div class="accent-right">
+            <svg width="120" height="80" viewBox="0 0 120 80" fill="none">
+              <path d="M 120 70 L 80 70 Q 70 70 70 60 L 70 20 Q 70 10 60 10 L 10 10" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-dasharray="4 4"/>
+              <circle cx="10" cy="10" r="4" fill="#fff"/>
+            </svg>
+          </div>
+          <div class="accent-simple-left">
+            <div class="dot"></div><div class="line"></div>
+          </div>
+        </div>
+        
+        <div class="bottom-wrapper">
+          <div class="bottom-pill">
+            <div class="pill-url">AUTOMATION</div>
+            <div class="pill-swipe">SWIPE</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 5 (04) -->
+    <div class="slide">
+      <img src="file:///C:/Users/acer/.gemini/antigravity-ide/brain/9e3ea87d-95c5-4f2b-89cd-8a9552acfd1e/hc_bg_04_1780329573056.png" class="bg-img" alt="Background">
+      <div class="grid-overlay"></div>
+      
+      <div class="content">
+        <div class="top-bar-inner">
+          <div class="line-main"></div>
+          <span class="slide-number">04</span>
+          <div class="line-short"></div>
+        </div>
+        
+        <div class="content-wrapper">
+          <div class="headline"><span class="gradient-text">Booked?</span><br>Warm Onboarding</div>
+          <div class="body-text">Once an appointment is booked, automation sends a warm welcome message, preparing them for their visit and building trust before they step into the clinic.</div>
+          
+          <!-- Accent Left -->
+          <div class="accent-left" style="top: 30%;">
+            <svg width="120" height="80" viewBox="0 0 120 80" fill="none">
+              <path d="M 0 10 L 40 10 Q 50 10 50 20 L 50 60 Q 50 70 60 70 L 110 70" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-dasharray="4 4"/>
+              <circle cx="110" cy="70" r="4" fill="#fff"/>
+            </svg>
+          </div>
+        </div>
+        
+        <div class="bottom-wrapper">
+          <div class="bottom-pill">
+            <div class="pill-url">AUTOMATION</div>
+            <div class="pill-swipe">SWIPE</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 6 (CTA) -->
+    <div class="slide">
+      <img src="file:///C:/Users/acer/.gemini/antigravity-ide/brain/9e3ea87d-95c5-4f2b-89cd-8a9552acfd1e/hc_bg_05_1780329600136.png" class="bg-img" alt="Background">
+      <div class="grid-overlay"></div>
+      
+      <div class="content">
+        <div class="top-bar-cover">
+          <div class="line"></div>
+          <span class="tag"></span>
+          <div class="line"></div>
+        </div>
+        
+        <div class="content-wrapper" style="margin-top: 100px;">
+          <div class="headline">
+            <span class="gradient-text">Want to</span><br>
+            <span class="gradient-text">automate your</span><br>
+            <span class="gradient-text">patient</span><br>
+            <span class="gradient-text">journey?</span>
+          </div>
+          <div class="body-text">The healthcare brands winning in 2025 aren't marketing harder—they're automating smarter. <br><br>DM us <strong>AUTOMATE</strong> or tap the link in bio to connect!</div>
+          
+          <div class="accent-simple-left" style="top: 45%;">
+            <div class="line"></div><div class="dot"></div>
+          </div>
+        </div>
+        
+        <div class="bottom-wrapper">
+          <div class="pill-only-url">AUTOMATION</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,456 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ==========================================
+   DIGI MABBLE CAROUSEL CREATOR CORE ENGINE
+   Fully White-Labeled & Dynamic Brand System
+   Aligns with Taste, Impeccable, and Huashu-Design
+   ========================================== */
+
+:root {
+  /* Default Brand Neutral System (Off-Black/Off-White) */
+  --brand-bg: #F8FAFC;          /* Clean Slate-50 background for browser */
+  --brand-slide-bg: #FFFFFF;    /* Slide background */
+  --brand-primary: #0F172A;     /* Off-Black Charcoal slate text */
+  --brand-secondary: #475569;   /* Muted Slate text */
+  --brand-accent: #0D9488;      /* Healthcare Teal default */
+  --brand-accent-glow: rgba(13, 148, 136, 0.1);
+
+  /* Premium High-Agency Typography */
+  --font-header: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-display: 'Playfair Display', serif;
+  
+  /* Canvas Dimension Specifications */
+  --slide-width: 540px;
+  --slide-height: 675px;        /* Strict 4:5 Instagram ratio */
+  --slide-padding: 44px;
+}
+
+/* Global Reset & Viewport Stability */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--brand-bg);
+  color: var(--brand-primary);
+  font-family: var(--font-body);
+  min-height: 100dvh; /* Prevents mobile jumping */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* The Vertical Screen Capture Track */
+.carousel-track {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px; /* Precise SOP 80px vertical gap between slides */
+  width: 100%;
+}
+
+/* Master Slide Canvas */
+.slide {
+  flex-shrink: 0;
+  width: var(--slide-width);
+  height: var(--slide-height);
+  background-color: var(--brand-slide-bg);
+  border: 1px solid rgba(15, 23, 42, 0.06); /* Sophisticated neutral border */
+  box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.04); /* High-end subtle shadow */
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: var(--slide-padding);
+}
+
+/* Dynamic Brand Overlay Assets */
+.slide-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  opacity: 0.75;
+  filter: brightness(0.24) contrast(1.08) grayscale(0.25);
+}
+
+.slide-backdrop-scrim {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(18, 19, 28, 0.4) 0%, rgba(18, 19, 28, 0.82) 80%);
+  z-index: 2;
+}
+
+/* Brand Meta Header & Footer Shells */
+.slide-header {
+  position: absolute;
+  top: var(--slide-padding);
+  left: var(--slide-padding);
+  right: var(--slide-padding);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+.brand-meta-label {
+  font-family: var(--font-header);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--brand-secondary);
+}
+
+.slide-index-label {
+  font-family: var(--font-header);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--brand-secondary);
+}
+
+/* Pagination Progress Indicators */
+.pagination-progress {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.progress-dot {
+  width: 12px;
+  height: 3px;
+  border-radius: 4px;
+  background-color: rgba(15, 23, 42, 0.08);
+  transition: background-color 0.25s ease;
+}
+
+.progress-dot.active {
+  background-color: var(--brand-accent);
+}
+
+/* Absolute Typography Hierarchy */
+h1, h2, h3 {
+  font-family: var(--font-header);
+  font-weight: 800;
+  color: var(--brand-primary);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--brand-secondary);
+  font-weight: 500;
+}
+
+.highlight {
+  color: var(--brand-accent);
+  position: relative;
+  display: inline-block;
+}
+
+/* Modern Decorative Notice Pills */
+.pill-badge {
+  font-family: var(--font-header);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brand-accent);
+  background-color: var(--brand-accent-glow);
+  padding: 6px 14px;
+  border-radius: 100px;
+  width: fit-content;
+  margin-bottom: 16px;
+  border: 1px solid rgba(13, 148, 136, 0.15);
+}
+
+/* ==========================================
+   REFRACTIVE "LIQUID GLASS" CARDS
+   Strictly follows design-taste-frontend
+   ========================================== */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 
+              0 8px 32px 0 rgba(15, 23, 42, 0.04);
+  border-radius: 16px;
+  padding: 24px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Unified Layout Architectures */
+.content-wrapper {
+  position: relative;
+  z-index: 5;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+/* Slide Style 1: The Attention Hook */
+.type-hook .content-wrapper {
+  justify-content: center;
+}
+
+.type-hook h1 {
+  font-size: 38px;
+  line-height: 1.08;
+  margin-bottom: 16px;
+}
+
+/* Slide Style 2: Normal Slide (Split/Grid Grid) */
+.type-a .content-wrapper {
+  justify-content: flex-start;
+  margin-top: 50px;
+}
+
+.type-a h2 {
+  font-size: 30px;
+  margin-bottom: 14px;
+}
+
+.type-a .visual-card {
+  margin-top: auto;
+  height: 250px;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(15, 23, 42, 0.04);
+}
+
+.type-a .visual-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Slide Style 3: Reverse Layout (Hero bottom / card top) */
+.type-b .content-wrapper {
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.type-b .visual-card {
+  margin-bottom: auto;
+  margin-top: 50px;
+  height: 250px;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(15, 23, 42, 0.04);
+}
+
+.type-b .visual-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.type-b h2 {
+  font-size: 30px;
+  margin-top: 16px;
+  margin-bottom: 12px;
+}
+
+/* Slide Style 4: Interactive/Asymmetric Data Metrics */
+.type-data .content-wrapper {
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.type-data h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: auto;
+}
+
+.metric-card {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(15, 23, 42, 0.05);
+  border-radius: 12px;
+  padding: 18px;
+  text-align: left;
+}
+
+.metric-value {
+  font-family: var(--font-header);
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--brand-accent);
+  margin-bottom: 4px;
+}
+
+.metric-label {
+  font-size: 12px;
+  color: var(--brand-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Slide Style 5: Custom Action CTA (End of Tunnel) */
+.type-cta {
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.type-cta .content-wrapper {
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.type-cta h2 {
+  font-size: 36px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.type-cta p {
+  font-size: 16px;
+  max-width: 90%;
+  margin-bottom: 30px;
+}
+
+/* Elegant Tappable CTA Buttons */
+.cta-button {
+  display: inline-block;
+  font-family: var(--font-header);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brand-slide-bg);
+  background-color: var(--brand-primary);
+  border: 1px solid var(--brand-primary);
+  padding: 16px 36px;
+  border-radius: 100px;
+  box-shadow: 0 10px 25px -10px var(--brand-primary);
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.cta-button:active {
+  transform: scale(0.96); /* Touch feedback */
+}
+
+/* Decorative Swipe Next Vector Arrows */
+.swipe-indicator {
+  position: absolute;
+  bottom: var(--slide-padding);
+  right: var(--slide-padding);
+  z-index: 10;
+}
+
+.swipe-indicator svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--brand-accent);
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Curved Custom Header Vector Arrows */
+.decor-arrow-svg {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 80px;
+  height: 80px;
+  fill: none;
+  stroke: var(--brand-accent);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+
+/* ========================================================
+   DIGI MABBLE SIGNATURE DARK CINEMATIC VISUAL ELEMENTS
+   ======================================================== */
+
+.top-right-logo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  z-index: 15;
+}
+
+.bottom-gold-frame {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background-color: var(--brand-accent);
+  border-top-left-radius: 36px;
+  border-top-right-radius: 0;
+  z-index: 20;
+}
+
+.slide-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  width: 100%;
+  padding-top: 24px;
+  position: relative;
+  z-index: 10;
+}
+
+.bottom-left-url-pill {
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  border-radius: 100px;
+  padding: 8px 24px;
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.bottom-right-waves {
+  width: 80px;
+  height: 24px;
+  opacity: 0.65;
+}
+

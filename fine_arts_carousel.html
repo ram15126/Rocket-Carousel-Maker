@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fine Arts Myths Carousel - Gallery Style</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Syne:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-orange: #F6891F;
+            --orange-wash: #FFF3E6;
+            --off-white: #F5F5F0;
+            --deep-teal: #0B3C40;
+            --charcoal: #1A1A1A;
+            
+            --text-light: #F5F5F0;
+            --text-dark: #1A1A1A;
+        }
+
+        body {
+            background-color: #333; /* Dark background for the browser view */
+            margin: 0;
+            padding: 80px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Syne', sans-serif;
+        }
+
+        .carousel-track {
+            display: flex;
+            flex-direction: column;
+            gap: 80px; /* 80px gap between slides */
+        }
+
+        .slide {
+            width: 1080px;
+            height: 1350px; /* 4:5 ratio */
+            position: relative;
+            overflow: hidden;
+            background-color: var(--charcoal);
+            color: var(--text-light);
+            z-index: 1;
+            /* Inner frame to add structure without grids */
+            box-shadow: inset 0 0 0 16px rgba(0,0,0,0.2), inset 0 0 0 18px rgba(255,255,255,0.1);
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            z-index: 10;
+            position: relative;
+        }
+
+        .title-massive {
+            font-size: 240px;
+            font-weight: 500;
+            line-height: 0.85;
+            letter-spacing: -0.04em;
+        }
+
+        .title-large {
+            font-size: 160px;
+            font-weight: 500;
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+        }
+
+        .title-medium {
+            font-size: 120px;
+            font-weight: 500;
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+
+        .title-italic {
+            font-style: italic;
+        }
+
+        .script-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 140px;
+            line-height: 0.8;
+            color: var(--off-white);
+            z-index: 10;
+            position: relative;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .body-text {
+            font-family: 'Syne', sans-serif;
+            font-size: 34px;
+            line-height: 1.5;
+            font-weight: 400;
+            color: var(--off-white);
+            max-width: 600px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .meta-text {
+            font-family: 'Syne', sans-serif;
+            font-size: 24px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            color: var(--off-white);
+            z-index: 10;
+            position: relative;
+        }
+
+        .brand-accent {
+            color: var(--brand-orange);
+        }
+
+        /* Background Images & Layouts */
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .overlay-dark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(26,26,26,0.2) 0%, rgba(26,26,26,0.85) 100%);
+            z-index: 1;
+        }
+
+        .overlay-teal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(11,60,64,0.4) 0%, rgba(11,60,64,0.9) 100%);
+            z-index: 1;
+        }
+
+        .split-layout {
+            display: flex;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        .split-left {
+            width: 50%;
+            height: 100%;
+            background-color: var(--deep-teal);
+            position: relative;
+        }
+
+        .split-right {
+            width: 50%;
+            height: 100%;
+            position: relative;
+        }
+
+        .split-right img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Specific Placements */
+        .header-meta {
+            position: absolute;
+            top: 60px;
+            left: 60px;
+            z-index: 10;
+        }
+
+        .footer-meta {
+            position: absolute;
+            bottom: 60px;
+            right: 60px;
+            text-align: right;
+            z-index: 10;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="carousel-track">
+
+    <!-- SLIDE 1: COVER -->
+    <div class="slide">
+        <img src="C:/Users/acer/.gemini/antigravity/brain/83b54a5e-c7fb-4e89-822a-38e14ff8cdf9/indian_sculpting_class_candid_1778777158954.png" class="bg-image" alt="Art Classroom">
+        <div class="overlay-dark"></div>
+
+        <div style="position: absolute; top: 120px; width: 100%; text-align: center; z-index: 10;">
+            <h1 class="title-massive">fine a<span class="title-italic">r</span>ts</h1>
+            <p class="meta-text" style="margin-top: 30px;">Department of Visual Arts</p>
+        </div>
+
+        <div style="position: absolute; bottom: 120px; left: 80px; z-index: 10;">
+            <p class="body-text" style="margin-bottom: 20px; max-width: 500px;">Real talk about authentic careers in the visual arts space.</p>
+            <div class="script-text">Beyond the Myths</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 2: SPLIT LAYOUT -->
+    <div class="slide">
+        <div class="split-layout">
+            <div class="split-left" style="background-color: var(--brand-orange);">
+            </div>
+            <div class="split-right">
+                <img src="C:/Users/acer/.gemini/antigravity/brain/83b54a5e-c7fb-4e89-822a-38e14ff8cdf9/indian_art_discussion_candid_1778777188904.png" alt="Workshop">
+                <div class="overlay-dark" style="opacity: 0.4;"></div>
+            </div>
+        </div>
+
+        <div class="header-meta meta-text" style="color: var(--text-dark);">DVA Myths</div>
+
+        <div style="position: absolute; top: 250px; left: 80px; width: 400px; z-index: 10;">
+            <p class="body-text" style="color: var(--text-dark); font-weight: 500;">The "starving artist" is a myth. Today's economy relies heavily on UX designers, art directors, and commercial illustrators.</p>
+        </div>
+
+        <div style="position: absolute; bottom: 140px; right: 60px; text-align: right;">
+            <div class="script-text">The Reality</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: JOB SECURITY -->
+    <div class="slide">
+        <img src="C:/Users/acer/.gemini/antigravity/brain/83b54a5e-c7fb-4e89-822a-38e14ff8cdf9/indian_authentic_classroom_stability_1778777615374.png" class="bg-image" alt="Classroom Stability" style="transform: scaleX(-1);">
+        <div class="overlay-dark"></div>
+
+        <div style="position: absolute; top: 100px; left: 80px; z-index: 10;">
+            <h1 class="title-large">Stabil<span class="title-italic">i</span>ty</h1>
+            <div class="script-text" style="margin-top: -20px; margin-left: 60px;">in careers</div>
+        </div>
+
+        <div style="position: absolute; bottom: 120px; left: 80px; z-index: 10;">
+            <p class="body-text" style="max-width: 800px; font-size: 38px;">Freelance isn't the only path. Major tech and media companies employ massive, full-time creative teams.</p>
+        </div>
+
+        <div class="footer-meta meta-text">Full-Time Focus</div>
+    </div>
+
+    <!-- SLIDE 4: FUTURE PROOF -->
+    <div class="slide" style="background-color: var(--charcoal);">
+        <img src="C:/Users/acer/.gemini/antigravity/brain/83b54a5e-c7fb-4e89-822a-38e14ff8cdf9/indian_campus_art_students_candid_1778777232875.png" class="bg-image" alt="Student Sketching">
+        <div class="overlay-dark"></div>
+
+        <div class="header-meta meta-text">Beyond Automation</div>
+
+        <div style="position: absolute; top: 150px; left: 80px; z-index: 10;">
+            <p class="body-text" style="max-width: 600px;">As AI handles routine tasks, human-centric design, critical thinking, and raw creativity become irreplaceable.</p>
+        </div>
+
+        <div style="position: absolute; bottom: 150px; width: 100%; text-align: center; z-index: 10;">
+            <div class="script-text" style="margin-bottom: 20px;">Future-Proof</div>
+            <h1 class="title-medium">H<span class="title-italic">u</span>manity</h1>
+        </div>
+    </div>
+
+    <!-- SLIDE 5: CTA -->
+    <div class="slide">
+        <img src="C:/Users/acer/.gemini/antigravity/brain/83b54a5e-c7fb-4e89-822a-38e14ff8cdf9/indian_college_campus_arts_1778747540473.png" class="bg-image" alt="College Campus">
+        <div class="overlay-dark"></div>
+
+        <div class="header-meta meta-text">Visual Arts Dept.</div>
+
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 100%; z-index: 10;">
+            <h1 class="title-massive" style="color: var(--off-white);">St<span class="title-italic">a</span>rt</h1>
+            <div class="script-text" style="color: var(--brand-orange); margin-top: -30px; margin-bottom: 40px;">your journey</div>
+            
+            <p class="body-text" style="color: var(--off-white); margin: 0 auto; max-width: 700px; font-weight: 500;">Turn your passion into a profession. Explore our Visual Arts programs today.</p>
+        </div>
+
+        <div class="footer-meta meta-text">Link in Bio</div>
+    </div>
+
+</div>
+
+</body>
+</html>

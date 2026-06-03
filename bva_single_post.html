@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BVA Single Post</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0B3C40; /* Deep Teal */
+            --charcoal: #1A1A1A; /* Charcoal */
+            --text-light: #F5F5F0; /* Off White */
+            --text-muted: rgba(245, 245, 240, 0.85);
+            --accent-orange: #F6891F; /* Brand Orange */
+            --orange-wash: #FFF3E6;
+        }
+
+        body {
+            margin: 0;
+            padding: 40px;
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .post-container {
+            width: 1080px;
+            height: 1350px;
+            background-color: var(--bg-dark);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Syne', sans-serif;
+            color: var(--text-light);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        /* Abstract background logo watermark */
+        .bg-watermark {
+            position: absolute;
+            top: 20px;
+            left: -40px;
+            font-size: 400px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.03);
+            line-height: 0.8;
+            letter-spacing: -10px;
+            z-index: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            position: absolute;
+            top: 60px;
+            right: 60px;
+            text-align: right;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-title {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .header-logo {
+            width: 60px;
+            height: 60px;
+            background-color: var(--text-light);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--bg-dark);
+            font-weight: 800;
+            font-size: 24px;
+        }
+
+        .main-content {
+            position: absolute;
+            top: 250px;
+            left: 80px;
+            z-index: 10;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 500;
+            line-height: 1.1;
+            margin: 0 0 20px 0;
+        }
+
+        .hero-title span {
+            font-weight: 700;
+            font-style: italic;
+            color: var(--accent-orange);
+            position: relative;
+        }
+
+        .hero-title span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: var(--accent-orange);
+            border-radius: 2px;
+        }
+
+        .hero-subtitle {
+            font-size: 26px;
+            color: var(--text-muted);
+            margin: 0 0 80px 0;
+            font-family: 'Syne', sans-serif;
+            font-weight: 400;
+        }
+
+        .program-info {
+            margin-bottom: 50px;
+        }
+
+        .duration {
+            font-size: 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .program-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            font-weight: 700;
+            color: var(--accent-orange);
+            line-height: 1.1;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+        }
+
+        .specializations {
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin: 0;
+        }
+
+        .admission-box {
+            margin-top: 60px;
+            position: relative;
+        }
+
+        .admission-line {
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-orange);
+            margin-bottom: 15px;
+        }
+
+        .admission-text {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--accent-orange);
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        .admission-year {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-light);
+        }
+
+        /* Image section */
+        .image-container {
+            position: absolute;
+            top: 400px;
+            right: -50px;
+            width: 750px;
+            height: 800px;
+            z-index: 5;
+            pointer-events: none;
+            /* Fade out the bottom of the image to blend smoothly into the background */
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+        }
+
+        
+
+        /* Airplane and path */
+        .path-container {
+            position: absolute;
+            bottom: 220px;
+            left: 80px;
+            width: 920px;
+            height: 150px;
+            z-index: 15;
+            pointer-events: none;
+        }
+
+        .airplane {
+            position: absolute;
+            left: 20px;
+            top: 60px;
+            width: 50px;
+            height: 50px;
+            fill: var(--text-light);
+            transform: rotate(45deg);
+        }
+
+        .flight-path {
+            position: absolute;
+            left: 70px;
+            top: 40px;
+            width: 700px;
+            height: 100px;
+        }
+
+        .flight-path path {
+            fill: none;
+            stroke: var(--text-light);
+            stroke-width: 3;
+            stroke-dasharray: 10 10;
+        }
+
+        .placement-badge {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 220px;
+            height: 220px;
+            background-color: var(--bg-dark);
+            border: 4px solid var(--text-light);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 20;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        .placement-badge .number {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 700;
+            font-style: italic;
+            color: var(--accent-orange);
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+        
+        .placement-badge .percent {
+            font-size: 32px;
+        }
+
+        .placement-badge .text1 {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .placement-badge .text2 {
+            font-size: 14px;
+            font-weight: 600;
+            background-color: var(--text-light);
+            color: var(--bg-dark);
+            padding: 4px 12px;
+            border-radius: 12px;
+            letter-spacing: 1px;
+        }
+
+        /* Footer */
+        .footer {
+            position: absolute;
+            bottom: 60px;
+            left: 80px;
+            right: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .apply-btn {
+            background-color: var(--accent-orange);
+            color: var(--charcoal);
+            padding: 15px 40px;
+            font-size: 24px;
+            font-weight: 800;
+            text-transform: uppercase;
+            border-radius: 4px;
+            letter-spacing: 1px;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .phone-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(246, 137, 31, 0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .phone-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--accent-orange);
+        }
+
+        .contact-text {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .phone-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-light);
+        }
+
+        .website {
+            font-size: 16px;
+            color: var(--text-muted);
+            font-family: 'Syne', sans-serif;
+            font-weight: 500;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="post-container">
+        
+        <!-- Watermark -->
+        <div class="bg-watermark">
+            <span>BV</span>
+            <span>A</span>
+        </div>
+
+        <!-- Header -->
+        <div class="header">
+            <div class="header-text">
+                <span class="header-title">Department of Visual Arts</span>
+                <span class="header-subtitle">Hindustan Institute of Technology & Science</span>
+            </div>
+            <div class="header-logo">VA</div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <h1 class="hero-title">Take Your<br>Creative Career <span>Global</span></h1>
+            <p class="hero-subtitle">Create work that connects across cultures.</p>
+
+            <div class="program-info">
+                <div class="duration">4 Years Program</div>
+                <h2 class="program-title">BACHELOR OF<br>VISUAL ARTS</h2>
+                <p class="specializations">APPLIED ART | PAINTING | SCULPTURE</p>
+            </div>
+
+            <div class="admission-box">
+                <div class="admission-line"></div>
+                <div class="admission-text">Admission Open</div>
+                <div class="admission-year">FOR 2026</div>
+            </div>
+        </div>
+
+        <!-- Image Cutout Replacement -->
+        <div class="image-container">
+            <!-- Replace the src below with the path to your transparent cutout image -->
+            <img src="indian_art_student.png" alt="Student Cutout" style="width: 100%; height: 100%; object-fit: contain; object-position: right center; filter: drop-shadow(2px 0 0 white) drop-shadow(-2px 0 0 white) drop-shadow(0 2px 0 white) drop-shadow(0 -2px 0 white); mix-blend-mode: lighten;">
+        </div>
+
+        <!-- Airplane Path and Placement -->
+        <div class="path-container">
+            <!-- Airplane SVG -->
+            <svg class="airplane" viewBox="0 0 24 24">
+                <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+            </svg>
+            
+            <!-- Curved dotted path -->
+            <svg class="flight-path" viewBox="0 0 700 100">
+                <path d="M 0 50 Q 350 150 700 10" />
+            </svg>
+
+            <!-- 100% Placement Badge -->
+            <div class="placement-badge">
+                <div class="number">100<span class="percent">%</span></div>
+                <div class="text1">PLACEMENT</div>
+                <div class="text2">ASSISTANCE</div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="apply-btn">APPLY NOW</div>
+            <div class="contact-info">
+                <div class="phone-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                    </svg>
+                </div>
+                <div class="contact-text">
+                    <div class="phone-number">+91 95000 12166</div>
+                    <div class="website">enquiry@hindustan.edu | www.hindustan.edu</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

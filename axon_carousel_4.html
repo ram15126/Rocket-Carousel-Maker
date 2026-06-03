@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Axon Carousel 4 - Hot Take</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Axon Brand Colors */
+      --brand-bg: #f4efe6;
+      --brand-dark: #1b3022;
+      --brand-text: #1b3022;
+      --brand-accent: #ff6542;
+    }
+    body {
+      margin: 0; 
+      padding: 40px; 
+      background: #111; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 80px; 
+      align-items: center;
+      font-family: 'Satoshi', sans-serif;
+    }
+    .slide {
+      width: 1080px; 
+      height: 1350px; 
+      flex-shrink: 0; 
+      position: relative; 
+      overflow: hidden;
+      background-color: var(--brand-bg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    .slide::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(244, 239, 230, 0.35); /* Reduced opacity for better visibility */
+      z-index: 0;
+    }
+    
+    /* Header Section */
+    .header {
+      position: absolute; top: 80px; left: 80px; right: 80px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-weight: 700; font-size: 22px; letter-spacing: 3px;
+      color: var(--brand-text);
+      text-transform: uppercase;
+      z-index: 10;
+    }
+    .pill {
+      background: var(--brand-text); color: var(--brand-bg); padding: 10px 25px; border-radius: 40px; 
+      font-size: 20px; letter-spacing: 2px; font-weight: 700;
+    }
+
+    /* Main Title Section */
+    .main-title {
+      font-family: 'Clash Display', sans-serif;
+      position: absolute; top: 280px; left: 80px; width: 920px;
+      font-size: 155px; font-weight: 900; line-height: 0.92; color: var(--brand-text);
+      text-transform: uppercase;
+      letter-spacing: -4px;
+      z-index: 10;
+    }
+
+    /* Bubble Section */
+    .bubble-container {
+      position: absolute; top: 800px; left: 80px; z-index: 10;
+    }
+    .bubble {
+      position: relative;
+      max-width: 750px;
+      background: var(--brand-accent);
+      color: #fff;
+      padding: 40px 50px;
+      border-radius: 20px;
+      font-size: 42px;
+      font-weight: 500;
+      line-height: 1.45;
+      border-bottom-right-radius: 0;
+    }
+    .bubble::after {
+      content: '';
+      position: absolute;
+      right: -40px;
+      bottom: 0;
+      width: 40px;
+      height: 60%;
+      background: var(--brand-accent);
+      border-radius: 0 20px 20px 0;
+    }
+
+    /* Footer Section */
+    .footer {
+      position: absolute; bottom: 80px; left: 80px; right: 80px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-weight: 800; font-size: 26px; letter-spacing: 3px;
+      color: var(--brand-text);
+      text-transform: uppercase;
+      z-index: 10;
+    }
+    .arrow-circle {
+      width: 90px; height: 90px; border: 4px solid var(--brand-text); border-radius: 50%;
+      display: flex; justify-content: center; align-items: center;
+    }
+    .arrow-circle svg {
+      width: 45px; height: 45px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Slide 1 -->
+  <div class="slide" style="background-image: url('file:///C:/Users/acer/.gemini/antigravity-ide/brain/dbc328cc-d420-47a8-ad2f-7b82abe1137c/glassmorphic_cover_1780393494802.png');">
+    <div class="header">
+      <div class="name"></div>
+      <div class="pill">HOT TAKE</div>
+    </div>
+    
+    <div class="main-title">AI WON'T<br>REPLACE<br>YOU.</div>
+    
+    <div class="bubble-container">
+      <div class="bubble">
+        But someone using AI definitely will. Here is why the "AI taking jobs" panic is missing the point entirely.
+      </div>
+    </div>
+    
+    <div class="footer">
+      <div class="url"></div>
+      <div class="arrow-circle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--brand-text)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 2 -->
+  <div class="slide" style="background-image: url('file:///C:/Users/acer/.gemini/antigravity-ide/brain/dbc328cc-d420-47a8-ad2f-7b82abe1137c/glassmorphic_cover_1780393494802.png');">
+    <div class="header">
+      <div class="name"></div>
+      <div class="pill">HOT TAKE</div>
+    </div>
+    
+    <div class="main-title">THE<br>REAL<br>THREAT.</div>
+    
+    <div class="bubble-container">
+      <div class="bubble">
+        AI isn't a worker. It's a multiplier. A 10x professional using AI becomes a 100x powerhouse. A novice stays a novice.
+      </div>
+    </div>
+    
+    <div class="footer">
+      <div class="url"></div>
+      <div class="arrow-circle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--brand-text)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3 -->
+  <div class="slide" style="background-image: url('file:///C:/Users/acer/.gemini/antigravity-ide/brain/dbc328cc-d420-47a8-ad2f-7b82abe1137c/glassmorphic_cover_1780393494802.png');">
+    <div class="header">
+      <div class="name"></div>
+      <div class="pill">HOT TAKE</div>
+    </div>
+    
+    <div class="main-title">SPEED<br>VS.<br>TASTE.</div>
+    
+    <div class="bubble-container">
+      <div class="bubble">
+        AI gives everyone incredible speed. But it doesn't give everyone taste, judgment, or strategic thinking. That is your true moat.
+      </div>
+    </div>
+    
+    <div class="footer">
+      <div class="url"></div>
+      <div class="arrow-circle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--brand-text)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 4 -->
+  <div class="slide" style="background-image: url('file:///C:/Users/acer/.gemini/antigravity-ide/brain/dbc328cc-d420-47a8-ad2f-7b82abe1137c/glassmorphic_cover_1780393494802.png');">
+    <div class="header">
+      <div class="name"></div>
+      <div class="pill">HOT TAKE</div>
+    </div>
+    
+    <div class="main-title">THE<br>NEW<br>BASELINE.</div>
+    
+    <div class="bubble-container">
+      <div class="bubble">
+        Average work is now free. If your value is just producing average content or code, you are competing with zero dollars.
+      </div>
+    </div>
+    
+    <div class="footer">
+      <div class="url"></div>
+      <div class="arrow-circle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--brand-text)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 5 -->
+  <div class="slide" style="background-image: url('file:///C:/Users/acer/.gemini/antigravity-ide/brain/dbc328cc-d420-47a8-ad2f-7b82abe1137c/glassmorphic_cover_1780393494802.png');">
+    <div class="header">
+      <div class="name"></div>
+      <div class="pill">HOT TAKE</div>
+    </div>
+    
+    <div class="main-title">CURATORS<br>OVER<br>CREATORS.</div>
+    
+    <div class="bubble-container">
+      <div class="bubble">
+        When creation is infinite, curation becomes the bottleneck. The future belongs to those who know what to ask and what to keep.
+      </div>
+    </div>
+    
+    <div class="footer">
+      <div class="url"></div>
+      <div class="arrow-circle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--brand-text)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 6 -->
+  <div class="slide" style="background-image: url('file:///C:/Users/acer/.gemini/antigravity-ide/brain/dbc328cc-d420-47a8-ad2f-7b82abe1137c/glassmorphic_cover_1780393494802.png');">
+    <div class="header">
+      <div class="name"></div>
+      <div class="pill">HOT TAKE</div>
+    </div>
+    
+    <div class="main-title">ADAPT<br>OR<br>FADE.</div>
+    
+    <div class="bubble-container">
+      <div class="bubble">
+        Stop fearing AI. Start mastering it. Follow us for weekly insights to help your business grow sustainably and stay ahead.
+      </div>
+    </div>
+    
+    <div class="footer">
+      <div class="url"></div>
+      <!-- Bookmark Icon for the final CTA slide -->
+      <div style="width: 90px; height: 90px; display: flex; justify-content: center; align-items: center;">
+        <svg width="50" height="50" viewBox="0 0 24 24" fill="var(--brand-text)" stroke="var(--brand-text)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

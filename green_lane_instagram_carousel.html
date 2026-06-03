@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Lane AI - Instagram Carousel</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+        
+        body {
+            background-color: #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 80px 40px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            gap: 80px;
+        }
+
+        .slide {
+            width: 1080px;
+            height: 1350px;
+            background-color: #ffffff;
+            color: #0f172a;
+            border-radius: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 120px;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* Soft background blur blobs */
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: -20%; left: -10%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.08), transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .slide::after {
+            content: '';
+            position: absolute;
+            bottom: -20%; right: -10%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.08), transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .content {
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 80px;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin: 0 0 40px 0;
+        }
+
+        p {
+            font-size: 48px;
+            font-weight: 600;
+            line-height: 1.4;
+            color: #334155;
+            margin: 0;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #2563eb, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        
+        /* Glassmorphic Notice Box for Steps / Special info */
+        .glass-box {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 32px;
+            padding: 60px 80px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            width: 80%;
+            text-align: left;
+            margin-top: 40px;
+        }
+
+        .glass-box p {
+            font-size: 40px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .glass-box p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .icon-check {
+            color: #10b981;
+            font-weight: 800;
+        }
+
+        /* Bold standalone Aha statement */
+        .aha-statement {
+            font-size: 72px;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #0f172a;
+            border-left: 12px solid #2563eb;
+            padding-left: 50px;
+            text-align: left;
+            width: 100%;
+        }
+
+        .slide-number {
+            position: absolute;
+            bottom: 60px;
+            font-size: 32px;
+            font-weight: 700;
+            color: #94a3b8;
+            z-index: 1;
+        }
+        
+        .cta-box {
+            background: #0f172a;
+            color: white;
+            padding: 40px 80px;
+            border-radius: 100px;
+            font-size: 48px;
+            font-weight: 800;
+            margin-top: 60px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Slide 1: Hook -->
+    <div class="slide">
+        <div class="content">
+            <h1>Your clinic is losing <br><span class="gradient-text">thousands</span><br> to missed appointments.</h1>
+        </div>
+        <div class="slide-number">01 / 10</div>
+    </div>
+
+    <!-- Slide 2: Rehook -->
+    <div class="slide">
+        <div class="content">
+            <p>And the solution <br>isn't hiring more<br> <span class="gradient-text">front-desk staff...</span></p>
+        </div>
+        <div class="slide-number">02 / 10</div>
+    </div>
+
+    <!-- Slide 3: Mirror -->
+    <div class="slide">
+        <div class="content">
+            <p>You’ve tried SMS reminders and manual follow-ups...</p>
+            <br><br>
+            <p>But the waiting room still has <span class="gradient-text">empty chairs.</span></p>
+        </div>
+        <div class="slide-number">03 / 10</div>
+    </div>
+
+    <!-- Slide 4: Belief Break -->
+    <div class="slide">
+        <div class="content">
+            <p>Here's what nobody tells you about <br><span class="gradient-text">patient communication.</span></p>
+        </div>
+        <div class="slide-number">04 / 10</div>
+    </div>
+
+    <!-- Slide 5: Framework -->
+    <div class="slide">
+        <div class="content">
+            <h1>Patients don't <br>ignore you.</h1>
+            <br>
+            <p>They just expect <span class="gradient-text">instant, 24/7 AI-driven</span> responses.</p>
+        </div>
+        <div class="slide-number">05 / 10</div>
+    </div>
+
+    <!-- Slide 6: Proof/Story -->
+    <div class="slide">
+        <div class="content">
+            <p>When clinics switch to <br><span class="gradient-text">automated AI booking</span>,</p>
+            <br><br>
+            <h1>no-show rates drop by 60% in weeks.</h1>
+        </div>
+        <div class="slide-number">06 / 10</div>
+    </div>
+
+    <!-- Slide 7: Application Preview -->
+    <div class="slide">
+        <div class="content">
+            <p>The system works completely on <span class="gradient-text">autopilot</span>:</p>
+            <div class="glass-box">
+                <p><span class="icon-check">✓</span> Handles inquiries</p>
+                <p><span class="icon-check">✓</span> Books slots 24/7</p>
+                <p><span class="icon-check">✓</span> Reschedules instantly</p>
+            </div>
+        </div>
+        <div class="slide-number">07 / 10</div>
+    </div>
+
+    <!-- Slide 8: Aha Moment -->
+    <div class="slide">
+        <div class="content">
+            <div class="aha-statement">
+                You don't need more receptionists.<br><br>
+                <span class="gradient-text">You need an automated patient lifecycle.</span>
+            </div>
+        </div>
+        <div class="slide-number">08 / 10</div>
+    </div>
+
+    <!-- Slide 9: Actionable Steps -->
+    <div class="slide">
+        <div class="content">
+            <h1>How to fix it today:</h1>
+            <div class="glass-box">
+                <p>1. Centralize communications.</p>
+                <p>2. Deploy AI Voice.</p>
+                <p>3. Automate missed calls.</p>
+            </div>
+        </div>
+        <div class="slide-number">09 / 10</div>
+    </div>
+
+    <!-- Slide 10: CTA -->
+    <div class="slide">
+        <div class="content">
+            <h1>Ready to fix your clinic's no-shows?</h1>
+            <div class="cta-box">
+                Comment 'AUTOMATE'
+            </div>
+            <br>
+            <p>and we'll send you the exact playbook.</p>
+        </div>
+        <div class="slide-number">10 / 10</div>
+    </div>
+
+</body>
+</html>
