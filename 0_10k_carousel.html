@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0 to 10K Followers - Instagram Carousel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 80px 0;
+            background: #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 80px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .slide {
+            width: 1080px;
+            height: 1350px;
+            position: relative;
+            background-color: #ffc700;
+            background-image: url("data:image/svg+xml,%3Csvg width='200' height='100' viewBox='0 0 200 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 50l50-25 100 25 50-25' stroke='rgba(0,0,0,0.04)' stroke-width='4' fill='none'/%3E%3Cpath d='M0 100l50-25 100 25 50-25' stroke='rgba(0,0,0,0.04)' stroke-width='4' fill='none'/%3E%3Cpath d='M0 0l50-25 100 25 50-25' stroke='rgba(0,0,0,0.04)' stroke-width='4' fill='none'/%3E%3C/svg%3E");
+            background-size: 300px 150px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            flex-shrink: 0;
+        }
+
+        .meta {
+            position: absolute;
+            font-size: 26px;
+            font-weight: 600;
+            color: #000;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        .meta-tl { top: 90px; left: 100px; text-transform: none; font-weight: 500; }
+        .meta-tr { top: 90px; right: 100px; text-transform: none; font-weight: 500; }
+        .meta-bl { bottom: 90px; left: 100px; }
+        .meta-br { bottom: 90px; right: 100px; font-weight: 900; font-size: 38px; }
+
+        .card {
+            position: absolute;
+            top: 200px;
+            bottom: 200px;
+            background: #0a0a0a;
+            overflow: hidden;
+        }
+
+        .slide-right .card {
+            left: 9%;
+            right: 0;
+        }
+        .slide-left .card {
+            left: 0;
+            right: 9%;
+        }
+
+        .dotted-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background-image: linear-gradient(to bottom, #fff 50%, transparent 50%);
+            background-size: 3px 24px;
+        }
+        
+        .slide-right .dotted-line { right: 90px; }
+        .slide-left .dotted-line { left: 90px; }
+
+        .content {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            gap: 36px;
+        }
+
+        .slide-right .content { left: 90px; right: 110px; }
+        .slide-left .content { left: 110px; right: 90px; }
+
+        h1, h2 {
+            margin: 0;
+            line-height: 1.0;
+            font-weight: 900;
+            text-transform: uppercase;
+            word-break: break-word;
+            hyphens: auto;
+        }
+        h1 { font-size: 96px; }
+        h2 { font-size: 74px; }
+
+        p {
+            font-size: 40px;
+            line-height: 1.5;
+            margin: 0;
+            font-weight: 400;
+            color: #f1f5f9;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        li {
+            font-size: 40px;
+            line-height: 1.4;
+            font-weight: 400;
+            color: #f1f5f9;
+            display: flex;
+            align-items: flex-start;
+        }
+        li strong {
+            color: #ffc700;
+            font-weight: 800;
+            margin-right: 25px;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Slide 1 (Hook) -->
+    <div class="slide slide-right">
+        <div class="meta meta-tl">Organic Growth</div>
+
+        <div class="card">
+            <div class="dotted-line"></div>
+            <div class="content">
+                <h1>0 TO 10K<br>FOLLOWERS<br>WITHOUT<br>ANY ADS</h1>
+                <p>The exact breakdown of how to grow organically (and why you can too).</p>
+            </div>
+        </div>
+
+        <div class="meta meta-br">01</div>
+    </div>
+
+    <!-- Slide 2 (Problem) -->
+    <div class="slide slide-left">
+        <div class="meta meta-tl">Organic Growth</div>
+
+        <div class="card">
+            <div class="dotted-line"></div>
+            <div class="content">
+                <h2>MOST PEOPLE<br>THINK YOU NEED<br>MONEY TO GROW.</h2>
+                <p>They boost posts, run ads, and waste budget on empty vanity metrics.</p>
+            </div>
+        </div>
+
+        <div class="meta meta-br">02</div>
+    </div>
+
+    <!-- Slide 3 (Belief) -->
+    <div class="slide slide-right">
+        <div class="meta meta-tl">Organic Growth</div>
+
+        <div class="card">
+            <div class="dotted-line"></div>
+            <div class="content">
+                <h2>ADS ARE AN<br>ACCELERATOR,<br>NOT A FOUNDATION.</h2>
+                <p>If your organic content doesn't work, putting money behind it will just waste your budget faster.</p>
+            </div>
+        </div>
+
+        <div class="meta meta-br">03</div>
+    </div>
+
+    <!-- Slide 4 (Truth) -->
+    <div class="slide slide-left">
+        <div class="meta meta-tl">Organic Growth</div>
+
+        <div class="card">
+            <div class="dotted-line"></div>
+            <div class="content">
+                <h2>ORGANIC GROWTH<br>RELIES ON THREE<br>CORE PILLARS.</h2>
+                <p>Attention, Retention, and Conversion. Master these, and the algorithm does the heavy lifting for you.</p>
+            </div>
+        </div>
+
+        <div class="meta meta-br">04</div>
+    </div>
+
+    <!-- Slide 5 (Proof) -->
+    <div class="slide slide-right">
+        <div class="meta meta-tl">Organic Growth</div>
+
+        <div class="card">
+            <div class="dotted-line"></div>
+            <div class="content">
+                <h2>THE NUMBERS<br>DON'T LIE.</h2>
+                <ul>
+                    <li><strong>$0</strong> Ad spend required to hit 10k organically</li>
+                    <li><strong>3x</strong> Higher engagement rate than paid traffic</li>
+                    <li><strong>100%</strong> Authentic community building</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="meta meta-br">05</div>
+    </div>
+
+    <!-- Slide 6 (Method) -->
+    <div class="slide slide-left">
+        <div class="meta meta-tl">Organic Growth</div>
+
+        <div class="card">
+            <div class="dotted-line"></div>
+            <div class="content">
+                <h2>HERE IS THE EXACT<br>STEP-BY-STEP.</h2>
+                <ul>
+                    <li><strong>Step 1</strong> Post highly shareable, relatable content</li>
+                    <li><strong>Step 2</strong> Optimize your bio for conversions</li>
+                    <li><strong>Step 3</strong> Engage genuinely with top creators daily</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="meta meta-br">06</div>
+    </div>
+
+    <!-- Slide 7 (Aha Moment) -->
+    <div class="slide slide-right">
+        <div class="meta meta-tl">Organic Growth</div>
+
+        <div class="card">
+            <div class="dotted-line"></div>
+            <div class="content">
+                <h2>IT'S NOT ABOUT<br>THE BUDGET.<br>IT'S VALUE.</h2>
+                <p>The algorithm pushes what people love. Focus on serving your audience, not the platform.</p>
+            </div>
+        </div>
+
+        <div class="meta meta-br">07</div>
+    </div>
+
+    <!-- Slide 8 (Quick Wins) -->
+    <div class="slide slide-left">
+        <div class="meta meta-tl">Organic Growth</div>
+
+        <div class="card">
+            <div class="dotted-line"></div>
+            <div class="content">
+                <h2>THREE THINGS YOU<br>CAN DO TODAY.</h2>
+                <ul>
+                    <li><strong>1</strong> Stop boosting poorly performing posts</li>
+                    <li><strong>2</strong> Rewrite your bio to state who you help</li>
+                    <li><strong>3</strong> Plan 3 high-value educational posts</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="meta meta-br">08</div>
+    </div>
+
+    <!-- Slide 9 (CTA) -->
+    <div class="slide slide-right">
+        <div class="meta meta-tl">Organic Growth</div>
+
+        <div class="card">
+            <div class="dotted-line"></div>
+            <div class="content">
+                <h1>READY TO<br>GROW<br>ORGANICALLY?</h1>
+                <p>Save this breakdown and share it with a creator who needs it.</p>
+            </div>
+        </div>
+
+        <div class="meta meta-br">09</div>
+    </div>
+
+</body>
+</html>

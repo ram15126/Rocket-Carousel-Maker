@@ -33,7 +33,7 @@ venv.bak/
 
 # Project specifics
 output/
-digimabble_output/
+carousel_output/
 temp_docx/
 temp_docx_bva/
 *.zip

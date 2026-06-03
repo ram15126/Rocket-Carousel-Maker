@@ -7,7 +7,7 @@
     - Set exactly an `80px` vertical gap between slides. 
     - Disable hover effects, transitions, and animations so the slides remain perfectly still for the user to screenshot easily.
 4. **Self-Contained Assets**: Do not link to external local stylesheets. Use inline SVGs for background patterns (like chevrons or dots), import fonts directly from Google Fonts (e.g., Montserrat, Plus Jakarta Sans), and embed all CSS in a `<style>` block at the top of the file.
-5. **Brand Adaptation**: When decoding a visual template, adapt the placeholder texts (e.g., "@reallygreatsite", "01") to use the current client's brand metadata (e.g., "DIGI MABBLE", "@digimabble"), while strictly maintaining the positional layout of the original template.
+5. **Brand Adaptation**: When decoding a visual template, adapt the placeholder texts (e.g., "@reallygreatsite", "01") to use the current client's brand metadata (e.g., their brand name and handle), while strictly maintaining the positional layout of the original template. Never add any watermark or brand name unless explicitly provided by the user.
 6. **Carousel Content Framework**: Always follow the core narrative arc: Hook -> Rehook -> Mirror -> Reveal -> CTA. Keep body text concise, and aggressively use `font-weight: 800/900` or contrasting accent colors to highlight keywords.
 7. **UI/UX Pro Max**: Ensure generous padding, proper flexbox alignment, and zero text overlapping. Use contrasting cards (e.g., stark black cards against a vibrant background) to create an attention-seeking visual hierarchy.
 8. **Token Conservation**: Always be token conservative and write clean, repetitive HTML structures efficiently.
