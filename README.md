@@ -1,6 +1,6 @@
 # Rocket Carousel Maker
 
-A lightweight tool that takes visual template references and generates **beautiful, brand-ready HTML carousels** — ready to open in your browser and screenshot for Instagram or LinkedIn.
+A lightweight tool that takes visual template references and generates **beautiful, brand-ready HTML carousels** — ready to open in your browser and export as 4K quality images for Instagram or LinkedIn.
 
 ---
 
@@ -9,7 +9,7 @@ A lightweight tool that takes visual template references and generates **beautif
 1. **Pick** a template from the `templates/` folder for visual reference
 2. **Get** your carousel content written by AI based on your topic
 3. **Open** the output HTML in your browser
-4. **Screenshot** each slide — that's it!
+4. **Click** the "Download 4K Carousel" button to export all slides in a ZIP file!
 
 No Python. No design software. No dependencies.
 
@@ -23,8 +23,8 @@ Browse the `templates/` folder and pick the design you want to use as visual ref
 ### 2. Request a Carousel
 Provide your topic and your chosen template to the AI. It will generate a complete, self-contained HTML file styled to exactly match the template.
 
-### 3. Open and Screenshot
-Open the generated HTML in any browser. Each slide is a fixed `1080x1350px` block, stacked vertically with 80px gaps — perfectly sized for Instagram 4:5 format. Screenshot each slide individually to get your images!
+### 3. Open and Export
+Open the generated HTML in any browser. Each slide is a fixed `1080x1350px` block, stacked vertically with 80px gaps — perfectly sized for Instagram 4:5 format. Instead of manually screenshotting, simply click the **"Download 4K Carousel (ZIP)"** button at the top right to instantly download all your slides in 4K resolution!
 
 ---
 
@@ -33,11 +33,10 @@ Open the generated HTML in any browser. Each slide is a fixed `1080x1350px` bloc
 ```
 carousel-maker/
 ├── templates/
-│   ├── carousel-template-1/     # Yellow & Black bold style
-│   ├── carousel-template-2/     # Alt style
-│   ├── carousel-template-3/     # Alt style
-│   ├── carousel-template-4/     # Alt style
-│   └── carousel-template-5/     # Alt style
+│   ├── carousel-template-6/     # Design template
+│   ├── template 7/              # Design template
+│   ├── template 8/              # Design template
+│   └── ...                      # Various other design templates
 ├── carousel_sop.md              # Design rules & SOP protocol
 └── README.md
 ```
