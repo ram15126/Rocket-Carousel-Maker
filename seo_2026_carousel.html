@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Is Changing Fast - 2026 Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 80px 0;
+            background: #000000;
+            /* Darker wrapper */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 80px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .slide {
+            width: 1080px;
+            height: 1350px;
+            position: relative;
+            background-color: #09090b;
+            /* Midnight Black */
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+            flex-shrink: 0;
+            padding: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* ── Background Grid Pattern ── */
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-size: 60px 60px;
+            background-image:
+                linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            z-index: 0;
+        }
+
+        .bg-grid::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-size: 60px 60px;
+            background-image: radial-gradient(circle at 0px 0px, rgba(255, 255, 255, 0.15) 2px, transparent 2px);
+            background-position: -1px -1px;
+        }
+
+        /* ── Top Header Elements ── */
+        .top-header {
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            right: 100px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            z-index: 2;
+        }
+
+        .author-name {
+            font-size: 32px;
+            color: #fff;
+            font-weight: 500;
+            letter-spacing: 2px;
+            line-height: 1;
+        }
+
+        .dotted-line {
+            flex: 1;
+            height: 0;
+            border-top: 4px dotted rgba(255, 255, 255, 0.4);
+            transform: translateY(2px);
+        }
+
+        .slide-num {
+            font-size: 42px;
+            color: #fff;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        /* ── Typography & Content ── */
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: -50px;
+            width: 100%;
+        }
+
+        .title-huge {
+            font-size: 100px;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin: 0;
+        }
+
+        .title-accent {
+            color: #ccff00;
+        }
+
+        /* Electric Lime */
+        .title-white {
+            color: #fff;
+        }
+
+        .title-large {
+            font-size: 90px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin: 0;
+            color: #fff;
+            letter-spacing: -2px;
+            max-width: 800px;
+        }
+
+        .body-text {
+            font-size: 40px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+            margin: 50px 0 0 0;
+            font-weight: 400;
+            max-width: 680px;
+            /* Reduced width to prevent overlapping with side graphics */
+        }
+
+        /* ── Bottom Bar / Pills ── */
+        .bottom-bar {
+            position: absolute;
+            bottom: 100px;
+            left: 100px;
+            display: flex;
+            height: 70px;
+            border-radius: 35px;
+            overflow: hidden;
+            z-index: 2;
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .pill-left {
+            background: #ccff00;
+            color: #09090b;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        .pill-right {
+            background: #fff;
+            color: #09090b;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        .pill-center {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ccff00;
+            color: #09090b;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            height: 70px;
+            border-radius: 35px;
+            z-index: 2;
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        /* ── Graphical Elements ── */
+        .arrow-circle {
+            position: absolute;
+            right: 100px;
+            bottom: 240px;
+            width: 150px;
+            height: 150px;
+            background: #ccff00;
+            border: 10px solid #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .arrow-circle svg {
+            width: 70px;
+            height: 70px;
+            stroke: #09090b;
+            /* Dark arrow */
+            stroke-width: 4;
+        }
+
+        .deco-line {
+            position: absolute;
+            right: -100px;
+            /* Aligned to right edge */
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+        }
+
+        .deco-line-cta {
+            position: absolute;
+            left: -100px;
+            top: 60px;
+            /* Aligned vertically with the body text paragraph */
+            z-index: 2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ── Download Button ── -->
+    <div style="position: fixed; top: 20px; right: 20px; z-index: 1000; display: flex; gap: 10px;">
+        <button onclick="downloadAllSlides()" style="padding: 15px 25px; background: #0f172a; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; font-family: 'Inter', sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.2s;">
+            ↓ Download 4K Carousel
+        </button>
+        <button onclick="downloadAsZip()" style="padding: 15px 25px; background: #2563eb; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; font-family: 'Inter', sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.2s;">
+            📦 Download as ZIP
+        </button>
+    </div>
+
+    <!-- ═══ SLIDE 1: HOOK ═══ -->
+    <div class="slide">
+        <div class="bg-grid"></div>
+
+        <div class="top-header">
+            <span class="author-name">Alex Digital</span>
+            <div class="dotted-line"></div>
+        </div>
+
+        <div class="content-wrapper">
+            <h1 class="title-huge title-accent">SEO Is<br>Changing Fast.</h1>
+            <h1 class="title-huge title-white">Here's What<br>Actually<br>Works In 2026</h1>
+        </div>
+
+        <div class="arrow-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+        </div>
+
+        <div class="bottom-bar">
+            <div class="pill-left">alexdigital.com</div>
+            <div class="pill-right">SWIPE</div>
+        </div>
+    </div>
+
+    <!-- ═══ SLIDE 2: POINT 1 ═══ -->
+    <div class="slide">
+        <div class="bg-grid"></div>
+
+        <div class="top-header">
+            <div class="dotted-line"></div>
+            <span class="slide-num">01</span>
+            <div class="dotted-line" style="flex: 0.2;"></div>
+        </div>
+
+        <div class="content-wrapper">
+            <h1 class="title-large">AI Overviews Are The New Position Zero</h1>
+            <p class="body-text">Google's AI SGE has taken over the top of search. To get featured, you don't just need
+                keywords—you need concise, factual answers structured perfectly for LLMs. Break down complex topics into
+                direct, no-fluff paragraphs.</p>
+        </div>
+
+        <div class="deco-line">
+            <svg width="250" height="200" viewBox="0 0 250 200" fill="none">
+                <path d="M0,150 L150,150 Q180,150 180,120 L180,50 Q180,20 210,20 L250,20" stroke="white"
+                    stroke-width="4" stroke-dasharray="6 8" />
+                <circle cx="8" cy="150" r="8" fill="white" />
+            </svg>
+        </div>
+
+        <div class="bottom-bar">
+            <div class="pill-left">alexdigital.com</div>
+            <div class="pill-right">SWIPE</div>
+        </div>
+    </div>
+
+    <!-- ═══ SLIDE 3: POINT 2 ═══ -->
+    <div class="slide">
+        <div class="bg-grid"></div>
+
+        <div class="top-header">
+            <div class="dotted-line"></div>
+            <span class="slide-num">02</span>
+            <div class="dotted-line" style="flex: 0.2;"></div>
+        </div>
+
+        <div class="content-wrapper">
+            <h1 class="title-large">Experience > Information</h1>
+            <p class="body-text">AI can generate information instantly. What it can't generate is firsthand experience.
+                Google's E-E-A-T heavily prioritizes the first 'E'. Include original data, case studies, and real-world
+                results in every piece of content.</p>
+        </div>
+
+        <div class="deco-line">
+            <svg width="250" height="200" viewBox="0 0 250 200" fill="none">
+                <path d="M0,50 L150,50 Q180,50 180,80 L180,150 Q180,180 210,180 L250,180" stroke="white"
+                    stroke-width="4" stroke-dasharray="6 8" />
+                <circle cx="8" cy="50" r="8" fill="white" />
+            </svg>
+        </div>
+
+        <div class="bottom-bar">
+            <div class="pill-left">alexdigital.com</div>
+            <div class="pill-right">SWIPE</div>
+        </div>
+    </div>
+
+    <!-- ═══ SLIDE 4: POINT 3 ═══ -->
+    <div class="slide">
+        <div class="bg-grid"></div>
+
+        <div class="top-header">
+            <div class="dotted-line"></div>
+            <span class="slide-num">03</span>
+            <div class="dotted-line" style="flex: 0.2;"></div>
+        </div>
+
+        <div class="content-wrapper">
+            <h1 class="title-large">Brand Search Is Your Moat</h1>
+            <p class="body-text">When search results get volatile, brand authority is your safety net. If people are
+                actively searching for your company name alongside a keyword, Google knows you're the true authority.
+                Stop optimizing just for generic terms.</p>
+        </div>
+
+        <div class="deco-line">
+            <svg width="250" height="200" viewBox="0 0 250 200" fill="none">
+                <path d="M0,150 L150,150 Q180,150 180,120 L180,50 Q180,20 210,20 L250,20" stroke="white"
+                    stroke-width="4" stroke-dasharray="6 8" />
+                <circle cx="8" cy="150" r="8" fill="white" />
+            </svg>
+        </div>
+
+        <div class="bottom-bar">
+            <div class="pill-left">alexdigital.com</div>
+            <div class="pill-right">SWIPE</div>
+        </div>
+    </div>
+
+    <!-- ═══ SLIDE 5: POINT 4 ═══ -->
+    <div class="slide">
+        <div class="bg-grid"></div>
+
+        <div class="top-header">
+            <div class="dotted-line"></div>
+            <span class="slide-num">04</span>
+            <div class="dotted-line" style="flex: 0.2;"></div>
+        </div>
+
+        <div class="content-wrapper">
+            <h1 class="title-large">Video & Visuals Dominate</h1>
+            <p class="body-text">Search isn't just text anymore. Google is surfacing YouTube Shorts, TikToks, and custom
+                infographics directly in the SERP. If your written content doesn't have a multimedia component, you're
+                leaving 50% of the traffic on the table.</p>
+        </div>
+
+        <div class="deco-line">
+            <svg width="250" height="200" viewBox="0 0 250 200" fill="none">
+                <path d="M0,50 L150,50 Q180,50 180,80 L180,150 Q180,180 210,180 L250,180" stroke="white"
+                    stroke-width="4" stroke-dasharray="6 8" />
+                <circle cx="8" cy="50" r="8" fill="white" />
+            </svg>
+        </div>
+
+        <div class="bottom-bar">
+            <div class="pill-left">alexdigital.com</div>
+            <div class="pill-right">SWIPE</div>
+        </div>
+    </div>
+
+    <!-- ═══ SLIDE 6: CTA ═══ -->
+    <div class="slide">
+        <div class="bg-grid"></div>
+
+        <div class="top-header">
+            <div class="dotted-line" style="flex: 0.3;"></div>
+            <span class="author-name" style="color: #fff;">Alex Digital</span>
+            <div class="dotted-line"></div>
+        </div>
+
+        <div class="content-wrapper">
+            <h1 class="title-huge title-accent">Want to<br>future-proof<br>your SEO<br>strategy?</h1>
+            <div style="display: flex; align-items: center; margin-top: 50px; margin-left: -100px;">
+                <svg width="80" height="100" viewBox="0 0 80 100" fill="none" style="flex-shrink: 0;">
+                    <path d="M-50,50 L60,50" stroke="white" stroke-width="4" stroke-dasharray="6 8" />
+                    <circle cx="70" cy="50" r="8" fill="white" />
+                </svg>
+                <p class="body-text" style="margin: 0; padding-left: 20px;">Save this post and tap the link<br>in bio
+                    for the full framework!</p>
+            </div>
+        </div>
+
+        <div class="pill-center">
+        </div>
+    </div>
+
+    <!-- ── Scripts ── -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script>
+        async function downloadAsZip() {
+            const btn = document.querySelector('button[onclick="downloadAsZip()"]');
+            const originalText = btn.innerText;
+            btn.innerText = "Generating ZIP...";
+            btn.style.opacity = "0.7";
+            btn.disabled = true;
+
+            let fileName = window.location.pathname.split('/').pop();
+            let baseName = fileName ? decodeURIComponent(fileName).replace('.html', '') : 'carousel';
+
+            var zip = new JSZip();
+            const slides = document.querySelectorAll('.slide');
+            for (let i = 0; i < slides.length; i++) {
+                const canvas = await html2canvas(slides[i], { scale: 4, useCORS: true, backgroundColor: null });
+                const dataURL = canvas.toDataURL("image/png", 1.0);
+                const base64Data = dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+                zip.file(`${baseName}_slide_${i + 1}.png`, base64Data, {base64: true});
+            }
+            
+            zip.generateAsync({type:"blob"}).then(function(content) {
+                saveAs(content, `${baseName}.zip`);
+                btn.innerText = "Downloaded Successfully!";
+                setTimeout(() => { btn.innerText = originalText; btn.style.opacity = "1"; btn.disabled = false; }, 3000);
+            });
+        }
+
+        async function downloadAllSlides() {
+            const btn = document.querySelector('button[onclick="downloadAllSlides()"]');
+            const originalText = btn.innerText;
+            btn.innerText = "Generating 4K Images...";
+            btn.style.opacity = "0.7";
+            btn.disabled = true;
+
+            let fileName = window.location.pathname.split('/').pop();
+            let baseName = fileName ? decodeURIComponent(fileName).replace('.html', '') : 'carousel';
+
+            const slides = document.querySelectorAll('.slide');
+            for (let i = 0; i < slides.length; i++) {
+                const canvas = await html2canvas(slides[i], {
+                    scale: 4, // 4K resolution (4x scale = 4320x5400)
+                    useCORS: true,
+                    backgroundColor: null
+                });
+                const link = document.createElement('a');
+                link.download = `${baseName}_slide_${i + 1}.png`;
+                link.href = canvas.toDataURL("image/png", 1.0);
+                link.click();
+                
+                // Small delay to prevent the browser from blocking multiple file downloads
+                await new Promise(r => setTimeout(r, 800));
+            }
+
+            btn.innerText = "Downloaded Successfully!";
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.opacity = "1";
+                btn.disabled = false;
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>

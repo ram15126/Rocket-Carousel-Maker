@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digiimabble WhatsApp Carousel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: #0f172a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 80px 0;
+            gap: 80px;
+        }
+
+        .slide {
+            width: 1080px;
+            height: 1350px;
+            position: relative;
+            overflow: hidden;
+            background-color: #2a12c4;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .slide.bg-yellow {
+            background-color: #ebd61c;
+            color: #000000;
+        }
+
+        .content-container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            padding: 100px 100px;
+        }
+
+        .top-pill {
+            display: inline-block;
+            background-color: #ebd61c;
+            color: #2a12c4;
+            font-weight: 800;
+            font-size: 24px;
+            padding: 15px 35px;
+            border-radius: 50px;
+            margin-bottom: 100px;
+            align-self: flex-start;
+            text-transform: uppercase;
+        }
+        
+        .slide.bg-yellow .top-pill {
+            background-color: #2a12c4;
+            color: #ffffff;
+        }
+
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 130px;
+            font-weight: 700;
+            line-height: 1.05;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 50px;
+        }
+
+        .slide.bg-yellow h1 {
+            font-size: 130px;
+        }
+        
+        .body-text {
+            font-size: 42px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+        
+        .body-text p {
+            margin-bottom: 30px;
+        }
+
+        .body-text ul {
+            list-style: none;
+        }
+
+        .body-text li {
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .body-text li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-weight: 800;
+            color: #ebd61c;
+        }
+        
+        .slide.bg-yellow .body-text li::before {
+            color: #2a12c4;
+        }
+
+        .footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 30px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .footer-left {
+            display: flex;
+            gap: 60px;
+        }
+        
+        .arrow-icon {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .slide-6 .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+        }
+        
+        .slide-6 .top-bar-left {
+            display: flex;
+            gap: 40px;
+            color: #ebd61c;
+            font-weight: 700;
+            font-size: 30px;
+            text-transform: uppercase;
+            margin-top: 15px;
+        }
+
+        .slide-6 .top-pill {
+            margin-bottom: 0;
+        }
+
+        .slide-6 .center-content {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .slide-6 h1 {
+            color: #ebd61c;
+            font-size: 95px;
+            margin-bottom: 0;
+        }
+
+        .slide-6 .footer-pills {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .pill-solid {
+            background-color: #ebd61c;
+            color: #2a12c4;
+            padding: 20px 50px;
+            border-radius: 60px;
+            font-weight: 800;
+            font-size: 28px;
+            text-transform: uppercase;
+        }
+
+        .pill-outline {
+            border: 5px solid #ebd61c;
+            color: #ebd61c;
+            padding: 15px 50px;
+            border-radius: 60px;
+            font-weight: 800;
+            font-size: 28px;
+            text-transform: uppercase;
+        }
+
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- ── Download Button (Top of Body) ── -->
+    <div style="position: fixed; top: 20px; right: 20px; z-index: 1000; display: flex; gap: 10px;">
+        <button onclick="downloadAllSlides()" style="padding: 15px 25px; background: #3b82f6; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; font-family: 'Montserrat', sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: all 0.2s;">
+            ↓ Download 4K Carousel (ZIP)
+        </button>
+    </div>
+
+    <!-- Slide 1 -->
+    <div class="slide" id="slide-1">
+        <svg class="bg-pattern" viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="1080" cy="700" r="250" fill="none" stroke="#000000" stroke-width="3" opacity="0.15"/>
+            <circle cx="1080" cy="700" r="450" fill="none" stroke="#000000" stroke-width="3" opacity="0.15"/>
+            <circle cx="1080" cy="700" r="650" fill="none" stroke="#000000" stroke-width="3" opacity="0.15"/>
+            <circle cx="1080" cy="700" r="850" fill="none" stroke="#000000" stroke-width="3" opacity="0.15"/>
+            <circle cx="1080" cy="700" r="1050" fill="none" stroke="#000000" stroke-width="3" opacity="0.15"/>
+        </svg>
+        <div class="content-container">
+            <div class="top-pill">MARKETING</div>
+            <h1 style="font-size: 125px;">UAE HOSPITALS<br>ARE USING<br>WHATSAPP<br>AUTOMATION<br>TO REDUCE<br>NO-SHOWS BY 40%.<br><span style="color: #ebd61c;">HERE'S HOW.</span></h1>
+            <div class="footer">
+                <div class="footer-left">
+                    <span>DIGIIMABBLE</span>
+                    <span style="color: #ebd61c;">HEALTHCARE TIPS</span>
+                </div>
+                <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide bg-yellow" id="slide-2">
+        <svg class="bg-pattern" viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+            <path d="M-100,800 C150,800 200,1100 -50,1350" fill="none" stroke="#ffffff" stroke-width="6" opacity="0.4"/>
+            <path d="M1100,50 C700,300 700,700 1150,900" fill="none" stroke="#ffffff" stroke-width="6" opacity="0.4"/>
+        </svg>
+        <div class="content-container">
+            <div class="top-pill">MARKETING</div>
+            <h1>98% OPEN RATE.</h1>
+            <div class="body-text">
+                <p>WhatsApp has a <strong style="color: #2a12c4;">98% open rate</strong>. Email has 20%.</p>
+                <p>Yet most UAE healthcare brands are still relying on email and phone calls for patient communication.</p>
+            </div>
+            <div class="footer">
+                <div class="footer-left">
+                    <span>DIGIIMABBLE</span>
+                    <span>HEALTHCARE TIPS</span>
+                </div>
+                <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide" id="slide-3">
+        <svg class="bg-pattern" viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="0" cy="1350" r="250" fill="none" stroke="#000000" stroke-width="3" opacity="0.15"/>
+            <circle cx="0" cy="1350" r="450" fill="none" stroke="#000000" stroke-width="3" opacity="0.15"/>
+            <circle cx="0" cy="1350" r="650" fill="none" stroke="#000000" stroke-width="3" opacity="0.15"/>
+            <circle cx="0" cy="1350" r="850" fill="none" stroke="#000000" stroke-width="3" opacity="0.15"/>
+        </svg>
+        <div class="content-container">
+            <div class="top-pill">MARKETING</div>
+            <h1>SMART<br><span style="color: #ebd61c;">AUTOMATION</span></h1>
+            <div class="body-text">
+                <p>Here's how smart hospitals in UAE are using WhatsApp automation:</p>
+                <ul>
+                    <li><strong>Appointment confirmation</strong> — sent instantly after booking</li>
+                    <li><strong>Reminder messages</strong> — 24 hours and 2 hours before appointment</li>
+                </ul>
+            </div>
+            <div class="footer">
+                <div class="footer-left">
+                    <span>DIGIIMABBLE</span>
+                    <span style="color: #ebd61c;">HEALTHCARE TIPS</span>
+                </div>
+                <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide bg-yellow" id="slide-4">
+        <svg class="bg-pattern" viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+            <path d="M-50,100 C300,200 400,600 -100,900" fill="none" stroke="#ffffff" stroke-width="6" opacity="0.4"/>
+        </svg>
+        <div class="content-container">
+            <div class="top-pill">MARKETING</div>
+            <h1>BEYOND<br>BOOKING</h1>
+            <div class="body-text">
+                <ul>
+                    <li><strong style="color: #2a12c4;">Post-appointment follow-up</strong> — checking in after treatment</li>
+                    <li><strong style="color: #2a12c4;">Re-engagement</strong> — bringing back inactive patients</li>
+                </ul>
+            </div>
+            <div class="footer">
+                <div class="footer-left">
+                    <span>DIGIIMABBLE</span>
+                    <span>HEALTHCARE TIPS</span>
+                </div>
+                <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide" id="slide-5">
+        <svg class="bg-pattern" viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="540" cy="675" r="300" fill="none" stroke="#000000" stroke-width="3" opacity="0.1"/>
+            <circle cx="540" cy="675" r="500" fill="none" stroke="#000000" stroke-width="3" opacity="0.1"/>
+            <circle cx="540" cy="675" r="700" fill="none" stroke="#000000" stroke-width="3" opacity="0.1"/>
+        </svg>
+        <div class="content-container">
+            <div class="top-pill">MARKETING</div>
+            <h1>THE RESULT?</h1>
+            <div class="body-text">
+                <ul>
+                    <li><strong style="color: #ebd61c;">40% fewer</strong> no-shows</li>
+                    <li><strong style="color: #ebd61c;">Higher</strong> patient satisfaction scores</li>
+                    <li><strong style="color: #ebd61c;">More</strong> repeat bookings</li>
+                </ul>
+            </div>
+            <div class="footer">
+                <div class="footer-left">
+                    <span>DIGIIMABBLE</span>
+                    <span style="color: #ebd61c;">HEALTHCARE TIPS</span>
+                </div>
+                <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6 -->
+    <div class="slide slide-6" id="slide-6">
+        <svg class="bg-pattern" viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(800, -100) rotate(45)" fill="#000000" opacity="0.15">
+                <rect x="0" y="0" width="25" height="700" />
+                <rect x="50" y="0" width="25" height="700" />
+                <rect x="100" y="0" width="25" height="700" />
+                <rect x="150" y="0" width="25" height="700" />
+                <rect x="200" y="0" width="25" height="700" />
+                <rect x="250" y="0" width="25" height="700" />
+            </g>
+            <g transform="translate(-300, 1000) rotate(45)" fill="#000000" opacity="0.15">
+                <rect x="0" y="0" width="25" height="700" />
+                <rect x="50" y="0" width="25" height="700" />
+                <rect x="100" y="0" width="25" height="700" />
+                <rect x="150" y="0" width="25" height="700" />
+                <rect x="200" y="0" width="25" height="700" />
+                <rect x="250" y="0" width="25" height="700" />
+            </g>
+        </svg>
+        <div class="content-container">
+            <div class="top-bar">
+                <div class="top-bar-left">
+                    <span style="color: #ffffff;">DIGIIMABBLE</span>
+                    <span>HEALTHCARE TIPS</span>
+                </div>
+                <div class="top-pill">MARKETING</div>
+            </div>
+            
+            <div class="center-content">
+                <h1>THIS ISN'T THE<br>FUTURE OF<br>HEALTHCARE<br>MARKETING.<br>IT'S HAPPENING<br>RIGHT NOW.<br><span style="color: #ffffff;">IS YOUR BRAND<br>KEEPING UP?</span></h1>
+            </div>
+            
+            <div class="footer-pills">
+                <div class="pill-solid">SAVE & SHARE</div>
+                <div class="pill-outline">@DIGIIMABBLE</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Scripts (Bottom of Body) ── -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        async function downloadAllSlides() {
+            const btn = document.querySelector('button[onclick="downloadAllSlides()"]');
+            const originalText = btn.innerText;
+            btn.innerText = "Generating ZIP...";
+            btn.style.opacity = "0.7";
+            btn.disabled = true;
+
+            let fileName = window.location.pathname.split('/').pop();
+            let baseName = fileName ? decodeURIComponent(fileName).replace('.html', '') : 'carousel';
+
+            try {
+                const zip = new JSZip();
+                const folder = zip.folder(`${baseName}_slides`);
+                const slides = document.querySelectorAll('.slide');
+                
+                for (let i = 0; i < slides.length; i++) {
+                    btn.innerText = `Processing ${i + 1}/${slides.length}...`;
+                    const canvas = await html2canvas(slides[i], { scale: 4, useCORS: true, backgroundColor: null });
+                    const dataUrl = canvas.toDataURL("image/png", 1.0);
+                    const base64Data = dataUrl.split(',')[1];
+                    folder.file(`${baseName}_slide_${i + 1}.png`, base64Data, {base64: true});
+                }
+                
+                btn.innerText = "Zipping...";
+                const content = await zip.generateAsync({type: "blob"});
+                
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(content);
+                link.download = `${baseName}.zip`;
+                link.click();
+                
+                URL.revokeObjectURL(link.href);
+                btn.innerText = "Downloaded Successfully!";
+            } catch (err) {
+                console.error("Error generating zip:", err);
+                btn.innerText = "Error generating ZIP";
+            }
+            
+            setTimeout(() => { btn.innerText = originalText; btn.style.opacity = "1"; btn.disabled = false; }, 3000);
+        }
+    </script>
+</body>
+</html>

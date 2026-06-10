@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 Content Types That Always Perform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 80px 0;
+            background: #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 80px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .slide {
+            width: 1080px;
+            height: 1350px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.15);
+            flex-shrink: 0;
+            padding: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* ── Slide Themes ── */
+        .theme-light {
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+        .theme-accent {
+            background-color: #ff2a5f; /* Engaging Vibrant Pink/Red */
+            color: #ffffff;
+        }
+        .theme-dark {
+            background-color: #0f172a;
+            color: #ffffff;
+        }
+
+        /* ── Background Patterns ── */
+        .bg-lines-light {
+            position: absolute;
+            top: 0; right: 0; bottom: 0; width: 60%;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent,
+                transparent 15px,
+                rgba(255, 42, 95, 0.15) 15px,
+                rgba(255, 42, 95, 0.15) 22px
+            );
+            -webkit-mask-image: linear-gradient(to right, transparent, black 80%);
+            mask-image: linear-gradient(to right, transparent, black 80%);
+            z-index: 0;
+        }
+        .bg-lines-dark {
+            position: absolute;
+            top: 0; right: 0; bottom: 0; width: 60%;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent,
+                transparent 15px,
+                rgba(255, 42, 95, 0.3) 15px,
+                rgba(255, 42, 95, 0.3) 22px
+            );
+            -webkit-mask-image: linear-gradient(to right, transparent, black 80%);
+            mask-image: linear-gradient(to right, transparent, black 80%);
+            z-index: 0;
+        }
+        .bg-stripes {
+            position: absolute;
+            bottom: -50px; right: -50px;
+            width: 550px; height: 550px;
+            background: repeating-linear-gradient(
+                to right,
+                transparent,
+                transparent 25px,
+                rgba(255, 255, 255, 0.2) 25px,
+                rgba(255, 255, 255, 0.2) 50px
+            );
+            -webkit-mask-image: radial-gradient(circle at bottom right, black 0%, black 65%, transparent 66%);
+            mask-image: radial-gradient(circle at bottom right, black 0%, black 65%, transparent 66%);
+            z-index: 0;
+        }
+
+        /* ── Header & Footer ── */
+        .tag-top {
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            font-size: 28px;
+            font-weight: 500;
+            z-index: 2;
+        }
+        .theme-light .tag-top { color: #0f172a; }
+        .theme-accent .tag-top { color: #ffffff; }
+        .theme-dark .tag-top { color: #ffffff; }
+
+        .author-bottom {
+            position: absolute;
+            bottom: 100px;
+            left: 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 2;
+        }
+        .author-name {
+            font-size: 32px;
+            font-weight: 800;
+        }
+        .author-handle {
+            font-size: 28px;
+            font-weight: 400;
+        }
+        .theme-light .author-bottom { color: #0f172a; }
+        .theme-accent .author-bottom { color: #ffffff; }
+        .theme-dark .author-bottom { color: #ffffff; }
+
+        .icon-bottom-right {
+            position: absolute;
+            bottom: 100px;
+            right: 100px;
+            z-index: 2;
+        }
+
+        /* ── Typography & Content ── */
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .title-huge {
+            font-size: 130px;
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -3px;
+            margin: 0;
+        }
+
+        .highlight-box {
+            display: inline-block;
+            background-color: #ff2a5f;
+            color: #ffffff;
+            padding: 10px 40px;
+            margin-top: 15px;
+            font-size: 140px;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -3px;
+        }
+        
+        .theme-dark .highlight-box {
+            color: #0f172a;
+        }
+
+        .sub-tag {
+            display: inline-block;
+            background-color: #0f172a;
+            color: #ffffff;
+            padding: 15px 30px;
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .content-text {
+            font-size: 120px;
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -3px;
+            margin: 0;
+        }
+
+        .desc-text {
+            font-size: 55px;
+            font-weight: 500;
+            line-height: 1.4;
+            margin: 40px 0 0 0;
+            max-width: 850px;
+            opacity: 0.95;
+        }
+
+        /* ── SVG Icons ── */
+        .arrow-icon {
+            width: 120px;
+            height: 60px;
+        }
+        .action-icons {
+            display: flex;
+            gap: 20px;
+        }
+        .action-icons svg {
+            width: 60px;
+            height: 60px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- ── Download Button ── -->
+    <div style="position: fixed; top: 20px; right: 20px; z-index: 1000; display: flex; gap: 10px;">
+        <button onclick="downloadAllSlides()" style="padding: 15px 25px; background: #0f172a; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; font-family: 'Inter', sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.2s;">
+            ↓ Download 4K Carousel
+        </button>
+        <button onclick="downloadAsZip()" style="padding: 15px 25px; background: #2563eb; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; font-family: 'Inter', sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.2s;">
+            📦 Download as ZIP
+        </button>
+    </div>
+    <!-- ═══ SLIDE 1: HOOK ═══ -->
+    <div class="slide theme-light">
+        <div class="bg-lines-light"></div>
+        <div class="tag-top">Content Strategy</div>
+        
+        <div class="content-wrapper">
+            <h1 class="title-huge">3 content<br>types that</h1>
+            <div class="highlight-box">Always<br>Perform</div>
+        </div>
+
+        <div class="author-bottom">
+            <span class="author-name">Your Name</span>
+            <span class="author-handle">@yourbrand</span>
+        </div>
+        <div class="icon-bottom-right">
+            <svg class="arrow-icon" viewBox="0 0 100 40" fill="none" stroke="#0f172a" stroke-width="3">
+                <path d="M0 20 H95 M75 0 L95 20 L75 40" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- ═══ SLIDE 2: TYPE 1 ═══ -->
+    <div class="slide theme-accent">
+        <div class="bg-stripes"></div>
+        <div class="tag-top">Content Strategy</div>
+        
+        <div class="content-wrapper">
+            <div class="sub-tag">Type 01</div>
+            <h1 class="content-text">The Contrarian<br>Truth</h1>
+            <p class="desc-text">Challenge a widely accepted belief in your industry. Stop agreeing with everyone.</p>
+        </div>
+
+        <div class="author-bottom">
+            <span class="author-name">Your Name</span>
+            <span class="author-handle">@yourbrand</span>
+        </div>
+        <div class="icon-bottom-right">
+            <svg class="arrow-icon" viewBox="0 0 100 40" fill="none" stroke="#ffffff" stroke-width="3">
+                <path d="M0 20 H95 M75 0 L95 20 L75 40" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- ═══ SLIDE 3: TYPE 2 ═══ -->
+    <div class="slide theme-accent">
+        <div class="bg-stripes"></div>
+        <div class="tag-top">Content Strategy</div>
+        
+        <div class="content-wrapper">
+            <div class="sub-tag">Type 02</div>
+            <h1 class="content-text">The<br>Transformation<br>Story</h1>
+            <p class="desc-text">Show the messy middle. People connect deeply with real struggles, not just your highlight reel.</p>
+        </div>
+
+        <div class="author-bottom">
+            <span class="author-name">Your Name</span>
+            <span class="author-handle">@yourbrand</span>
+        </div>
+        <div class="icon-bottom-right">
+            <svg class="arrow-icon" viewBox="0 0 100 40" fill="none" stroke="#ffffff" stroke-width="3">
+                <path d="M0 20 H95 M75 0 L95 20 L75 40" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- ═══ SLIDE 4: TYPE 3 ═══ -->
+    <div class="slide theme-accent">
+        <div class="bg-stripes"></div>
+        <div class="tag-top">Content Strategy</div>
+        
+        <div class="content-wrapper">
+            <div class="sub-tag">Type 03</div>
+            <h1 class="content-text">The Exact<br>Framework</h1>
+            <p class="desc-text">Give them a step-by-step roadmap to achieve a specific result. (Exactly like this carousel).</p>
+        </div>
+
+        <div class="author-bottom">
+            <span class="author-name">Your Name</span>
+            <span class="author-handle">@yourbrand</span>
+        </div>
+        <div class="icon-bottom-right">
+            <svg class="arrow-icon" viewBox="0 0 100 40" fill="none" stroke="#ffffff" stroke-width="3">
+                <path d="M0 20 H95 M75 0 L95 20 L75 40" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- ═══ SLIDE 5: REVEAL ═══ -->
+    <div class="slide theme-accent">
+        <div class="bg-stripes"></div>
+        <div class="tag-top">Content Strategy</div>
+        
+        <div class="content-wrapper">
+            <div class="sub-tag">The Secret</div>
+            <h1 class="content-text" style="font-size: 110px;">Trends get views.<br>Value builds<br>communities.</h1>
+            <p class="desc-text">Master these 3 formats, and your audience will stay forever.</p>
+        </div>
+
+        <div class="author-bottom">
+            <span class="author-name">Your Name</span>
+            <span class="author-handle">@yourbrand</span>
+        </div>
+        <div class="icon-bottom-right">
+            <svg class="arrow-icon" viewBox="0 0 100 40" fill="none" stroke="#ffffff" stroke-width="3">
+                <path d="M0 20 H95 M75 0 L95 20 L75 40" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- ═══ SLIDE 6: CTA ═══ -->
+    <div class="slide theme-dark">
+        <div class="bg-lines-dark"></div>
+        <div class="tag-top">Content Strategy</div>
+        
+        <div class="content-wrapper">
+            <h1 class="title-huge" style="color: #ffffff;">Follow us to<br>build an</h1>
+            <div class="highlight-box">Audience<br>that buys.</div>
+            <p class="desc-text" style="color: #ffffff; margin-top: 30px;">Save this post for your next content batch.</p>
+        </div>
+
+        <div class="author-bottom">
+            <span class="author-name">Your Name</span>
+            <span class="author-handle">@yourbrand</span>
+        </div>
+        <div class="icon-bottom-right action-icons">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+        </div>
+    </div>
+
+    <!-- ── Scripts ── -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script>
+        async function downloadAsZip() {
+            const btn = document.querySelector('button[onclick="downloadAsZip()"]');
+            const originalText = btn.innerText;
+            btn.innerText = "Generating ZIP...";
+            btn.style.opacity = "0.7";
+            btn.disabled = true;
+
+            let fileName = window.location.pathname.split('/').pop();
+            let baseName = fileName ? decodeURIComponent(fileName).replace('.html', '') : 'carousel';
+
+            var zip = new JSZip();
+            const slides = document.querySelectorAll('.slide');
+            for (let i = 0; i < slides.length; i++) {
+                const canvas = await html2canvas(slides[i], { scale: 4, useCORS: true, backgroundColor: null });
+                const dataURL = canvas.toDataURL("image/png", 1.0);
+                const base64Data = dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+                zip.file(`${baseName}_slide_${i + 1}.png`, base64Data, {base64: true});
+            }
+            
+            zip.generateAsync({type:"blob"}).then(function(content) {
+                saveAs(content, `${baseName}.zip`);
+                btn.innerText = "Downloaded Successfully!";
+                setTimeout(() => { btn.innerText = originalText; btn.style.opacity = "1"; btn.disabled = false; }, 3000);
+            });
+        }
+
+        async function downloadAllSlides() {
+            const btn = document.querySelector('button[onclick="downloadAllSlides()"]');
+            const originalText = btn.innerText;
+            btn.innerText = "Generating 4K Images...";
+            btn.style.opacity = "0.7";
+            btn.disabled = true;
+
+            let fileName = window.location.pathname.split('/').pop();
+            let baseName = fileName ? decodeURIComponent(fileName).replace('.html', '') : 'carousel';
+
+            const slides = document.querySelectorAll('.slide');
+            for (let i = 0; i < slides.length; i++) {
+                const canvas = await html2canvas(slides[i], {
+                    scale: 4, // 4K resolution (4x scale = 4320x5400)
+                    useCORS: true,
+                    backgroundColor: null
+                });
+                const link = document.createElement('a');
+                link.download = `${baseName}_slide_${i + 1}.png`;
+                link.href = canvas.toDataURL("image/png", 1.0);
+                link.click();
+                
+                // Small delay to prevent the browser from blocking multiple file downloads
+                await new Promise(r => setTimeout(r, 800));
+            }
+
+            btn.innerText = "Downloaded Successfully!";
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.opacity = "1";
+                btn.disabled = false;
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

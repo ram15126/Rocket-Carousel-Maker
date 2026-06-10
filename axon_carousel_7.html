@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axon Carousel - Template 14 Checklist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Space Mono', monospace;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        .slide {
+            width: 1080px;
+            height: 1350px;
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        /* Background Quads */
+        .slide-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        .bg-quad {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+        }
+        .bg-quad.tl { top: 0; left: 0; }
+        .bg-quad.tr { top: 0; right: 0; }
+        .bg-quad.bl { bottom: 0; left: 0; }
+        .bg-quad.br { bottom: 0; right: 0; }
+
+        /* Slide Colors */
+        .slide:nth-child(2) .tl { background: linear-gradient(135deg, #a4e022, #2968c9); }
+        .slide:nth-child(2) .tr { background: #e05e5e; }
+        .slide:nth-child(2) .bl { background: linear-gradient(135deg, #51ac81, #25a47e); }
+        .slide:nth-child(2) .br { background: linear-gradient(135deg, #dd6531, #eeb633); }
+
+        .slide:nth-child(3) .tl { background: #9b51e0; }
+        .slide:nth-child(3) .tr { background: #f2c94c; }
+        .slide:nth-child(3) .bl { background: linear-gradient(135deg, #eb5757, #56ccf2); }
+        .slide:nth-child(3) .br { background: #f2994a; }
+
+        .slide:nth-child(4) .tl { background: #2d9cdb; }
+        .slide:nth-child(4) .tr { background: #bb6bd9; }
+        .slide:nth-child(4) .bl { background: #f2c94c; }
+        .slide:nth-child(4) .br { background: linear-gradient(135deg, #6fcf97, #219653); }
+
+        .slide:nth-child(5) .tl { background: #f2994a; }
+        .slide:nth-child(5) .tr { background: #eb5757; }
+        .slide:nth-child(5) .bl { background: #9b51e0; }
+        .slide:nth-child(5) .br { background: linear-gradient(135deg, #f2c94c, #f2994a); }
+
+        .slide:nth-child(6) .tl { background: linear-gradient(135deg, #a4e022, #f2c94c); }
+        .slide:nth-child(6) .tr { background: #2968c9; }
+        .slide:nth-child(6) .bl { background: #e05e5e; }
+        .slide:nth-child(6) .br { background: #9b51e0; }
+
+        .slide:nth-child(7) .tl { background: #bb6bd9; }
+        .slide:nth-child(7) .tr { background: #6fcf97; }
+        .slide:nth-child(7) .bl { background: linear-gradient(135deg, #2d9cdb, #56ccf2); }
+        .slide:nth-child(7) .br { background: #eb5757; }
+
+        .slide:nth-child(8) .tl { background: #a4e022; }
+        .slide:nth-child(8) .tr { background: #4a6ee0; }
+        .slide:nth-child(8) .bl { background: linear-gradient(135deg, #51ac81, #25a47e); }
+        .slide:nth-child(8) .br { background: linear-gradient(135deg, #dd6531, #e05e5e); }
+
+        /* Decor Elements */
+        .decor { position: absolute; z-index: 1; }
+        .decor-rings {
+            width: 700px;
+            height: 700px;
+            border: 3px solid rgba(255,255,255,0.8);
+            border-radius: 50%;
+            top: 20%;
+            left: -250px;
+        }
+        .decor-rings::after {
+            content: '';
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            border: 3px solid rgba(255,255,255,0.8);
+            border-radius: 50%;
+            top: -200px;
+            left: 200px;
+        }
+        .decor-rays {
+            top: -50px;
+            right: -50px;
+            width: 400px;
+            height: 400px;
+        }
+        .decor-teeth {
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: repeating-linear-gradient(
+                to right,
+                #fff,
+                #fff 50px,
+                transparent 50px,
+                transparent 100px
+            );
+            border-radius: 10px 10px 0 0;
+        }
+        .decor-teeth-top {
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 50px;
+            background: repeating-linear-gradient(
+                to right,
+                #fff,
+                #fff 50px,
+                transparent 50px,
+                transparent 100px
+            );
+            border-radius: 0 0 10px 10px;
+            transform: rotate(90deg);
+            transform-origin: top right;
+        }
+
+        /* Card Container */
+        .card {
+            width: 880px;
+            height: 1150px;
+            background: #fff;
+            border: 6px solid #000;
+            z-index: 10;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+        .card-content {
+            padding: 80px 80px 40px 80px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        /* Header */
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Space Mono', monospace;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 60px;
+        }
+        .slide-type-title .card-header {
+            font-size: 45px;
+        }
+        .header-right {
+            font-weight: 400;
+        }
+
+        /* Typography */
+        .main-title {
+            font-size: 110px;
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -3px;
+            margin: 40px 0 40px 0;
+        }
+        .main-subtitle {
+            font-size: 40px;
+            font-family: 'Space Mono', monospace;
+            line-height: 1.4;
+            margin: 0;
+        }
+        .number-circle {
+            width: 180px;
+            height: 180px;
+            background: #000;
+            border-radius: 50%;
+            color: #fff;
+            font-family: 'Space Mono', monospace;
+            font-size: 80px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px auto 60px auto;
+            flex-shrink: 0;
+        }
+        .list-title {
+            font-size: 75px;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.15;
+            margin: 0 0 40px 0;
+            letter-spacing: -1px;
+        }
+        .list-body {
+            font-size: 40px;
+            font-family: 'Space Mono', monospace;
+            text-align: center;
+            line-height: 1.4;
+            margin: 0;
+        }
+        .end-title {
+            font-size: 80px;
+            font-weight: 700;
+            line-height: 1.15;
+            margin: 40px 0 50px 0;
+            letter-spacing: -2px;
+        }
+        .end-subtitle {
+            font-size: 45px;
+            font-family: 'Space Mono', monospace;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        /* Footers */
+        .slide-type-title .card-footer {
+            height: 140px;
+            border-top: 6px solid #000;
+            display: flex;
+        }
+        .slide-type-title .card-footer-left {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            padding-left: 80px;
+            font-size: 36px;
+            font-family: 'Space Mono', monospace;
+            white-space: nowrap;
+        }
+        .slide-type-title .card-footer-right {
+            width: 140px;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .slide-type-list .card-footer {
+            height: 140px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 80px;
+            font-size: 36px;
+            font-family: 'Space Mono', monospace;
+        }
+        .slide-type-list .card-footer > div {
+            white-space: nowrap;
+        }
+        .slide-type-list .card-footer svg {
+            width: 80px;
+            height: 80px;
+            flex-shrink: 0;
+            margin-left: 30px;
+        }
+        .slide-type-end .card-content {
+            padding-bottom: 0;
+        }
+        .slide-type-end .card-footer {
+            height: 200px;
+            background: #000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 80px;
+            color: #fff;
+            font-size: 40px;
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Top fixed bar */
+        .top-fixed-bar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+        .download-btn {
+            padding: 15px 25px;
+            background: #0f172a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            font-family: 'Inter', 'Syne', sans-serif;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.2s;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-fixed-bar">
+        <button class="download-btn" onclick="downloadAllSlides()">↓ Download 4K Carousel</button>
+    </div>
+
+    <!-- Slide 1 -->
+    <div class="slide slide-type-title">
+        <div class="slide-bg">
+            <div class="bg-quad tl"></div><div class="bg-quad tr"></div>
+            <div class="bg-quad bl"></div><div class="bg-quad br"></div>
+            <div class="decor decor-rings"></div>
+            <svg class="decor decor-rays" viewBox="0 0 200 200">
+                <g stroke="#fff" stroke-width="2" stroke-linecap="round">
+                    <line x1="200" y1="0" x2="100" y2="100" />
+                    <line x1="200" y1="0" x2="130" y2="140" />
+                    <line x1="200" y1="0" x2="170" y2="180" />
+                    <line x1="200" y1="0" x2="50" y2="50" />
+                    <line x1="200" y1="0" x2="20" y2="80" />
+                </g>
+            </svg>
+            <div class="decor decor-teeth"></div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <div class="card-header">
+                    <div class="header-left"></div>
+                    <div class="header-right"></div>
+                </div>
+                <h1 class="main-title">Your website<br>is losing you<br>customers.</h1>
+                <p class="main-subtitle">Here's a checklist to fix it this week.</p>
+            </div>
+            <div class="card-footer">
+                <div class="card-footer-left">Let's Swipe Right</div>
+                <div class="card-footer-right">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width: 50px; height: 50px;">
+                        <polyline points="13 17 18 12 13 7"></polyline>
+                        <polyline points="6 17 11 12 6 7"></polyline>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide slide-type-list">
+        <div class="slide-bg">
+            <div class="bg-quad tl"></div><div class="bg-quad tr"></div>
+            <div class="bg-quad bl"></div><div class="bg-quad br"></div>
+            <div class="decor decor-teeth-top"></div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <div class="card-header">
+                    <div class="header-left"></div>
+                    <div class="header-right">Website checklist</div>
+                </div>
+                <div class="number-circle">01</div>
+                <h2 class="list-title">No Clear CTA</h2>
+                <p class="list-body">Users shouldn't guess what to do next. Add prominent, compelling Call-To-Action buttons on every page.</p>
+            </div>
+            <div class="card-footer">
+                <div>Let's Swipe Right</div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 14v-4a2 2 0 0 0-2-2h-3V4a2 2 0 0 0-4 0v10l-3-3a2 2 0 0 0-3 0l-2 2 6 8h10a2 2 0 0 0 2-2z"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide slide-type-list">
+        <div class="slide-bg">
+            <div class="bg-quad tl"></div><div class="bg-quad tr"></div>
+            <div class="bg-quad bl"></div><div class="bg-quad br"></div>
+            <div class="decor decor-rings"></div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <div class="card-header">
+                    <div class="header-left"></div>
+                    <div class="header-right">Website checklist</div>
+                </div>
+                <div class="number-circle">02</div>
+                <h2 class="list-title">Slow Loading</h2>
+                <p class="list-body">If your site takes more than 3 seconds to load, 53% of visitors will leave. Compress images and minify scripts.</p>
+            </div>
+            <div class="card-footer">
+                <div>Let's Swipe Right</div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 14v-4a2 2 0 0 0-2-2h-3V4a2 2 0 0 0-4 0v10l-3-3a2 2 0 0 0-3 0l-2 2 6 8h10a2 2 0 0 0 2-2z"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide slide-type-list">
+        <div class="slide-bg">
+            <div class="bg-quad tl"></div><div class="bg-quad tr"></div>
+            <div class="bg-quad bl"></div><div class="bg-quad br"></div>
+            <svg class="decor decor-rays" viewBox="0 0 200 200">
+                <g stroke="#fff" stroke-width="2" stroke-linecap="round">
+                    <line x1="200" y1="0" x2="100" y2="100" />
+                    <line x1="200" y1="0" x2="130" y2="140" />
+                    <line x1="200" y1="0" x2="170" y2="180" />
+                    <line x1="200" y1="0" x2="50" y2="50" />
+                </g>
+            </svg>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <div class="card-header">
+                    <div class="header-left"></div>
+                    <div class="header-right">Website checklist</div>
+                </div>
+                <div class="number-circle">03</div>
+                <h2 class="list-title">Poor Mobile UI</h2>
+                <p class="list-body">Over 60% of traffic is mobile. If they have to pinch and zoom to read your text, they will bounce instantly.</p>
+            </div>
+            <div class="card-footer">
+                <div>Let's Swipe Right</div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 14v-4a2 2 0 0 0-2-2h-3V4a2 2 0 0 0-4 0v10l-3-3a2 2 0 0 0-3 0l-2 2 6 8h10a2 2 0 0 0 2-2z"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide slide-type-list">
+        <div class="slide-bg">
+            <div class="bg-quad tl"></div><div class="bg-quad tr"></div>
+            <div class="bg-quad bl"></div><div class="bg-quad br"></div>
+            <div class="decor decor-teeth"></div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <div class="card-header">
+                    <div class="header-left"></div>
+                    <div class="header-right">Website checklist</div>
+                </div>
+                <div class="number-circle">04</div>
+                <h2 class="list-title">Vague Messaging</h2>
+                <p class="list-body">Stop using buzzwords like 'innovative solutions'. Clearly state what problem you solve and who you solve it for.</p>
+            </div>
+            <div class="card-footer">
+                <div>Let's Swipe Right</div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 14v-4a2 2 0 0 0-2-2h-3V4a2 2 0 0 0-4 0v10l-3-3a2 2 0 0 0-3 0l-2 2 6 8h10a2 2 0 0 0 2-2z"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6 -->
+    <div class="slide slide-type-list">
+        <div class="slide-bg">
+            <div class="bg-quad tl"></div><div class="bg-quad tr"></div>
+            <div class="bg-quad bl"></div><div class="bg-quad br"></div>
+            <div class="decor decor-rings"></div>
+            <div class="decor decor-teeth-top"></div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <div class="card-header">
+                    <div class="header-left"></div>
+                    <div class="header-right">Website checklist</div>
+                </div>
+                <div class="number-circle">05</div>
+                <h2 class="list-title">Hidden Trust</h2>
+                <p class="list-body">People buy from brands they trust. If your testimonials and case studies are hidden, you're losing easy sales.</p>
+            </div>
+            <div class="card-footer">
+                <div>Let's Swipe Right</div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 14v-4a2 2 0 0 0-2-2h-3V4a2 2 0 0 0-4 0v10l-3-3a2 2 0 0 0-3 0l-2 2 6 8h10a2 2 0 0 0 2-2z"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7 -->
+    <div class="slide slide-type-end">
+        <div class="slide-bg">
+            <div class="bg-quad tl"></div><div class="bg-quad tr"></div>
+            <div class="bg-quad bl"></div><div class="bg-quad br"></div>
+            <div class="decor decor-teeth"></div>
+            <svg class="decor decor-rays" viewBox="0 0 200 200" style="bottom: 0; left: 0; right: auto; top: auto; transform: scale(-1, 1);">
+                <g stroke="#fff" stroke-width="2" stroke-linecap="round">
+                    <line x1="200" y1="0" x2="100" y2="100" />
+                    <line x1="200" y1="0" x2="130" y2="140" />
+                    <line x1="200" y1="0" x2="170" y2="180" />
+                    <line x1="200" y1="0" x2="50" y2="50" />
+                </g>
+            </svg>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <div class="card-header">
+                    <div class="header-left"></div>
+                    <div class="header-right">Website checklist</div>
+                </div>
+                <h2 class="end-title">Fix these 5 things and watch your conversions skyrocket.</h2>
+                <p class="end-subtitle">Save & Share if this checklist gave you actionable steps for this week.</p>
+            </div>
+            <div class="card-footer">
+                <div></div>
+                <div style="display: flex; gap: 20px;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 50px; height: 50px;">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                        <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                        <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                    </svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 50px; height: 50px;">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        async function downloadAllSlides() {
+            const btn = document.querySelector('.download-btn');
+            const originalText = btn.innerText;
+            btn.innerText = "Generating 4K Images...";
+            btn.style.opacity = "0.7";
+            btn.disabled = true;
+
+            let fileName = window.location.pathname.split('/').pop();
+            let baseName = fileName ? decodeURIComponent(fileName).replace('.html', '') : 'carousel';
+
+            const slides = document.querySelectorAll('.slide');
+            for (let i = 0; i < slides.length; i++) {
+                const canvas = await html2canvas(slides[i], { scale: 4, useCORS: true, backgroundColor: null });
+                const link = document.createElement('a');
+                link.download = `${baseName}_slide_${i + 1}.png`;
+                link.href = canvas.toDataURL("image/png", 1.0);
+                link.click();
+                await new Promise(r => setTimeout(r, 800));
+            }
+            btn.innerText = "Downloaded Successfully!";
+            setTimeout(() => { btn.innerText = originalText; btn.style.opacity = "1"; btn.disabled = false; }, 3000);
+        }
+    </script>
+</body>
+</html>

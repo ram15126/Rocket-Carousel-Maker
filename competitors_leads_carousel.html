@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Competitors Are Getting Leads - Carousel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 80px 0;
+            background: #1a1c2e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 80px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* ── Base slide ── */
+        .slide {
+            width: 1080px;
+            height: 1350px;
+            position: relative;
+            background-color: #282a3a;
+            background-image: 
+                radial-gradient(circle at 85% 0%, rgba(242, 124, 136, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 10% 100%, rgba(242, 124, 136, 0.1) 0%, transparent 50%);
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+            flex-shrink: 0;
+        }
+
+        /* Subtle grid background pattern */
+        .slide::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+            background-size: 45px 45px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Ensure content stays above the grid */
+        .slide > div {
+            z-index: 1;
+        }
+
+        /* ── Meta labels ── */
+        .meta-tl {
+            position: absolute;
+            top: 70px;
+            left: 80px;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+        .meta-tr {
+            position: absolute;
+            top: 70px;
+            right: 80px;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+        .meta-bl {
+            position: absolute;
+            bottom: 70px;
+            left: 80px;
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        /* ── Accent line (Hollow dot with thick line) ── */
+        .accent-line-right {
+            position: absolute;
+            right: 0;
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+        .accent-line-left {
+            position: absolute;
+            left: 0;
+            display: flex;
+            align-items: center;
+            flex-direction: row-reverse;
+            gap: 0;
+        }
+        .accent-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 5px solid #f27c88;
+            background: transparent;
+            flex-shrink: 0;
+        }
+        .accent-bar {
+            height: 5px;
+            background: #f27c88;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        /* ── Typography ── */
+        h1, h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            overflow-wrap: break-word;
+        }
+        h1 {
+            font-size: 160px;
+            line-height: 0.95;
+            color: #f27c88;
+        }
+        h2 {
+            font-size: 140px;
+            line-height: 0.95;
+            color: #fff;
+        }
+        h2 span.pink { color: #f27c88; }
+        
+        .title-group {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .body-text {
+            font-size: 40px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.9);
+            margin: 0;
+        }
+
+        .big-body {
+            font-size: 50px;
+            font-weight: 400;
+            line-height: 1.4;
+            color: rgba(255,255,255,0.9);
+            margin: 0;
+        }
+
+        /* ── Layout helpers ── */
+        .content-area {
+            position: absolute;
+            left: 80px;
+            right: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        .center-v { top: 50%; transform: translateY(-50%); }
+        .upper    { top: 220px; }
+        .upper-sm { top: 180px; }
+
+        /* ── List items ── */
+        ul.slide-list {
+            list-style: none;
+            padding: 0; margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        ul.slide-list li {
+            font-size: 40px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.4;
+            display: flex;
+            align-items: flex-start;
+            gap: 28px;
+        }
+        ul.slide-list li .num {
+            font-size: 50px;
+            font-family: 'Bebas Neue', sans-serif;
+            color: #f27c88;
+            line-height: 1;
+            flex-shrink: 0;
+            min-width: 40px;
+            padding-top: 4px;
+        }
+
+        /* ── CTA pill ── */
+        .cta-pill {
+            display: inline-block;
+            background: #f27c88;
+            color: #fff;
+            font-size: 40px;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 24px 60px;
+            border-radius: 100px;
+            align-self: flex-start;
+            margin-top: 20px;
+        }
+
+        /* ── Stat block ── */
+        .stat-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        .stat-row {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        .stat-num {
+            font-size: 120px;
+            font-family: 'Bebas Neue', sans-serif;
+            color: #f27c88;
+            line-height: 1;
+            min-width: 140px;
+        }
+        .stat-label {
+            font-size: 40px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.4;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- ── Download Button ── -->
+    <div style="position: fixed; top: 20px; right: 20px; z-index: 1000; display: flex; gap: 10px;">
+        <button onclick="downloadAllSlides()" style="padding: 15px 25px; background: #0f172a; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; font-family: 'Inter', sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.2s;">
+            ↓ Download 4K Carousel
+        </button>
+        <button onclick="downloadAsZip()" style="padding: 15px 25px; background: #2563eb; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; font-family: 'Inter', sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.2s;">
+            📦 Download as ZIP
+        </button>
+    </div>
+
+    <!-- ═══ SLIDE 1 — HOOK ═══ -->
+    <div class="slide">
+        <div class="meta-tl">Lead Generation</div>
+        <div class="meta-tr">1/8</div>
+
+        <div class="content-area center-v">
+            <div class="title-group">
+                <h1>YOUR<br>COMPETITORS<br>ARE GETTING</h1>
+                <h2>LEADS</h2>
+            </div>
+        </div>
+
+        <div class="meta-bl">@yourbrand</div>
+    </div>
+
+    <!-- ═══ SLIDE 2 — REHOOK ═══ -->
+    <div class="slide">
+        <div class="meta-tl">Lead Generation</div>
+        <div class="meta-tr">2/8</div>
+
+        <div class="content-area upper" style="top: 190px;">
+            <div class="title-group">
+                <h2>THERE'S A<br>PAINFUL TRUTH<br>HAPPENING</h2>
+            </div>
+            <p class="big-body">"Brand awareness" without a lead<br>pipeline is just expensive vanity.</p>
+        </div>
+
+        <div class="meta-bl">@yourbrand</div>
+    </div>
+
+    <!-- ═══ SLIDE 3 — MIRROR ═══ -->
+    <div class="slide">
+        <div class="meta-tl">Lead Generation</div>
+        <div class="meta-tr">3/8</div>
+
+        <div class="content-area center-v">
+            <div class="title-group">
+                <h1>DOES THIS<br>SOUND FAMILIAR?</h1>
+                <h2>LET'S LOOK<br>AT THE SIGNS...</h2>
+            </div>
+        </div>
+
+        <!-- accent line right -->
+        <div class="accent-line-right" style="bottom: 220px; width: 340px;">
+            <div class="accent-dot"></div>
+            <div class="accent-bar"></div>
+        </div>
+
+        <div class="meta-bl">@yourbrand</div>
+    </div>
+
+    <!-- ═══ SLIDE 4 — REVEAL (The Shift) ═══ -->
+    <div class="slide">
+        <div class="meta-tl">Lead Generation</div>
+        <div class="meta-tr">4/8</div>
+
+        <div class="content-area center-v" style="gap: 60px;">
+            <div class="title-group">
+                <h2>THE <span class="pink">PROBLEM</span><br>ISN'T CONTENT.</h2>
+            </div>
+            <p class="big-body">It's that your content has<br><strong>no conversion architecture.</strong></p>
+        </div>
+
+        <div class="meta-bl">@yourbrand</div>
+    </div>
+
+    <!-- ═══ SLIDE 5 — PROOF / STATS ═══ -->
+    <div class="slide">
+        <div class="meta-tl">Lead Generation</div>
+        <div class="meta-tr">5/8</div>
+
+        <div class="content-area center-v">
+            <div class="title-group" style="margin-bottom: 20px;">
+                <h1>THE NUMBERS</h1>
+                <h2>DON'T LIE</h2>
+            </div>
+            <div class="stat-grid">
+                <div class="stat-row">
+                    <span class="stat-num">3×</span>
+                    <span class="stat-label">more leads from intent-first<br>content vs awareness posts</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-num">80%</span>
+                    <span class="stat-label">of buyers decide before<br>they ever DM you</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="meta-bl">@yourbrand</div>
+    </div>
+
+    <!-- ═══ SLIDE 6 — METHOD ═══ -->
+    <div class="slide">
+        <div class="meta-tl">Lead Generation</div>
+        <div class="meta-tr">6/8</div>
+
+        <div class="content-area upper-sm" style="top: 160px;">
+            <div class="title-group" style="margin-bottom: 30px;">
+                <h1>THE 3-STEP</h1>
+                <h2>FIX</h2>
+            </div>
+            <ul class="slide-list">
+                <li>
+                    <span class="num">01</span>
+                    <span><strong>Hook with a pain point</strong><br>Make them feel seen, not sold to</span>
+                </li>
+                <li>
+                    <span class="num">02</span>
+                    <span><strong>Bridge with proof</strong><br>Show the transformation, not the process</span>
+                </li>
+                <li>
+                    <span class="num">03</span>
+                    <span><strong>Close with a micro-CTA</strong><br>One ask. One action. Every time.</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="meta-bl">@yourbrand</div>
+    </div>
+
+    <!-- ═══ SLIDE 7 — AHA MOMENT ═══ -->
+    <div class="slide">
+        <div class="meta-tl">Lead Generation</div>
+        <div class="meta-tr">7/8</div>
+
+        <div class="content-area center-v">
+            <div class="title-group">
+                <h2>STOP CREATING<br>CONTENT.<br></h2>
+                <h1>START CREATING<br>PIPELINES.</h1>
+            </div>
+        </div>
+
+        <div class="meta-bl">@yourbrand</div>
+    </div>
+
+    <!-- ═══ SLIDE 8 — CTA ═══ -->
+    <div class="slide">
+        <div class="meta-tl">Lead Generation</div>
+        <div class="meta-tr">8/8</div>
+
+        <div class="content-area center-v" style="gap: 50px;">
+            <div class="title-group">
+                <h1>READY TO<br>OUT-LEAD YOUR</h1>
+                <h2>COMPETITORS?</h2>
+            </div>
+            <p class="body-text" style="max-width: 800px;">Save this carousel. Send it to the founder still 'building awareness'.<br><br>Then DM me <strong>"LEADS"</strong> and let's fix your content strategy.</p>
+            <div class="cta-pill">DM "LEADS"</div>
+        </div>
+
+        <div class="meta-bl">@yourbrand</div>
+    </div>
+
+    <!-- ── Scripts ── -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script>
+        async function downloadAsZip() {
+            const btn = document.querySelector('button[onclick="downloadAsZip()"]');
+            const originalText = btn.innerText;
+            btn.innerText = "Generating ZIP...";
+            btn.style.opacity = "0.7";
+            btn.disabled = true;
+
+            let fileName = window.location.pathname.split('/').pop();
+            let baseName = fileName ? decodeURIComponent(fileName).replace('.html', '') : 'carousel';
+
+            var zip = new JSZip();
+            const slides = document.querySelectorAll('.slide');
+            for (let i = 0; i < slides.length; i++) {
+                const canvas = await html2canvas(slides[i], { scale: 4, useCORS: true, backgroundColor: null });
+                const dataURL = canvas.toDataURL("image/png", 1.0);
+                const base64Data = dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+                zip.file(`${baseName}_slide_${i + 1}.png`, base64Data, {base64: true});
+            }
+            
+            zip.generateAsync({type:"blob"}).then(function(content) {
+                saveAs(content, `${baseName}.zip`);
+                btn.innerText = "Downloaded Successfully!";
+                setTimeout(() => { btn.innerText = originalText; btn.style.opacity = "1"; btn.disabled = false; }, 3000);
+            });
+        }
+
+        async function downloadAllSlides() {
+            const btn = document.querySelector('button[onclick="downloadAllSlides()"]');
+            const originalText = btn.innerText;
+            btn.innerText = "Generating 4K Images...";
+            btn.style.opacity = "0.7";
+            btn.disabled = true;
+
+            let fileName = window.location.pathname.split('/').pop();
+            let baseName = fileName ? decodeURIComponent(fileName).replace('.html', '') : 'carousel';
+
+            const slides = document.querySelectorAll('.slide');
+            for (let i = 0; i < slides.length; i++) {
+                const canvas = await html2canvas(slides[i], {
+                    scale: 4, // 4K resolution (4x scale = 4320x5400)
+                    useCORS: true,
+                    backgroundColor: null
+                });
+                const link = document.createElement('a');
+                link.download = `${baseName}_slide_${i + 1}.png`;
+                link.href = canvas.toDataURL("image/png", 1.0);
+                link.click();
+                
+                // Small delay to prevent the browser from blocking multiple file downloads
+                await new Promise(r => setTimeout(r, 800));
+            }
+
+            btn.innerText = "Downloaded Successfully!";
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.opacity = "1";
+                btn.disabled = false;
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

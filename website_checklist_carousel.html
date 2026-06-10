@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Checklist Carousel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 50px 0;
+            background-color: #1a1a1a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .slide {
+            width: 1080px;
+            height: 1350px;
+            background: #ffffff;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 80px;
+            box-sizing: border-box;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .bookmark {
+            position: absolute;
+            top: 0;
+            left: 100px;
+            width: 45px;
+            height: 100px;
+            background-color: #FACC15;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 75%, 0 100%);
+            z-index: 10;
+        }
+
+        .top-right-handle {
+            position: absolute;
+            top: 70px;
+            right: 80px;
+            display: flex;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .handle-text {
+            background: #FACC15;
+            padding: 12px 45px 12px 25px;
+            border-radius: 40px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 20px;
+            color: #2D2D2D;
+            margin-right: -30px;
+            z-index: 1;
+            letter-spacing: 0.5px;
+        }
+
+        .handle-icon {
+            width: 56px;
+            height: 56px;
+            background: #ffffff;
+            border-radius: 50%;
+            border: 5px solid #FACC15;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .bottom-badge-left {
+            position: absolute;
+            bottom: 80px;
+            left: 100px;
+            display: flex;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .bottom-badge-right {
+            position: absolute;
+            bottom: 80px;
+            right: 100px;
+            display: flex;
+            align-items: center;
+            flex-direction: row-reverse;
+            z-index: 10;
+        }
+
+        .badge-circle {
+            width: 64px;
+            height: 64px;
+            background: #ffffff;
+            border-radius: 50%;
+            border: 6px solid #FACC15;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            font-family: 'Anton', sans-serif;
+            font-size: 32px;
+            color: #2D2D2D;
+            line-height: 1;
+            padding-top: 4px;
+        }
+
+        .badge-text-left {
+            background: #FACC15;
+            padding: 12px 30px 12px 45px;
+            border-radius: 40px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 18px;
+            color: #2D2D2D;
+            margin-left: -30px;
+            z-index: 1;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-text-right {
+            background: #FACC15;
+            padding: 12px 45px 12px 30px;
+            border-radius: 40px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 18px;
+            color: #2D2D2D;
+            margin-right: -30px;
+            z-index: 1;
+            letter-spacing: 0.5px;
+        }
+
+        .content-area {
+            position: absolute;
+            top: 250px;
+            left: 100px;
+            width: 880px;
+            z-index: 5;
+        }
+
+        .title-highlight {
+            display: inline-block;
+            background: #FACC15;
+            padding: 10px 25px;
+            font-family: 'Anton', sans-serif;
+            font-size: 75px;
+            color: #2D2D2D;
+            line-height: 1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .title-main {
+            font-family: 'Anton', sans-serif;
+            font-size: 140px;
+            color: #2D2D2D;
+            line-height: 0.95;
+            text-transform: uppercase;
+        }
+
+        .title-accent {
+            color: #FACC15;
+        }
+
+        .body-text {
+            margin-top: 60px;
+            font-family: 'Inter', sans-serif;
+            font-size: 44px;
+            color: #4F4F4F;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .body-text-indented {
+            padding-left: 0px;
+        }
+
+        .body-text strong {
+            font-weight: 900;
+            color: #2D2D2D;
+        }
+
+        .drawn-arrow {
+            position: absolute;
+            opacity: 0.8;
+        }
+
+        /* Doodle SVG styling */
+        .doodle-path {
+            fill: none;
+            stroke: #333;
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Download Button (Top of Body) -->
+    <div style="position: fixed; top: 20px; right: 20px; z-index: 1000; display: flex; gap: 10px;">
+        <button onclick="downloadAllSlides()" style="padding: 15px 25px; background: #0f172a; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; font-family: 'Inter', sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.2s;">
+            ↓ Download 4K Carousel (ZIP)
+        </button>
+    </div>
+
+    <!-- SLIDE 1 -->
+    <div class="slide">
+        <div class="bookmark"></div>
+        
+        <div class="top-right-handle">
+
+            <div class="handle-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2D2D2D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </div>
+        </div>
+
+        <div class="content-area" style="top: 260px;">
+            <div class="title-highlight">YOUR WEBSITE</div>
+            <div class="title-main">IS LOSING</div>
+            <div class="title-main">YOU</div>
+            <div class="title-main">CUSTOMERS.</div>
+            
+            <div class="body-text" style="margin-top: 50px; font-size: 42px; max-width: 700px;">
+                Here's a <strong>checklist</strong> to fix it this week and start seeing results.
+            </div>
+        </div>
+
+        <!-- Character Illustration -->
+        <svg class="illustration" style="position: absolute; bottom: 0; right: -50px; z-index: 3;" width="450" height="500" viewBox="0 0 450 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M120 500C120 500 150 280 250 280C350 280 450 500 450 500H120Z" fill="#333333"/>
+            <path d="M220 280V250H280V280H220Z" fill="#FFF"/>
+            <path d="M250 280L235 400L250 420L265 400L250 280Z" fill="#FACC15"/>
+            <circle cx="250" cy="180" r="70" fill="#FDE0D9"/>
+            <path d="M175 180C170 120 220 100 250 100C280 100 330 120 325 180C310 140 250 140 250 140C250 140 190 140 175 180Z" fill="#2D2D2D"/>
+            <circle cx="225" cy="185" r="18" fill="#FFF" stroke="#2D2D2D" stroke-width="3"/>
+            <circle cx="275" cy="185" r="18" fill="#FFF" stroke="#2D2D2D" stroke-width="3"/>
+            <path d="M243 185H257" stroke="#2D2D2D" stroke-width="3"/>
+            <path d="M207 185C190 185 180 180 180 180" stroke="#2D2D2D" stroke-width="3"/>
+            <path d="M293 185C310 185 320 180 320 180" stroke="#2D2D2D" stroke-width="3"/>
+            <path d="M240 220C240 220 250 230 260 220" stroke="#2D2D2D" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="225" cy="185" r="4" fill="#2D2D2D"/>
+            <circle cx="275" cy="185" r="4" fill="#2D2D2D"/>
+            <path d="M20 500L70 340H250L300 500H20Z" fill="#FACC15"/>
+            <circle cx="160" cy="420" r="25" fill="#FFF" stroke="#FACC15" stroke-width="5"/>
+        </svg>
+
+        <div class="bottom-badge-left">
+            <div class="badge-circle"></div>
+
+        </div>
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div class="slide">
+        <div class="bookmark"></div>
+        
+        <div class="top-right-handle">
+
+            <div class="handle-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2D2D2D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </div>
+        </div>
+
+        <div class="content-area" style="top: 220px;">
+            <div class="title-main" style="font-size: 130px;">THE</div>
+            <div class="title-main title-accent" style="font-size: 130px;">PROBLEM</div>
+            
+            <div class="body-text body-text-indented">
+                A <strong>confusing website</strong> kills conversions instantly.<br><br>
+                If visitors can't find what they need in <strong>3 seconds</strong>, they will leave and go to a competitor.
+            </div>
+        </div>
+
+        <!-- Character Illustration -->
+        <svg class="illustration" style="position: absolute; bottom: 0; left: -50px; z-index: 3;" width="400" height="500" viewBox="0 0 400 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M300 500C300 500 280 280 180 280C80 280 0 500 0 500H300Z" fill="#333333"/>
+            <path d="M150 280V250H210V280H150Z" fill="#FFF"/>
+            <path d="M180 280L165 400L180 420L195 400L180 280Z" fill="#FACC15"/>
+            <circle cx="180" cy="180" r="70" fill="#FDE0D9"/>
+            <path d="M105 180C100 120 150 100 180 100C210 100 260 120 255 180C240 140 180 140 180 140C180 140 120 140 105 180Z" fill="#2D2D2D"/>
+            <circle cx="155" cy="185" r="18" fill="#FFF" stroke="#2D2D2D" stroke-width="3"/>
+            <circle cx="205" cy="185" r="18" fill="#FFF" stroke="#2D2D2D" stroke-width="3"/>
+            <path d="M173 185H187" stroke="#2D2D2D" stroke-width="3"/>
+            <path d="M137 185C120 185 110 180 110 180" stroke="#2D2D2D" stroke-width="3"/>
+            <path d="M223 185C240 185 250 180 250 180" stroke="#2D2D2D" stroke-width="3"/>
+            <path d="M170 220C170 220 180 230 190 220" stroke="#2D2D2D" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="155" cy="185" r="4" fill="#2D2D2D"/>
+            <circle cx="205" cy="185" r="4" fill="#2D2D2D"/>
+        </svg>
+
+        <div class="bottom-badge-right">
+            <div class="badge-circle">1</div>
+
+        </div>
+    </div>
+
+    <!-- SLIDE 3 -->
+    <div class="slide">
+        <div class="bookmark"></div>
+        
+        <div class="top-right-handle">
+
+            <div class="handle-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2D2D2D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </div>
+        </div>
+
+        <div class="content-area" style="top: 220px;">
+            <div class="title-main" style="font-size: 130px;">MOBILE</div>
+            <div class="title-main title-accent" style="font-size: 130px;">RESPONSIVE</div>
+            
+            <div class="body-text body-text-indented">
+                Over <strong>50%</strong> of web traffic comes from mobile devices.<br><br>
+                If your site requires pinching and zooming, you're <strong>losing sales</strong> every single day.
+            </div>
+        </div>
+
+        <!-- Character Illustration -->
+        <svg class="illustration" style="position: absolute; bottom: 150px; right: -20px; z-index: 3;" width="350" height="350" viewBox="0 0 350 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M175 100 L175 60 M120 120 L90 90 M230 120 L260 90 M100 175 L60 175 M250 175 L290 175" stroke="#FACC15" stroke-width="4" stroke-linecap="round"/>
+            <path d="M175 120C140 120 120 150 120 180C120 210 145 230 150 250H200C205 230 230 210 230 180C230 150 210 120 175 120Z" fill="#FFF" stroke="#2D2D2D" stroke-width="4"/>
+            <path d="M150 250H200V270C200 280 190 290 175 290C160 290 150 280 150 270V250Z" fill="#FACC15" stroke="#2D2D2D" stroke-width="4"/>
+            <path d="M150 260H200 M150 270H200 M160 280H190" stroke="#2D2D2D" stroke-width="4"/>
+            <path d="M350 200L250 190L250 250L350 260Z" fill="#333333"/>
+            <path d="M250 190C230 190 210 200 210 220C210 240 230 250 250 250" fill="#FFF" stroke="#2D2D2D" stroke-width="4"/>
+            <path d="M210 200H230 M210 210H230 M210 220H230 M210 230H230" stroke="#2D2D2D" stroke-width="3"/>
+            <path d="M280 350L180 300L160 350Z" fill="#333333"/>
+            <path d="M180 300C160 290 140 300 130 320C120 340 140 350 160 350" fill="#FFF" stroke="#2D2D2D" stroke-width="4"/>
+        </svg>
+
+        <div class="bottom-badge-left">
+            <div class="badge-circle">2</div>
+
+        </div>
+    </div>
+
+    <!-- SLIDE 4 -->
+    <div class="slide">
+        <div class="bookmark"></div>
+        
+        <div class="top-right-handle">
+
+            <div class="handle-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2D2D2D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </div>
+        </div>
+
+        <div class="content-area" style="top: 220px;">
+            <div class="title-main" style="font-size: 130px;">CLEAR</div>
+            <div class="title-main title-accent" style="font-size: 130px;">CALL TO ACTION</div>
+            
+            <div class="body-text body-text-indented">
+                Don't make them think. Tell them <strong>exactly</strong> what to do next.<br><br>
+                Use contrasting colors for your <strong>"Buy Now"</strong> or <strong>"Contact Us"</strong> buttons.
+            </div>
+        </div>
+
+        <div class="bottom-badge-right">
+            <div class="badge-circle">3</div>
+
+        </div>
+    </div>
+
+    <!-- SLIDE 5 -->
+    <div class="slide">
+        <div class="bookmark"></div>
+        
+        <div class="top-right-handle">
+
+            <div class="handle-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2D2D2D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </div>
+        </div>
+
+        <div class="content-area" style="top: 220px;">
+            <div class="title-main" style="font-size: 130px;">PAGE LOAD</div>
+            <div class="title-main title-accent" style="font-size: 130px;">SPEED</div>
+            
+            <div class="body-text body-text-indented">
+                A 1-second delay can result in a <strong>7% reduction</strong> in conversions.<br><br>
+                Optimize your images, minimize scripts, and <strong>clean up your code</strong>.
+            </div>
+        </div>
+
+        <!-- Arrow Doodle -->
+        <svg class="drawn-arrow" style="bottom: 250px; right: 150px;" width="150" height="150" viewBox="0 0 150 150">
+            <path class="doodle-path" d="M10,140 Q40,50 130,20 M90,10 L140,10 L130,60" />
+        </svg>
+
+        <div class="bottom-badge-left">
+            <div class="badge-circle">4</div>
+
+        </div>
+    </div>
+
+    <!-- SLIDE 6 -->
+    <div class="slide">
+        <div class="bookmark"></div>
+        
+        <div class="top-right-handle">
+
+            <div class="handle-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2D2D2D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </div>
+        </div>
+
+        <div class="content-area" style="top: 220px;">
+            <div class="title-main" style="font-size: 130px;">SOCIAL</div>
+            <div class="title-main title-accent" style="font-size: 130px;">PROOF</div>
+            
+            <div class="body-text body-text-indented">
+                People trust other people more than brands.<br><br>
+                Include <strong>testimonials</strong>, reviews, and case studies prominently on your <strong>homepage</strong>.
+            </div>
+        </div>
+
+        <div class="bottom-badge-right">
+            <div class="badge-circle">5</div>
+
+        </div>
+    </div>
+
+    <!-- SLIDE 7 -->
+    <div class="slide">
+        <div class="bookmark"></div>
+        
+        <div class="top-right-handle">
+
+            <div class="handle-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2D2D2D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </div>
+        </div>
+
+        <div class="content-area" style="top: 220px;">
+            <div class="title-highlight">SUMMARY</div>
+            <div class="title-main">THE</div>
+            <div class="title-main title-accent">CHECKLIST</div>
+            
+            <div class="body-text body-text-indented" style="margin-top: 40px; font-size: 48px; line-height: 1.8;">
+                <span style="color: #FACC15; font-weight: 900; margin-right: 15px;">✓</span> Mobile friendly<br>
+                <span style="color: #FACC15; font-weight: 900; margin-right: 15px;">✓</span> Clear CTA buttons<br>
+                <span style="color: #FACC15; font-weight: 900; margin-right: 15px;">✓</span> Fast loading speed<br>
+                <span style="color: #FACC15; font-weight: 900; margin-right: 15px;">✓</span> Visible testimonials
+            </div>
+        </div>
+
+        <div class="bottom-badge-left">
+            <div class="badge-circle">6</div>
+
+        </div>
+    </div>
+
+    <!-- SLIDE 8 -->
+    <div class="slide">
+        <div class="bookmark"></div>
+        
+        <div class="top-right-handle">
+
+            <div class="handle-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2D2D2D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </div>
+        </div>
+
+        <div class="content-area" style="top: 300px; text-align: center; left: 0; width: 100%; padding: 0 100px; box-sizing: border-box;">
+            <div class="title-main" style="font-size: 140px;">NEED HELP?</div>
+            
+            <div class="body-text" style="margin-top: 80px; font-size: 48px;">
+                Send me a DM with <strong>"WEBSITE"</strong><br>
+                and let's optimize your<br>
+                digital presence today.
+            </div>
+
+            <!-- Fake Button as visual CTA -->
+            <div style="margin-top: 80px; display: inline-block; background: #FACC15; color: #2D2D2D; font-family: 'Anton', sans-serif; font-size: 50px; padding: 20px 80px; border-radius: 80px; text-transform: uppercase;">
+                SEND DM
+            </div>
+        </div>
+
+        <!-- Character Illustration -->
+        <svg class="illustration" style="position: absolute; bottom: 0; left: -50px; z-index: 3;" width="450" height="500" viewBox="0 0 450 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M350 500C350 500 320 280 220 280C120 280 0 500 0 500H350Z" fill="#333333"/>
+            <path d="M190 280V250H250V280H190Z" fill="#FFF"/>
+            <path d="M220 280L205 400L220 420L235 400L220 280Z" fill="#FACC15"/>
+            <circle cx="220" cy="180" r="70" fill="#FDE0D9"/>
+            <path d="M145 180C140 120 190 100 220 100C250 100 300 120 295 180C280 140 220 140 220 140C220 140 160 140 145 180Z" fill="#2D2D2D"/>
+            <path d="M195 180C200 175 210 175 215 180" stroke="#2D2D2D" stroke-width="3" stroke-linecap="round"/>
+            <path d="M225 180C230 175 240 175 245 180" stroke="#2D2D2D" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="205" cy="185" r="4" fill="#2D2D2D"/>
+            <circle cx="235" cy="185" r="4" fill="#2D2D2D"/>
+            <path d="M210 220C210 220 220 230 230 220" stroke="#2D2D2D" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="190" cy="200" r="6" fill="#FFAAA5" opacity="0.6"/>
+            <circle cx="250" cy="200" r="6" fill="#FFAAA5" opacity="0.6"/>
+            <path d="M60 500L90 380H220L250 500H60Z" fill="#FACC15"/>
+            <circle cx="155" cy="420" r="15" fill="#FFF"/>
+            <path d="M90 380C70 380 60 400 80 420C100 440 120 400 120 380" fill="#FFF" stroke="#2D2D2D" stroke-width="3"/>
+        </svg>
+
+        <div class="bottom-badge-right">
+            <div class="badge-circle">7</div>
+            <div class="badge-text-right">REALLYGREATSITE.COM</div>
+        </div>
+    </div>
+
+    <!-- Scripts (Bottom of Body) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        async function downloadAllSlides() {
+            const btn = document.querySelector('button[onclick="downloadAllSlides()"]');
+            const originalText = btn.innerText;
+            btn.innerText = "Generating ZIP...";
+            btn.style.opacity = "0.7";
+            btn.disabled = true;
+
+            let fileName = window.location.pathname.split('/').pop();
+            let baseName = fileName ? decodeURIComponent(fileName).replace('.html', '') : 'carousel';
+
+            try {
+                const zip = new JSZip();
+                const folder = zip.folder(`${baseName}_slides`);
+                const slides = document.querySelectorAll('.slide');
+                
+                for (let i = 0; i < slides.length; i++) {
+                    btn.innerText = `Processing ${i + 1}/${slides.length}...`;
+                    const canvas = await html2canvas(slides[i], { scale: 4, useCORS: true, backgroundColor: null });
+                    const dataUrl = canvas.toDataURL("image/png", 1.0);
+                    const base64Data = dataUrl.split(',')[1];
+                    folder.file(`${baseName}_slide_${i + 1}.png`, base64Data, {base64: true});
+                }
+                
+                btn.innerText = "Zipping...";
+                const content = await zip.generateAsync({type: "blob"});
+                
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(content);
+                link.download = `${baseName}.zip`;
+                link.click();
+                
+                URL.revokeObjectURL(link.href);
+                btn.innerText = "Downloaded Successfully!";
+            } catch (err) {
+                console.error("Error generating zip:", err);
+                btn.innerText = "Error generating ZIP";
+            }
+            
+            setTimeout(() => { btn.innerText = originalText; btn.style.opacity = "1"; btn.disabled = false; }, 3000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axon Carousel 6</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+        .slide {
+            width: 1080px;
+            height: 1350px;
+            background: #000;
+            position: relative;
+            overflow: hidden;
+            color: white;
+            margin-bottom: 80px;
+            display: flex;
+            flex-direction: column;
+            padding: 80px 100px;
+            box-sizing: border-box;
+        }
+        .top-left-arrow {
+            position: absolute;
+            top: 100px;
+            left: 100px;
+        }
+        .giant-number {
+            position: absolute;
+            top: -60px;
+            right: -20px;
+            font-size: 850px;
+            font-weight: 700;
+            color: transparent;
+            -webkit-text-stroke: 3px #1a1a1a;
+            line-height: 1;
+            z-index: 0;
+            letter-spacing: -20px;
+        }
+        .content-container {
+            margin-top: auto;
+            margin-bottom: 60px;
+            z-index: 1;
+        }
+        .title-slide-text {
+            font-size: 130px;
+            font-weight: 500;
+            line-height: 1.05;
+            letter-spacing: -4px;
+            margin: 0;
+        }
+        .title-slide-text .dim {
+            color: #888;
+        }
+        .title-slide-text .bright {
+            color: #fff;
+        }
+        .swipe-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px 35px;
+            border: 1px solid #444;
+            border-radius: 50px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.05), transparent);
+            color: #fff;
+            font-size: 28px;
+            margin-top: 60px;
+            font-weight: 400;
+        }
+        .swipe-btn svg {
+            width: 35px;
+            height: 35px;
+        }
+        .bottom-separator {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #333, #fff 70%, #333);
+            margin-bottom: 40px;
+            z-index: 1;
+        }
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1;
+        }
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .profile img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .profile-name {
+            font-size: 30px;
+            color: #ddd;
+            font-weight: 400;
+        }
+        .handle {
+            font-size: 30px;
+            color: #ddd;
+            font-weight: 400;
+        }
+        .slide-header {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        .slide-header-text {
+            font-size: 40px;
+            color: #fff;
+            font-weight: 400;
+        }
+        .dots {
+            display: flex;
+            gap: 12px;
+        }
+        .dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+        }
+        .dot.active {
+            background-color: #fff;
+        }
+        .slide-title {
+            font-size: 140px;
+            font-weight: 500;
+            letter-spacing: -5px;
+            color: #e5e5e5;
+            margin: 0 0 50px 0;
+            line-height: 1.1;
+        }
+        .slide-body {
+            font-size: 50px;
+            font-weight: 300;
+            color: #ddd;
+            line-height: 1.4;
+            max-width: 900px;
+            margin: 0;
+        }
+        .save-title {
+            font-size: 190px;
+            font-weight: 500;
+            line-height: 0.95;
+            letter-spacing: -6px;
+            color: #e5e5e5;
+            margin: 0 0 60px 0;
+        }
+        .repost-text {
+            font-size: 50px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-weight: 300;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── Download Button (Top of Body) ── -->
+    <div style="position: fixed; top: 20px; right: 20px; z-index: 1000; display: flex; gap: 10px;">
+        <button onclick="downloadAllSlides()" style="padding: 15px 25px; background: #0f172a; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; font-family: 'Inter', sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.2s;">
+            ↓ Download Images
+        </button>
+        <button onclick="downloadAsZip()" style="padding: 15px 25px; background: #2563eb; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; font-family: 'Inter', sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.2s;">
+            ↓ Download ZIP
+        </button>
+    </div>
+
+    <!-- Slide 1 -->
+    <div class="slide">
+        <img class="top-left-arrow" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='110' viewBox='0 0 24 24' fill='none' stroke='%23444' stroke-width='2' stroke-linecap='butt' stroke-linejoin='miter'%3E%3Cpath d='M4 4 L20 20' /%3E%3Cpath d='M20 6 L20 20 L6 20' /%3E%3C/svg%3E" alt="Arrow">
+        <div class="giant-number">7</div>
+        <div class="content-container">
+            <h1 class="title-slide-text">
+                <span class="dim">7 signs your</span><br>
+                <span class="dim">business is ready</span><br>
+                <span class="bright">for AI automation</span>
+            </h1>
+            <div class="swipe-btn">
+                Swipe to Learn now
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+        <img class="top-left-arrow" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='110' viewBox='0 0 24 24' fill='none' stroke='%23444' stroke-width='2' stroke-linecap='butt' stroke-linejoin='miter'%3E%3Cpath d='M4 4 L20 20' /%3E%3Cpath d='M20 6 L20 20 L6 20' /%3E%3C/svg%3E" alt="Arrow">
+        <div class="giant-number">1</div>
+        <div class="content-container">
+            <div class="slide-header">
+                <span class="slide-header-text">Sign 01</span>
+                <div class="dots">
+                    <div class="dot active"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+            <h2 class="slide-title">Repetitive Tasks</h2>
+            <p class="slide-body">Your team spends hours on manual data entry, scheduling, or repetitive processes that could easily be handled by a machine.</p>
+        </div>
+
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+        <img class="top-left-arrow" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='110' viewBox='0 0 24 24' fill='none' stroke='%23444' stroke-width='2' stroke-linecap='butt' stroke-linejoin='miter'%3E%3Cpath d='M4 4 L20 20' /%3E%3Cpath d='M20 6 L20 20 L6 20' /%3E%3C/svg%3E" alt="Arrow">
+        <div class="giant-number">2</div>
+        <div class="content-container">
+            <div class="slide-header">
+                <span class="slide-header-text">Sign 02</span>
+                <div class="dots">
+                    <div class="dot"></div>
+                    <div class="dot active"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+            <h2 class="slide-title">Data Overload</h2>
+            <p class="slide-body">You have massive amounts of customer data but struggle to extract actionable insights or make data-driven decisions quickly.</p>
+        </div>
+
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide">
+        <img class="top-left-arrow" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='110' viewBox='0 0 24 24' fill='none' stroke='%23444' stroke-width='2' stroke-linecap='butt' stroke-linejoin='miter'%3E%3Cpath d='M4 4 L20 20' /%3E%3Cpath d='M20 6 L20 20 L6 20' /%3E%3C/svg%3E" alt="Arrow">
+        <div class="giant-number">3</div>
+        <div class="content-container">
+            <div class="slide-header">
+                <span class="slide-header-text">Sign 03</span>
+                <div class="dots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot active"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+            <h2 class="slide-title">Slow Responses</h2>
+            <p class="slide-body">Customer support response times are lagging, leading to lower satisfaction and potential loss of valuable clients.</p>
+        </div>
+
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide">
+        <img class="top-left-arrow" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='110' viewBox='0 0 24 24' fill='none' stroke='%23444' stroke-width='2' stroke-linecap='butt' stroke-linejoin='miter'%3E%3Cpath d='M4 4 L20 20' /%3E%3Cpath d='M20 6 L20 20 L6 20' /%3E%3C/svg%3E" alt="Arrow">
+        <div class="giant-number">4</div>
+        <div class="content-container">
+            <div class="slide-header">
+                <span class="slide-header-text">Sign 04</span>
+                <div class="dots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot active"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+            <h2 class="slide-title">Scaling Bottlenecks</h2>
+            <p class="slide-body">Your business is growing rapidly, but your operations can't keep up without linearly increasing headcount and overhead costs. <span style="color: #fff; font-weight: 500;">(Most owners miss this)</span></p>
+        </div>
+
+    </div>
+
+    <!-- Slide 6 -->
+    <div class="slide">
+        <img class="top-left-arrow" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='110' viewBox='0 0 24 24' fill='none' stroke='%23444' stroke-width='2' stroke-linecap='butt' stroke-linejoin='miter'%3E%3Cpath d='M4 4 L20 20' /%3E%3Cpath d='M20 6 L20 20 L6 20' /%3E%3C/svg%3E" alt="Arrow">
+        <div class="giant-number">5</div>
+        <div class="content-container">
+            <div class="slide-header">
+                <span class="slide-header-text">Sign 05</span>
+                <div class="dots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot active"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+            <h2 class="slide-title">High Error Rates</h2>
+            <p class="slide-body">Manual processes are leading to costly human errors in accounting, fulfillment, or compliance.</p>
+        </div>
+
+    </div>
+
+    <!-- Slide 7 -->
+    <div class="slide">
+        <img class="top-left-arrow" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='110' viewBox='0 0 24 24' fill='none' stroke='%23444' stroke-width='2' stroke-linecap='butt' stroke-linejoin='miter'%3E%3Cpath d='M4 4 L20 20' /%3E%3Cpath d='M20 6 L20 20 L6 20' /%3E%3C/svg%3E" alt="Arrow">
+        <div class="giant-number">6</div>
+        <div class="content-container">
+            <div class="slide-header">
+                <span class="slide-header-text">Sign 06</span>
+                <div class="dots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot active"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+            <h2 class="slide-title">Siloed Systems</h2>
+            <p class="slide-body">Your software tools don't talk to each other, requiring employees to act as the bridge between disconnected platforms.</p>
+        </div>
+
+    </div>
+
+    <!-- Slide 8 -->
+    <div class="slide">
+        <img class="top-left-arrow" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='110' viewBox='0 0 24 24' fill='none' stroke='%23444' stroke-width='2' stroke-linecap='butt' stroke-linejoin='miter'%3E%3Cpath d='M4 4 L20 20' /%3E%3Cpath d='M20 6 L20 20 L6 20' /%3E%3C/svg%3E" alt="Arrow">
+        <div class="giant-number">7</div>
+        <div class="content-container">
+            <div class="slide-header">
+                <span class="slide-header-text">Sign 07</span>
+                <div class="dots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot active"></div>
+                </div>
+            </div>
+            <h2 class="slide-title">Lost Opportunities</h2>
+            <p class="slide-body">You're missing out on cross-selling or upselling opportunities because you can't predict customer behavior at scale.</p>
+        </div>
+    </div>
+
+    <!-- Slide 9 -->
+    <div class="slide">
+        <img class="top-left-arrow" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='110' viewBox='0 0 24 24' fill='none' stroke='%23444' stroke-width='2' stroke-linecap='butt' stroke-linejoin='miter'%3E%3Cpath d='M4 4 L20 20' /%3E%3Cpath d='M20 6 L20 20 L6 20' /%3E%3C/svg%3E" alt="Arrow">
+        <img style="position: absolute; top: 100px; right: 100px; z-index: 0;" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250' viewBox='0 0 24 24' fill='%23222'%3E%3Cpath d='M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z'/%3E%3C/svg%3E" alt="Bookmark">
+        <img style="position: absolute; bottom: 250px; right: 100px; z-index: 0;" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 24 24' fill='none' stroke='%23444' stroke-width='2' stroke-linecap='butt' stroke-linejoin='miter'%3E%3Cpath d='M20 20 L4 4' /%3E%3Cpath d='M4 18 L4 4 L18 4' /%3E%3C/svg%3E" alt="Arrow">
+        <div class="content-container">
+            <h2 class="save-title">Save<br>this list</h2>
+            <div class="repost-text">
+                Repost for professionals
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4M7 23l-4-4 4-4"/><path d="M21 5H9a5 5 0 0 0-5 5v1M3 19h12a5 5 0 0 0 5-5v-1"/></svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Scripts (Bottom of Body) ── -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script>
+        async function downloadAsZip() {
+            const btn = document.querySelector('button[onclick="downloadAsZip()"]');
+            const originalText = btn.innerText;
+            btn.innerText = "Generating ZIP...";
+            btn.style.opacity = "0.7";
+            btn.disabled = true;
+
+            let fileName = window.location.pathname.split('/').pop();
+            let baseName = fileName ? decodeURIComponent(fileName).replace('.html', '') : 'carousel';
+
+            var zip = new JSZip();
+            const slides = document.querySelectorAll('.slide');
+            for (let i = 0; i < slides.length; i++) {
+                const canvas = await html2canvas(slides[i], { scale: 4, useCORS: true, backgroundColor: null });
+                const dataURL = canvas.toDataURL("image/png", 1.0);
+                const base64Data = dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+                zip.file(`${baseName}_slide_${i + 1}.png`, base64Data, {base64: true});
+            }
+            
+            zip.generateAsync({type:"blob"}).then(function(content) {
+                saveAs(content, `${baseName}.zip`);
+                btn.innerText = "Downloaded Successfully!";
+                setTimeout(() => { btn.innerText = originalText; btn.style.opacity = "1"; btn.disabled = false; }, 3000);
+            });
+        }
+
+        async function downloadAllSlides() {
+            const btn = document.querySelector('button[onclick="downloadAllSlides()"]');
+            const originalText = btn.innerText;
+            btn.innerText = "Generating 4K Images...";
+            btn.style.opacity = "0.7";
+            btn.disabled = true;
+
+            let fileName = window.location.pathname.split('/').pop();
+            let baseName = fileName ? decodeURIComponent(fileName).replace('.html', '') : 'carousel';
+
+            const slides = document.querySelectorAll('.slide');
+            for (let i = 0; i < slides.length; i++) {
+                const canvas = await html2canvas(slides[i], { scale: 4, useCORS: true, backgroundColor: null });
+                const link = document.createElement('a');
+                link.download = `${baseName}_slide_${i + 1}.png`;
+                link.href = canvas.toDataURL("image/png", 1.0);
+                link.click();
+                await new Promise(r => setTimeout(r, 800));
+            }
+            btn.innerText = "Downloaded Successfully!";
+            setTimeout(() => { btn.innerText = originalText; btn.style.opacity = "1"; btn.disabled = false; }, 3000);
+        }
+    </script>
+</body>
+</html>

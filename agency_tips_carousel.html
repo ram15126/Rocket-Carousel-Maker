@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Tips - Carousel</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 80px 0;
+            background: #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .slide {
+            width: 1080px;
+            height: 1350px;
+            position: relative;
+            background-color: #ffffff;
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.04) 3px, transparent 3px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.04) 3px, transparent 3px);
+            background-size: 80px 80px;
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.15);
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 100px;
+        }
+
+        /* ── Meta labels ── */
+        .meta-tl {
+            position: absolute;
+            top: 80px;
+            left: 80px;
+            font-family: 'Inter', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #000;
+            z-index: 10;
+        }
+
+        .meta-tr {
+            position: absolute;
+            top: 70px;
+            right: 80px;
+            background: #000;
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            z-index: 10;
+        }
+
+        .meta-bl {
+            position: absolute;
+            bottom: 80px;
+            left: 80px;
+            font-family: 'Inter', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #000;
+            z-index: 10;
+        }
+
+        .meta-br {
+            position: absolute;
+            bottom: 70px;
+            right: 80px;
+            width: 75px;
+            height: 75px;
+            border: 3.5px solid #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .meta-br svg {
+            width: 38px;
+            height: 38px;
+            stroke: #000;
+            stroke-width: 2.5;
+        }
+
+        /* ── Typography ── */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+        }
+
+        h1,
+        h2 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            margin: 0;
+            color: #000;
+            line-height: 1.05;
+        }
+
+        h1 {
+            font-size: 155px;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        h2 {
+            font-size: 145px;
+            letter-spacing: -1.5px;
+            margin-bottom: 30px;
+        }
+
+        /* ── Orange Boxes ── */
+        .huge-orange-box {
+            background: #f04e23;
+            color: #fff;
+            font-family: 'Oswald', sans-serif;
+            font-size: 145px;
+            font-style: italic;
+            font-weight: 700;
+            padding: 10px 50px 25px 50px;
+            border-radius: 40px;
+            display: inline-block;
+            margin-top: 15px;
+            text-transform: uppercase;
+            line-height: 1;
+            letter-spacing: -2px;
+            box-shadow: 0 10px 30px rgba(240, 78, 35, 0.3);
+        }
+
+        .paragraph-wrapper {
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .orange-paragraph {
+            background: #f04e23;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 44px;
+            font-weight: 500;
+            line-height: 1.6;
+            padding: 12px 30px;
+            border-radius: 20px;
+            display: inline;
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
+            box-shadow: 0 8px 20px rgba(240, 78, 35, 0.2);
+        }
+
+        .orange-paragraph strong {
+            font-weight: 800;
+        }
+
+        /* ── Dashed Lines & Decor ── */
+        .dashed-line {
+            position: absolute;
+            z-index: 1;
+            fill: none;
+            stroke: #f04e23;
+            stroke-width: 7;
+            stroke-dasharray: 20, 25;
+            stroke-linecap: round;
+        }
+
+        .arrow-head {
+            fill: #f04e23;
+            z-index: 1;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ── Download Button ── -->
+    <div style="position: fixed; top: 20px; right: 20px; z-index: 1000; display: flex; gap: 10px;">
+        <button onclick="downloadAllSlides()"
+            style="padding: 15px 25px; background: #0f172a; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; font-family: 'Inter', sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.2s;">
+            ↓ Download 4K Carousel (ZIP)
+        </button>
+    </div>
+
+    <!-- ═══ SLIDE 1 ═══ -->
+    <div class="slide">
+        <div class="meta-tl">YOUR AGENCY</div>
+        <div class="meta-tr">MARKETING</div>
+
+        <svg class="dashed-line"
+            style="top: 50%; right: -80px; width: 400px; height: 500px; transform: translateY(-50%);"
+            viewBox="0 0 300 400">
+            <path d="M0 350 C 200 350, 300 200, 200 50 C 100 -50, 0 150, 150 250 C 200 300, 350 300, 350 300" />
+        </svg>
+
+        <div class="content-wrapper">
+            <h1>BUILD AN<br>AUDIENCE THAT</h1>
+            <div class="huge-orange-box">CONVERTS</div>
+        </div>
+
+        <div class="meta-bl">YOURAGENCY.COM</div>
+        <div class="meta-br">
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- ═══ SLIDE 2 ═══ -->
+    <div class="slide">
+        <div class="meta-tl">YOUR AGENCY</div>
+        <div class="meta-tr">STRATEGY</div>
+
+        <svg class="dashed-line" style="bottom: 250px; left: -20px; width: 300px; height: 300px;" viewBox="0 0 200 200">
+            <path d="M -50 180 Q 80 180, 180 60" />
+        </svg>
+        <svg class="arrow-head"
+            style="bottom: 430px; left: 240px; width: 40px; height: 40px; transform: rotate(-45deg);"
+            viewBox="0 0 100 100">
+            <polygon points="10,90 90,90 50,10" />
+        </svg>
+
+        <div class="content-wrapper">
+            <h2>You're doing<br>everything<br>"right".</h2>
+            <div class="paragraph-wrapper">
+                <span class="orange-paragraph">You post daily. You use trending audio. You add hashtags. But your reach
+                    is flat, and inquiries are zero. <strong>Why?</strong></span>
+            </div>
+        </div>
+
+        <div class="meta-bl">YOURAGENCY.COM</div>
+        <div class="meta-br">
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- ═══ SLIDE 3 ═══ -->
+    <div class="slide">
+        <div class="meta-tl">YOUR AGENCY</div>
+        <div class="meta-tr">MINDSET</div>
+
+        <svg class="dashed-line" style="top: 250px; right: -20px; width: 400px; height: 300px;" viewBox="0 0 300 200">
+            <path d="M 350 20 Q 200 20, 80 120" />
+        </svg>
+        <svg class="arrow-head" style="top: 335px; right: 290px; width: 40px; height: 40px; transform: rotate(-130deg);"
+            viewBox="0 0 100 100">
+            <polygon points="10,90 90,90 50,10" />
+        </svg>
+
+        <div class="content-wrapper">
+            <h2>You treat social<br>media like a<br>billboard.</h2>
+            <div class="paragraph-wrapper">
+                <span class="orange-paragraph">Broadcasting your services without giving people a reason to care.
+                    <strong>People don't follow brands; they follow value.</strong></span>
+            </div>
+        </div>
+
+        <div class="meta-bl">YOURAGENCY.COM</div>
+        <div class="meta-br">
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- ═══ SLIDE 4 ═══ -->
+    <div class="slide">
+        <div class="meta-tl">YOUR AGENCY</div>
+        <div class="meta-tr">EXECUTION</div>
+
+        <div class="content-wrapper">
+            <h2>Shift your<br>focus: Hook,<br>Retain, Convert.</h2>
+            <div class="paragraph-wrapper">
+                <span class="orange-paragraph"><strong>Hook</strong> with a bold claim. <strong>Retain</strong> with
+                    actionable advice. <strong>Convert</strong> by solving a specific micro-problem for them.</span>
+            </div>
+        </div>
+
+        <div class="meta-bl">YOURAGENCY.COM</div>
+        <div class="meta-br">
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- ═══ SLIDE 5 ═══ -->
+    <div class="slide">
+        <div class="meta-tl">YOUR AGENCY</div>
+        <div class="meta-tr">ACTION</div>
+
+        <svg class="dashed-line" style="bottom: 200px; right: -50px; width: 400px; height: 400px;"
+            viewBox="0 0 300 300">
+            <path d="M 350 250 Q 200 250, 100 100" />
+        </svg>
+        <svg class="arrow-head"
+            style="bottom: 460px; right: 235px; width: 40px; height: 40px; transform: rotate(-45deg);"
+            viewBox="0 0 100 100">
+            <polygon points="10,90 90,90 50,10" />
+        </svg>
+
+        <div class="content-wrapper">
+            <h2>Steal this<br>3-step formula.</h2>
+            <div class="paragraph-wrapper">
+                <span class="orange-paragraph">1. Identify a common misconception in your niche.<br>2. Bust the myth
+                    with proof.<br>3. Provide the correct framework.</span>
+            </div>
+        </div>
+
+        <div class="meta-bl">YOURAGENCY.COM</div>
+        <div class="meta-br">
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- ═══ SLIDE 6 ═══ -->
+    <div class="slide">
+        <div class="meta-tl">YOUR AGENCY</div>
+        <div class="meta-tr">GROWTH</div>
+
+        <div class="content-wrapper">
+            <h2>Ready to build<br>an audience<br>that buys?</h2>
+            <div class="paragraph-wrapper">
+                <span class="orange-paragraph">Save this post for your next content strategy session. Need expert help
+                    scaling your brand? DM "GROWTH"</span>
+            </div>
+        </div>
+
+        <div class="meta-bl">YOURAGENCY.COM</div>
+    </div>
+
+    <!-- ── Scripts ── -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script>
+        async function downloadAllSlides() {
+            const btn = document.querySelector('button[onclick="downloadAllSlides()"]');
+            const originalText = btn.innerText;
+            btn.innerText = "Generating 4K Images...";
+            btn.style.opacity = "0.7";
+            btn.disabled = true;
+
+            let fileName = window.location.pathname.split('/').pop();
+            let baseName = fileName ? decodeURIComponent(fileName).replace('.html', '') : 'carousel';
+
+            const zip = new JSZip();
+            const slides = document.querySelectorAll('.slide');
+            
+            for (let i = 0; i < slides.length; i++) {
+                const canvas = await html2canvas(slides[i], {
+                    scale: 4, // 4K resolution (4x scale = 4320x5400)
+                    useCORS: true,
+                    backgroundColor: null
+                });
+                
+                // Get the base64 image data
+                const imgData = canvas.toDataURL("image/png").split(',')[1];
+                zip.file(`${baseName}_slide_${i + 1}.png`, imgData, {base64: true});
+            }
+
+            btn.innerText = "Zipping Files...";
+            
+            zip.generateAsync({type:"blob"}).then(function(content) {
+                saveAs(content, `${baseName}.zip`);
+                btn.innerText = "Downloaded Successfully!";
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.style.opacity = "1";
+                    btn.disabled = false;
+                }, 3000);
+            }).catch(function(err) {
+                console.error("Error generating zip: ", err);
+                btn.innerText = "Error!";
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.style.opacity = "1";
+                    btn.disabled = false;
+                }, 3000);
+            });
+        }
+    </script>
+</body>
+
+</html>

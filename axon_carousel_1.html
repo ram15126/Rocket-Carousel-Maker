@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Axon Carousel 1 - MCP</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=clash-display@600,700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Axon Studios Brand Colors */
+      --brand-bg: #f4efe6;
+      --brand-dark: #1b3022;
+      --brand-text: #1b3022;
+      --brand-accent: #ff6542;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px;
+      background: #111;
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
+      align-items: center;
+      font-family: 'Satoshi', sans-serif;
+    }
+
+    .slide {
+      width: 1080px;
+      height: 1080px;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.5);
+      /* Premium smooth gradient background transitioning from pure white to the brand cream */
+      background: var(--brand-bg);
+    }
+
+    /* Recreated Inner Box with pure CSS */
+    .inner-box {
+      position: absolute;
+      top: 15%;
+      bottom: 15%;
+      left: 10%;
+      right: 0;
+      background-color: var(--brand-dark);
+      z-index: 1;
+      box-shadow: -15px 20px 40px 0px rgba(14, 71, 192, 0.2);
+    }
+
+    /* The dotted line inside the box */
+    .dotted-line {
+      position: absolute;
+      left: 60px;
+      top: 0;
+      bottom: 0;
+      border-left: 3px dashed rgba(244, 239, 230, 0.3);
+      z-index: 2;
+    }
+
+    /* Text container positioned over the inner box */
+    .content-box {
+      position: absolute;
+      top: 0;
+      left: 100px;
+      right: 60px;
+      bottom: 0;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .cover-headline {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 110px;
+      font-weight: 800;
+      line-height: 1.05;
+      color: var(--brand-bg);
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .inner-headline {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 90px;
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--brand-bg);
+      text-transform: uppercase;
+      margin-bottom: 30px;
+    }
+
+    .body-text {
+      font-size: 44px;
+      line-height: 1.4;
+      font-weight: 400;
+      color: var(--brand-bg);
+      margin: 0;
+    }
+
+    .text-orange {
+      color: var(--brand-accent);
+    }
+
+    /* Slide Number */
+    .slide-number {
+      font-family: 'Satoshi', sans-serif;
+      position: absolute;
+      bottom: 6%;
+      right: 6%;
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--brand-text);
+      z-index: 2;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Slide 1 -->
+  <div class="slide">
+    <div class="inner-box">
+      <div class="dotted-line"></div>
+      <div class="content-box">
+        <h1 class="cover-headline"><span class="text-orange">MCP: THE AI<br>SKILL</span> MOST<br>PEOPLE<br>DON'T KNOW
+        </h1>
+      </div>
+    </div>
+    <div class="slide-number">01</div>
+  </div>
+
+  <!-- Slide 2 -->
+  <div class="slide">
+    <div class="inner-box">
+      <div class="dotted-line"></div>
+      <div class="content-box">
+        <h2 class="inner-headline"><span class="text-orange">WHAT</span> IS IT?</h2>
+        <p class="body-text"><span class="text-orange">Model Context Protocol (MCP) securely connects AI models</span>
+          directly to your local files and databases in real-time.</p>
+      </div>
+    </div>
+    <div class="slide-number">02</div>
+  </div>
+
+  <!-- Slide 3 -->
+  <div class="slide">
+    <div class="inner-box">
+      <div class="dotted-line"></div>
+      <div class="content-box">
+        <h2 class="inner-headline"><span class="text-orange">THE USB-C</span><br>FOR AI</h2>
+        <p class="body-text"><span class="text-orange">It replaces clunky API integrations.</span> Any MCP-enabled AI
+          can instantly talk to any MCP-ready data source.</p>
+      </div>
+    </div>
+    <div class="slide-number">03</div>
+  </div>
+
+  <!-- Slide 4 -->
+  <div class="slide">
+    <div class="inner-box">
+      <div class="dotted-line"></div>
+      <div class="content-box">
+        <h2 class="inner-headline"><span class="text-orange">REAL</span> POWER</h2>
+        <p class="body-text"><span class="text-orange">Imagine your AI drafting a proposal</span> by pulling live stats
+          from your database and checking your CRM automatically.</p>
+      </div>
+    </div>
+    <div class="slide-number">04</div>
+  </div>
+
+  <!-- Slide 5 -->
+  <div class="slide">
+    <div class="inner-box">
+      <div class="dotted-line"></div>
+      <div class="content-box">
+        <h2 class="inner-headline"><span class="text-orange">STAY</span> AHEAD</h2>
+        <p class="body-text"><span class="text-orange">MCP is redefining how we work with AI.</span> Save this post so
+          you don't fall behind your competitors.</p>
+      </div>
+    </div>
+    <div class="slide-number">05</div>
+  </div>
+
+  <!-- Download Button and Script -->
+  <div style="position: fixed; top: 30px; right: 30px; z-index: 1000;">
+    <button id="downloadBtn" style="padding: 15px 30px; font-size: 18px; font-family: 'Satoshi', sans-serif; font-weight: 700; cursor: pointer; background: var(--brand-accent); color: var(--brand-bg); border: none; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); transition: transform 0.2s, background 0.2s;">
+      Download All Slides
+    </button>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script>
+    document.getElementById('downloadBtn').addEventListener('click', async function() {
+      const btn = this;
+      const originalText = btn.innerText;
+      btn.innerText = 'Preparing ZIP...';
+      btn.disabled = true;
+      btn.style.opacity = '0.7';
+
+      try {
+        const zip = new JSZip();
+        // Create a folder inside the zip
+        const folder = zip.folder("axon_carousel_slides");
+        const slides = document.querySelectorAll('.slide');
+        
+        for (let i = 0; i < slides.length; i++) {
+          btn.innerText = `Processing ${i + 1} of ${slides.length}...`;
+          const slide = slides[i];
+          
+          // Use html2canvas to render the slide
+          const canvas = await html2canvas(slide, { 
+            scale: 2, // 2x scale for better image quality
+            useCORS: true,
+            backgroundColor: '#f4efe6' // Brand background color
+          });
+          
+          // Extract base64 image data and add it to our ZIP folder
+          const dataUrl = canvas.toDataURL('image/png');
+          const base64Data = dataUrl.split(',')[1];
+          folder.file(`slide_${i + 1}.png`, base64Data, {base64: true});
+        }
+
+        btn.innerText = 'Zipping...';
+        // Generate the zip file
+        const content = await zip.generateAsync({type: "blob"});
+        
+        // Trigger the download of the zip
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(content);
+        link.download = "axon_carousel.zip";
+        link.click();
+        
+        // Cleanup memory
+        URL.revokeObjectURL(link.href);
+      } catch (err) {
+        console.error("Error generating zip:", err);
+        alert("There was an error generating the zip file. Check console.");
+      }
+
+      btn.innerText = originalText;
+      btn.disabled = false;
+      btn.style.opacity = '1';
+    });
+  </script>
+</body>
+
+</html>

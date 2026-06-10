@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Reach Carousel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <!-- JSZip for ZIP download as requested in earlier workflows -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 80px 0;
+            background: #1a1a2e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .slide {
+            width: 1080px;
+            height: 1350px;
+            position: relative;
+            background: linear-gradient(145deg, #3A1C71, #D76D77, #FFAF7B); /* Fallback vibrant purple/pink gradient */
+            background: linear-gradient(135deg, #4b134f, #c94b4b);
+            background: linear-gradient(135deg, #1f005c, #5b0060, #870160, #ac255e, #ca485c, #e16b5c, #f39060, #ffb56b);
+            background: linear-gradient(135deg, #2A0845, #6441A5); /* Sleek purple gradient */
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 100px;
+            color: #ffffff;
+        }
+
+        /* Large background circle to mimic Template 9 */
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.04);
+            z-index: 1;
+        }
+
+        .slide-1 .bg-circle {
+            width: 1400px;
+            height: 1400px;
+            top: 50%;
+            right: -700px;
+            transform: translateY(-50%);
+        }
+
+        .slide-2 .bg-circle {
+            width: 1200px;
+            height: 1200px;
+            top: -200px;
+            right: -400px;
+        }
+
+        .slide-5 .bg-circle {
+            width: 1500px;
+            height: 1500px;
+            top: 50%;
+            left: -800px;
+            transform: translateY(-50%);
+        }
+
+        /* ── Meta labels ── */
+        .meta-tl {
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 28px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.9);
+            z-index: 10;
+        }
+
+        .meta-bc {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Inter', sans-serif;
+            font-size: 28px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.9);
+            z-index: 10;
+        }
+
+        /* ── Typography ── */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        h1, h2 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            margin: 0;
+            color: #ffffff;
+            line-height: 0.95;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: 200px;
+            letter-spacing: -2px;
+        }
+
+        h2 {
+            font-size: 160px;
+            letter-spacing: -1.5px;
+            margin-bottom: 50px;
+        }
+
+        .center-text {
+            text-align: center;
+        }
+
+        .paragraph-wrapper {
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        p {
+            font-family: 'Inter', sans-serif;
+            font-size: 42px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+        }
+
+        p strong {
+            font-weight: 700;
+            color: #FFD700; /* Gold/yellow accent for emphasis */
+        }
+
+        /* ── Decorative Lines & Elements ── */
+        .decor-line {
+            position: absolute;
+            background: #ffffff;
+            z-index: 10;
+        }
+
+        .slide-1 .decor-line {
+            height: 4px;
+            width: 600px;
+            bottom: 250px;
+            left: 0;
+        }
+
+        .slide-2 .decor-line {
+            height: 4px;
+            width: 700px;
+            top: 250px;
+            left: 0;
+        }
+
+        .slide-5 .decor-line {
+            height: 4px;
+            width: 100%;
+            top: 250px;
+            left: 0;
+        }
+
+        .heart-icon {
+            position: absolute;
+            top: 250px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 15;
+        }
+
+        .heart-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: #2A0845;
+        }
+
+        .arrow-btn {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .slide-1 .arrow-btn {
+            bottom: 190px;
+            right: 100px;
+        }
+
+        .slide-2 .arrow-btn {
+            top: 190px;
+            right: 100px;
+        }
+
+        .slide-3 .arrow-btn {
+            bottom: 190px;
+            right: 100px;
+        }
+
+        .arrow-btn svg {
+            width: 50px;
+            height: 50px;
+            stroke: #ffffff;
+            stroke-width: 3;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- ── Download Button ── -->
+    <div style="position: fixed; top: 20px; right: 20px; z-index: 1000; display: flex; gap: 10px;">
+        <button onclick="downloadZip()"
+            style="padding: 15px 25px; background: #8E2DE2; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; font-family: 'Inter', sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: all 0.2s;">
+            ↓ Download Carousel (ZIP)
+        </button>
+    </div>
+
+    <!-- ═══ SLIDE 1 ═══ -->
+    <div class="slide slide-1" id="slide-1">
+        <div class="bg-circle"></div>
+        <div class="meta-tl">@YOURHANDLE</div>
+        
+        <div class="content-wrapper">
+            <h1>YOUR<br>INSTAGRAM<br>REACH<br>DROPPED?</h1>
+        </div>
+
+        <div class="decor-line"></div>
+        <div class="arrow-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- ═══ SLIDE 2 ═══ -->
+    <div class="slide slide-2" id="slide-2">
+        <div class="bg-circle"></div>
+        <div class="decor-line"></div>
+        
+        <div class="arrow-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+        </div>
+
+        <div class="content-wrapper">
+            <h2>HERE'S<br>EXACTLY<br>WHY</h2>
+            <div class="paragraph-wrapper">
+                <p>You're doing everything right. You post daily, use trending audio, and add hashtags. But your reach is flat, and inquiries are zero. <strong>What happened?</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ SLIDE 3 ═══ -->
+    <div class="slide slide-3" id="slide-3">
+        <div class="bg-circle" style="top: -500px; left: -200px;"></div>
+        
+        <div class="content-wrapper">
+            <h2>THE<br>ALGORITHM<br>SHIFTED</h2>
+            <div class="paragraph-wrapper">
+                <p>Instagram now prioritizes <strong>shares</strong> and <strong>saves</strong> over simple likes. If your content isn't being shared in DMs, the algorithm assumes it's not valuable enough to push to the Explore page.</p>
+            </div>
+        </div>
+
+        <div class="arrow-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- ═══ SLIDE 4 ═══ -->
+    <div class="slide slide-2" id="slide-4">
+        <div class="bg-circle" style="top: auto; bottom: -200px; right: -200px;"></div>
+        
+        <div class="content-wrapper">
+            <h2>HOW TO<br>FIX IT</h2>
+            <div class="paragraph-wrapper">
+                <p>Stop posting generic content. Start creating <strong>"Saveable"</strong> frameworks, step-by-step guides, and <strong>"Shareable"</strong> relatable memes or bold industry opinions.</p>
+            </div>
+        </div>
+        
+        <div class="arrow-btn" style="top: auto; bottom: 190px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- ═══ SLIDE 5 ═══ -->
+    <div class="slide slide-5" id="slide-5">
+        <div class="bg-circle"></div>
+        <div class="decor-line"></div>
+        <div class="heart-icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+        </div>
+
+        <div class="content-wrapper center-text">
+            <h1 style="font-size: 180px;">THANK<br>YOU!</h1>
+            <div class="paragraph-wrapper" style="text-align: center; margin-top: 60px;">
+                <p>Don't forget to like, comment, and share.</p>
+            </div>
+        </div>
+
+        <div class="meta-bc">@YOURHANDLE</div>
+    </div>
+
+    <!-- ── Scripts ── -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        async function downloadZip() {
+            const btn = document.querySelector('button[onclick="downloadZip()"]');
+            const originalText = btn.innerText;
+            btn.innerText = "Generating ZIP...";
+            btn.style.opacity = "0.7";
+            btn.disabled = true;
+
+            const zip = new JSZip();
+            const slides = document.querySelectorAll('.slide');
+            
+            let fileName = window.location.pathname.split('/').pop();
+            let baseName = fileName ? decodeURIComponent(fileName).replace('.html', '') : 'instagram_reach_carousel';
+
+            for (let i = 0; i < slides.length; i++) {
+                const canvas = await html2canvas(slides[i], {
+                    scale: 4, // 4K resolution
+                    useCORS: true,
+                    backgroundColor: null
+                });
+                
+                // Convert canvas to blob
+                const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+                zip.file(`${baseName}_slide_${i + 1}.png`, blob);
+            }
+
+            // Generate ZIP file and trigger download
+            const zipBlob = await zip.generateAsync({ type: 'blob' });
+            saveAs(zipBlob, `${baseName}.zip`);
+
+            btn.innerText = "Downloaded Successfully!";
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.opacity = "1";
+                btn.disabled = false;
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>

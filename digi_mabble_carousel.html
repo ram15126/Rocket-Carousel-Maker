@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 Stages of Healthcare Patient Journey</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 80px 0;
+            background: #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 80px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .slide {
+            width: 1080px;
+            height: 1350px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.15);
+            flex-shrink: 0;
+            padding: 100px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ── Themes ── */
+        .theme-light {
+            background-color: #EBEBEB;
+            color: #111111;
+        }
+        .theme-dark {
+            background-color: #F35022;
+            color: #FFFFFF;
+        }
+
+        /* ── Background Dots ── */
+        .bg-dots-light {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(#D6D6D6 4px, transparent 4px);
+            background-size: 40px 40px;
+            background-position: -20px -20px;
+            z-index: 1;
+        }
+        .bg-dots-dark {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(#D54117 4px, transparent 4px);
+            background-size: 40px 40px;
+            background-position: -20px -20px;
+            z-index: 1;
+        }
+
+        /* ── Right Stripes ── */
+        .right-stripe-orange {
+            position: absolute;
+            top: 0; bottom: 0; right: 0;
+            width: 80px;
+            background-color: #F35022;
+            z-index: 2;
+        }
+        .right-stripe-gray {
+            position: absolute;
+            top: 0; bottom: 0; right: 0;
+            width: 80px;
+            background-color: #EBEBEB;
+            z-index: 2;
+        }
+
+        /* ── Header ── */
+        .header {
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            right: 140px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            z-index: 3;
+        }
+        .theme-light .header { color: #111111; }
+        .theme-dark .header { color: #111111; }
+
+        /* ── Content ── */
+        .content {
+            position: relative;
+            z-index: 3;
+            margin-top: 180px;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 200px;
+            line-height: 0.85;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .title-orange { color: #F35022; }
+        .theme-light .title { color: #111111; }
+        .theme-dark .title { color: #111111; }
+
+        .body-text {
+            font-weight: 700;
+            font-size: 44px;
+            line-height: 1.4;
+            margin-top: 60px;
+            max-width: 850px;
+        }
+        .theme-light .body-text { color: #111111; }
+        .theme-dark .body-text { color: #FFFFFF; }
+
+        /* ── Arrow Icon ── */
+        .icon-container {
+            position: absolute;
+            bottom: 100px;
+            right: 120px;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 4;
+        }
+        .theme-light .icon-container { background-color: #F35022; }
+        .theme-dark .icon-container { background-color: #111111; }
+
+        .arrow-svg {
+            width: 60px;
+            height: 60px;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            fill: currentColor;
+        }
+        .theme-light .arrow-svg { color: #111111; }
+        .theme-dark .arrow-svg { color: #F35022; }
+
+        /* ── CTA Icon ── */
+        .cta-icon-container {
+            position: absolute;
+            top: 480px;
+            right: 120px;
+            z-index: 4;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- ── Download Button ── -->
+    <div style="position: fixed; top: 20px; right: 20px; z-index: 1000; display: flex; gap: 10px;">
+        <button onclick="downloadAllSlides()" style="padding: 15px 25px; background: #0f172a; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; font-family: 'Montserrat', sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.2s;">
+            ↓ Download 4K Carousel
+        </button>
+    </div>
+
+    <!-- ═══ SLIDE 1: HOOK ═══ -->
+    <div class="slide theme-light">
+        <div class="bg-dots-light"></div>
+        <div class="right-stripe-orange"></div>
+        
+        <div class="header">
+            <span></span>
+            <span>DIGIMABBLEAI.COM</span>
+        </div>
+        
+        <div class="content">
+            <h1 class="title">
+                <span class="title-orange">5 STAGES</span><br>
+                EVERY<br>
+                PATIENT<br>
+                GOES<br>
+                THROUGH
+            </h1>
+            <p class="body-text" style="font-size: 34px; margin-top: 40px;">
+                Automate the entire patient lifecycle.
+            </p>
+        </div>
+        
+        <div class="icon-container">
+            <svg viewBox="0 0 24 24" class="arrow-svg">
+                <path d="M5 11h10.58l-5.3-5.3L11.7 4.3l8.4 8.4-8.4 8.4-1.4-1.4 5.3-5.3H5v-2z" stroke="none" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- ═══ SLIDE 2: STAGE 1 ═══ -->
+    <div class="slide theme-dark">
+        <div class="bg-dots-dark"></div>
+        <div class="right-stripe-gray"></div>
+        
+        <div class="header">
+            <span></span>
+            <span>DIGIMABBLEAI.COM</span>
+        </div>
+        
+        <div class="content" style="margin-top: 250px;">
+            <h1 class="title">
+                STAGE 01<br>
+                <span style="font-size: 180px;">AWARENESS</span>
+            </h1>
+            <p class="body-text">
+                Don't wait for them to find you. Use automated sequences to educate them before they know they need you.
+            </p>
+        </div>
+        
+        <div class="icon-container">
+            <svg viewBox="0 0 24 24" class="arrow-svg">
+                <path d="M5 11h10.58l-5.3-5.3L11.7 4.3l8.4 8.4-8.4 8.4-1.4-1.4 5.3-5.3H5v-2z" stroke="none" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- ═══ SLIDE 3: STAGE 2 ═══ -->
+    <div class="slide theme-light">
+        <div class="bg-dots-light"></div>
+        <div class="right-stripe-orange"></div>
+        
+        <div class="header">
+            <span></span>
+            <span>DIGIMABBLEAI.COM</span>
+        </div>
+        
+        <div class="content" style="margin-top: 250px;">
+            <h1 class="title">
+                <span class="title-orange">STAGE 02</span><br>
+                <span class="title-orange" style="font-size: 140px;">CONSIDERATION</span>
+            </h1>
+            <p class="body-text">
+                This is where trust is built. Send automated FAQs and stories to handle doubts before they ask.
+            </p>
+        </div>
+        
+        <div class="icon-container">
+            <svg viewBox="0 0 24 24" class="arrow-svg">
+                <path d="M5 11h10.58l-5.3-5.3L11.7 4.3l8.4 8.4-8.4 8.4-1.4-1.4 5.3-5.3H5v-2z" stroke="none" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- ═══ SLIDE 4: STAGE 3 ═══ -->
+    <div class="slide theme-dark">
+        <div class="bg-dots-dark"></div>
+        <div class="right-stripe-gray"></div>
+        
+        <div class="header">
+            <span></span>
+            <span>DIGIMABBLEAI.COM</span>
+        </div>
+        
+        <div class="content" style="margin-top: 250px;">
+            <h1 class="title">
+                STAGE 03<br>
+                <span style="font-size: 160px;">CONVERSION</span>
+            </h1>
+            <p class="body-text">
+                Make saying "yes" effortless. Trigger smart reminders and easy booking links to turn interest into action.
+            </p>
+        </div>
+        
+        <div class="icon-container">
+            <svg viewBox="0 0 24 24" class="arrow-svg">
+                <path d="M5 11h10.58l-5.3-5.3L11.7 4.3l8.4 8.4-8.4 8.4-1.4-1.4 5.3-5.3H5v-2z" stroke="none" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- ═══ SLIDE 5: STAGE 4 ═══ -->
+    <div class="slide theme-light">
+        <div class="bg-dots-light"></div>
+        <div class="right-stripe-orange"></div>
+        
+        <div class="header">
+            <span></span>
+            <span>DIGIMABBLEAI.COM</span>
+        </div>
+        
+        <div class="content" style="margin-top: 250px;">
+            <h1 class="title">
+                <span class="title-orange">STAGE 04</span><br>
+                <span style="font-size: 180px;">RETENTION</span>
+            </h1>
+            <p class="body-text">
+                The journey doesn't end after the first visit. Send post-care tips and feedback requests to show you care.
+            </p>
+        </div>
+        
+        <div class="icon-container">
+            <svg viewBox="0 0 24 24" class="arrow-svg">
+                <path d="M5 11h10.58l-5.3-5.3L11.7 4.3l8.4 8.4-8.4 8.4-1.4-1.4 5.3-5.3H5v-2z" stroke="none" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- ═══ SLIDE 6: STAGE 5 ═══ -->
+    <div class="slide theme-dark">
+        <div class="bg-dots-dark"></div>
+        <div class="right-stripe-gray"></div>
+        
+        <div class="header">
+            <span></span>
+            <span>DIGIMABBLEAI.COM</span>
+        </div>
+        
+        <div class="content" style="margin-top: 250px;">
+            <h1 class="title">
+                STAGE 05<br>
+                LOYALTY
+            </h1>
+            <p class="body-text">
+                Turn one-time patients into lifelong advocates. Automate milestone rewards and gentle re-engagement campaigns.
+            </p>
+        </div>
+        
+        <div class="icon-container">
+            <svg viewBox="0 0 24 24" class="arrow-svg">
+                <path d="M5 11h10.58l-5.3-5.3L11.7 4.3l8.4 8.4-8.4 8.4-1.4-1.4 5.3-5.3H5v-2z" stroke="none" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- ═══ SLIDE 7: CTA ═══ -->
+    <div class="slide theme-dark">
+        <div class="bg-dots-dark"></div>
+        <!-- No right stripe for CTA -->
+        
+        <div class="header">
+            <span></span>
+            <span>DIGIMABBLEAI.COM</span>
+        </div>
+        
+        <div class="content" style="margin-top: 250px;">
+            <h1 class="title">
+                AUTOMATE<br>
+                THE 5<br>
+                STAGES.
+            </h1>
+            <p class="body-text">
+                Ready to watch your patient retention skyrocket?<br><br>Save this post and start building today.
+            </p>
+        </div>
+        
+        <div class="cta-icon-container">
+            <svg viewBox="0 0 100 100" style="width: 180px; height: 180px;">
+                <rect fill="#111111" x="0" y="0" width="100" height="100" rx="15"/>
+                <path fill="#F35022" d="M 30 25 L 70 25 L 70 80 L 50 65 L 30 80 Z"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- ── Scripts ── -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        async function downloadAllSlides() {
+            const btn = document.querySelector('button[onclick="downloadAllSlides()"]');
+            const originalText = btn.innerText;
+            btn.innerText = "Generating 4K Images...";
+            btn.style.opacity = "0.7";
+            btn.disabled = true;
+
+            let fileName = window.location.pathname.split('/').pop();
+            let baseName = fileName ? decodeURIComponent(fileName).replace('.html', '') : 'carousel';
+
+            const slides = document.querySelectorAll('.slide');
+            for (let i = 0; i < slides.length; i++) {
+                const canvas = await html2canvas(slides[i], {
+                    scale: 4, 
+                    useCORS: true,
+                    backgroundColor: null
+                });
+                const link = document.createElement('a');
+                link.download = `${baseName}_slide_${i + 1}.png`;
+                link.href = canvas.toDataURL("image/png", 1.0);
+                link.click();
+                
+                await new Promise(r => setTimeout(r, 800));
+            }
+
+            btn.innerText = "Downloaded Successfully!";
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.opacity = "1";
+                btn.disabled = false;
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

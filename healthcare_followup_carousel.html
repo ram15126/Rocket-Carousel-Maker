@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Automation: From 0 Follow-Ups to 90-Day Transformation</title>
+    <meta name="description" content="A comprehensive visual case study on how a healthcare brand automated patient follow-ups and generated massive growth in 90 days.">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ── Core Design Reset ── */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #050608;
+            padding: 80px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 80px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Slide Dimensions (4:5 Aspect Ratio) ── */
+        .slide {
+            width: 1080px;
+            height: 1350px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
+            flex-shrink: 0;
+            background-color: #121316; /* Midnight Charcoal */
+        }
+
+        /* ── Color System (Blue Palette Overrides) ── */
+        :root {
+            --primary-blue: #0052ff;
+            --accent-blue-light: #3d82ff;
+            --dark-bg: #121316;
+            --light-bg: #f7f5f0;
+            --text-dark: #121316;
+            --text-light: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.7);
+        }
+
+        /* ── Image Styling ── */
+        .grayscale-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ── Top & Bottom Header Utilities ── */
+        .header-top {
+            position: absolute;
+            top: 75px;
+            left: 90px;
+            right: 90px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 26px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            z-index: 10;
+            text-transform: uppercase;
+        }
+
+        .header-top.light-theme {
+            color: var(--text-dark);
+        }
+
+        .header-top.dark-theme {
+            color: var(--text-light);
+        }
+
+        .header-bottom {
+            position: absolute;
+            bottom: 75px;
+            left: 90px;
+            right: 90px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 26px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            z-index: 10;
+            text-transform: uppercase;
+        }
+
+        .header-bottom.light-theme {
+            color: var(--text-dark);
+        }
+
+        .header-bottom.dark-theme {
+            color: var(--text-light);
+        }
+
+        /* ── Divider Lines ── */
+        .divider-line {
+            width: 100%;
+            height: 2px;
+            background-color: currentColor;
+            opacity: 0.15;
+            position: absolute;
+        }
+
+        /* ── Cover Slide (Slide 1) ── */
+        .cover-top {
+            height: 55%;
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            padding: 160px 90px 60px 90px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .cover-title {
+            font-size: 80px;
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+
+        .cover-title span.black-text {
+            color: #050608;
+        }
+
+        .pill-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 130px;
+            height: 65px;
+            border: 3.5px solid var(--text-light);
+            border-radius: 35px;
+            margin-left: 20px;
+            vertical-align: middle;
+        }
+
+        .pill-btn svg {
+            width: 32px;
+            height: 32px;
+            stroke: var(--text-light);
+        }
+
+        .cover-bottom {
+            height: 45%;
+            position: relative;
+        }
+
+        /* ── Layout Style A (Slide 2 - Row Layout with Left Images Column) ── */
+        .layout-a {
+            display: flex;
+            height: 100%;
+            padding: 160px 90px 160px 90px;
+            gap: 50px;
+        }
+
+        .layout-a-left {
+            width: 310px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 1030px;
+        }
+
+        .layout-a-left .card-img {
+            width: 100%;
+            height: 310px;
+            border-radius: 16px;
+            overflow: hidden;
+            background-color: #24262d;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .layout-a-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 30px;
+            color: var(--text-light);
+        }
+
+        .huge-number {
+            font-size: 160px;
+            font-weight: 900;
+            line-height: 0.9;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+
+        .huge-number.dark-tone {
+            color: var(--dark-bg);
+        }
+
+        .slide-title {
+            font-size: 64px;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .slide-title.dark-text {
+            color: var(--text-dark);
+        }
+
+        .slide-body {
+            font-size: 30px;
+            line-height: 1.55;
+            color: var(--text-muted);
+            font-weight: 400;
+            text-align: justify;
+        }
+
+        .slide-body.dark-text {
+            color: rgba(18, 19, 22, 0.8);
+        }
+
+        /* ── Layout Style B (Slide 3 - Side-by-Side Images & Bottom Blue Half) ── */
+        .layout-b-top {
+            height: 50%;
+            display: flex;
+            gap: 20px;
+            padding: 0;
+        }
+
+        .layout-b-top .card-img {
+            flex: 1;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .layout-b-bottom {
+            height: 50%;
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            padding: 80px 90px;
+            position: relative;
+        }
+
+        .layout-b-content {
+            margin-top: 50px;
+            max-width: 860px;
+        }
+
+        .layout-b-title-inline {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .layout-b-title-inline .huge-number {
+            margin-bottom: 0;
+            line-height: 1;
+        }
+
+        .layout-b-title-inline .slide-title {
+            margin-bottom: 0;
+        }
+
+        /* ── Layout Style C (Slide 4 - Row Layout with Right Images Column, Beige Theme) ── */
+        .layout-c {
+            background-color: var(--light-bg);
+            display: flex;
+            height: 100%;
+            padding: 160px 90px 160px 90px;
+            gap: 50px;
+        }
+
+        .layout-c-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 30px;
+        }
+
+        .layout-c-right {
+            width: 310px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 1030px;
+        }
+
+        .layout-c-right .card-img {
+            width: 100%;
+            height: 480px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* ── Slide 5: Thank You & CTA ── */
+        .cta-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 100px 90px;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .cta-img {
+            width: 310px;
+            height: 380px;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 50px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        .cta-heading {
+            font-size: 110px;
+            font-weight: 900;
+            line-height: 0.95;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+
+        .cta-subheading {
+            font-size: 90px;
+            font-weight: 900;
+            line-height: 0.95;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+            color: var(--primary-blue);
+            margin-bottom: 70px;
+        }
+
+        .cta-actions {
+            display: flex;
+            justify-content: center;
+            gap: 120px;
+            width: 100%;
+        }
+
+        .cta-action-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .cta-icon-wrapper {
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+        }
+
+        .cta-icon-wrapper svg {
+            width: 38px;
+            height: 38px;
+        }
+
+        .cta-action-label {
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--text-light);
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── Download Button ── -->
+    <div style="position: fixed; top: 20px; right: 20px; z-index: 1000; display: flex; gap: 10px;">
+        <button onclick="downloadAllSlides()" style="padding: 15px 25px; background: #0f172a; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; font-family: 'Inter', sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.2s;">
+            ↓ Download 4K Carousel
+        </button>
+    </div>
+
+    <!-- ═══ SLIDE 1: HOOK (Cover) ═══ -->
+    <article class="slide" id="slide1">
+        <header class="header-top dark-theme">
+            <span style="flex: 1;"></span>
+            <span style="flex: 0 0 auto; text-align: center;"></span>
+            <span style="flex: 1; text-align: right;">01\05</span>
+        </header>
+
+        <section class="cover-top">
+            <h1 class="cover-title" style="font-size: 74px;">
+                A Healthcare Brand<br>
+                Had 0 Follow-Ups.<br>
+                90 Days Later —<br>
+                <span style="display: flex; align-items: center; white-space: nowrap;">
+                    <span class="black-text">It All Changed.</span>
+                    <span class="pill-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </span>
+                </span>
+            </h1>
+        </section>
+
+        <section class="cover-bottom">
+            <img class="grayscale-img" src="assets/doctor_consultation.png" alt="Patient consultation with healthcare professional">
+        </section>
+    </article>
+
+
+    <!-- ═══ SLIDE 2: THE PROBLEM (Rehook) ═══ -->
+    <article class="slide" id="slide2">
+        <header class="header-top dark-theme">
+            <span style="flex: 1;"></span>
+            <span style="flex: 0 0 auto; text-align: center;"></span>
+            <span style="flex: 1; text-align: right;">02\05</span>
+        </header>
+
+        <div class="layout-a">
+            <section class="layout-a-left">
+                <div class="card-img">
+                    <img class="grayscale-img" src="assets/doctor_consultation.png" alt="Clinical interaction scene">
+                </div>
+                <div class="card-img">
+                    <img class="grayscale-img" src="assets/medical_dashboard.png" alt="Patient app screen holding smartphone">
+                </div>
+                <div class="card-img">
+                    <img class="grayscale-img" src="assets/happy_patient.png" alt="Happy patient portrait">
+                </div>
+            </section>
+
+            <section class="layout-a-right">
+                <div class="huge-number">01.</div>
+                <h2 class="slide-title">The Silent<br>Patient Leak</h2>
+                <p class="slide-body">
+                    Most healthcare brands focus solely on getting new patients in the door. But without active follow-ups, <strong>62% of patients</strong> fail to book their next appointment. They get busy, forget, or assume you don't track their care.
+                </p>
+            </section>
+        </div>
+
+        <footer class="header-bottom dark-theme">
+            <span style="flex: 1;"></span>
+            <span style="flex: 0 0 auto; text-align: center;"></span>
+            <span style="flex: 1; text-align: right;">Clinic Growth</span>
+        </footer>
+    </article>
+
+
+    <!-- ═══ SLIDE 3: THE SOLUTION (Mirror) ═══ -->
+    <article class="slide" id="slide3">
+        <section class="layout-b-top">
+            <div class="card-img">
+                <img class="grayscale-img" src="assets/healthcare_collaboration.png" alt="Doctors collaborating over clinical tablet">
+            </div>
+            <div class="card-img">
+                <img class="grayscale-img" src="assets/medical_dashboard.png" alt="Smartphone messaging dashboard screenshot">
+            </div>
+        </section>
+
+        <section class="layout-b-bottom">
+            <div class="layout-b-content">
+                <div class="layout-b-title-inline">
+                    <div class="huge-number dark-tone">02.</div>
+                    <h2 class="slide-title">Automate<br>Care Pathways</h2>
+                </div>
+                <p class="slide-body" style="color: #ffffff;">
+                    We built personalized, multi-channel patient pathways via SMS and WhatsApp. Instead of generic marketing spam, patients received supportive, timely messages guiding them through their exact recovery plans and rebooking steps.
+                </p>
+            </div>
+
+            <footer class="header-bottom dark-theme">
+                <div class="divider-line" style="top: -15px;"></div>
+                <span style="flex: 1;"></span>
+                <span style="flex: 0 0 auto; text-align: center;"></span>
+                <span style="flex: 1; text-align: right;">03\05</span>
+            </footer>
+        </section>
+    </article>
+
+
+    <!-- ═══ SLIDE 4: THE RESULTS (Reveal) ═══ -->
+    <article class="slide" id="slide4">
+        <header class="header-top light-theme">
+            <div class="divider-line" style="bottom: -15px;"></div>
+            <span style="flex: 1;"></span>
+            <span style="flex: 0 0 auto; text-align: center;"></span>
+            <span style="flex: 1; text-align: right;">04\05</span>
+        </header>
+
+        <div class="layout-c">
+            <section class="layout-c-left">
+                <div class="huge-number">03.</div>
+                <h2 class="slide-title dark-text">The 90-Day<br>Transformation</h2>
+                <p class="slide-body dark-text">
+                    By making follow-ups immediate and relevant, patient rebooking rates surged by <strong>180%</strong>. Clinic retention normalized, care compliance skyrocketed, and the brand saw a <strong>massive increase</strong> in monthly recurring revenue purely from existing patients.
+                </p>
+            </section>
+
+            <section class="layout-c-right">
+                <div class="card-img">
+                    <img class="grayscale-img" src="assets/happy_patient.png" alt="Patient smiling comfortably">
+                </div>
+                <div class="card-img">
+                    <img class="grayscale-img" src="assets/healthcare_collaboration.png" alt="Clinical staff discussing results">
+                </div>
+            </section>
+        </div>
+
+        <footer class="header-bottom light-theme">
+            <div class="divider-line" style="top: -15px;"></div>
+            <span style="flex: 1;"></span>
+            <span style="flex: 0 0 auto; text-align: center;"></span>
+            <span style="flex: 1; text-align: right;">Clinic Growth</span>
+        </footer>
+    </article>
+
+
+    <!-- ═══ SLIDE 5: CTA (Thank You) ═══ -->
+    <article class="slide" id="slide5">
+        <div class="cta-container">
+            <section class="cta-img">
+                <img class="grayscale-img" src="assets/doctor_consultation.png" alt="Doctor greeting screen representation">
+            </section>
+
+            <h2 class="cta-heading">Thank You</h2>
+            <h3 class="cta-subheading">For Reading</h3>
+
+            <section class="cta-actions">
+                <div class="cta-action-item">
+                    <div class="cta-icon-wrapper">
+                        <!-- Heart Icon -->
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </div>
+                    <span class="cta-action-label">Like</span>
+                </div>
+                <div class="cta-action-item">
+                    <div class="cta-icon-wrapper">
+                        <!-- Share Icon -->
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                        </svg>
+                    </div>
+                    <span class="cta-action-label">Share</span>
+                </div>
+                <div class="cta-action-item">
+                    <div class="cta-icon-wrapper">
+                        <!-- Save Icon -->
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
+                        </svg>
+                    </div>
+                    <span class="cta-action-label">Save</span>
+                </div>
+            </section>
+        </div>
+    </article>
+
+    <!-- ── Scripts ── -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        async function downloadAllSlides() {
+            const btn = document.querySelector('button[onclick="downloadAllSlides()"]');
+            const originalText = btn.innerText;
+            btn.innerText = "Generating 4K Images...";
+            btn.style.opacity = "0.7";
+            btn.disabled = true;
+
+            let fileName = window.location.pathname.split('/').pop();
+            let baseName = fileName ? decodeURIComponent(fileName).replace('.html', '') : 'carousel';
+
+            const slides = document.querySelectorAll('.slide');
+            for (let i = 0; i < slides.length; i++) {
+                const canvas = await html2canvas(slides[i], {
+                    scale: 4, // 4K resolution (4x scale = 4320x5400)
+                    useCORS: true,
+                    backgroundColor: null
+                });
+                const link = document.createElement('a');
+                link.download = `${baseName}_slide_${i + 1}.png`;
+                link.href = canvas.toDataURL("image/png", 1.0);
+                link.click();
+                
+                // Small delay to prevent the browser from blocking multiple file downloads
+                await new Promise(r => setTimeout(r, 800));
+            }
+
+            btn.innerText = "Downloaded Successfully!";
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.opacity = "1";
+                btn.disabled = false;
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

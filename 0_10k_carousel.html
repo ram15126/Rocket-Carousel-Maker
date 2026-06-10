@@ -132,6 +132,13 @@
 </head>
 <body>
 
+    <!-- ── Download Button ── -->
+    <div style="position: fixed; top: 20px; right: 20px; z-index: 1000; display: flex; gap: 10px;">
+        <button onclick="downloadAllSlides()" style="padding: 15px 25px; background: #0f172a; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; font-family: 'Inter', sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.2s;">
+            ↓ Download 4K Carousel
+        </button>
+    </div>
+
     <!-- Slide 1 (Hook) -->
     <div class="slide slide-right">
         <div class="meta meta-tl">Organic Growth</div>
@@ -279,5 +286,49 @@
         <div class="meta meta-br">09</div>
     </div>
 
+    <!-- ── Scripts ── -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script>
+        async function downloadAllSlides() {
+            const btn = document.querySelector('button[onclick="downloadAllSlides()"]');
+            const originalText = btn.innerText;
+            btn.innerText = "Generating ZIP...";
+            btn.style.opacity = "0.7";
+            btn.disabled = true;
+
+            let fileName = window.location.pathname.split('/').pop();
+            let baseName = fileName ? decodeURIComponent(fileName).replace('.html', '') : 'carousel';
+
+            const zip = new JSZip();
+            const folder = zip.folder(baseName);
+            const slides = document.querySelectorAll('.slide');
+
+            for (let i = 0; i < slides.length; i++) {
+                btn.innerText = `Processing ${i + 1}/${slides.length}...`;
+                const canvas = await html2canvas(slides[i], {
+                    scale: 4, // 4K resolution
+                    useCORS: true,
+                    backgroundColor: null
+                });
+                
+                // Convert canvas to blob to add to zip
+                const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png', 1.0));
+                folder.file(`${baseName}_slide_${i + 1}.png`, blob);
+            }
+
+            btn.innerText = "Zipping Files...";
+            const zipContent = await zip.generateAsync({ type: "blob" });
+            saveAs(zipContent, `${baseName}.zip`);
+
+            btn.innerText = "Downloaded Successfully!";
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.opacity = "1";
+                btn.disabled = false;
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
