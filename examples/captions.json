@@ -1,0 +1,20 @@
+{
+  "hashtags": {
+    "count": 5,
+    "required": { "instagram": "#yourbrand", "linkedin": "#YourBrand" }
+  },
+  "decks": [
+    {
+      "slug": "lead-flow",
+      "title": "Every enquiry makes the same journey",
+      "instagram": "Most enquiries don't die on price. They die at stop 2.\n\nEvery lead makes the same six stops: arrive, acknowledge, qualify, route, follow up, record. We mapped where each one leaks, and what the first reply actually has to do.\n\nSave this before you audit your inbox this week.\n\nComment FLOW and we'll map your six stops for you.\n\n#leadgeneration #smallbusiness #salesprocess #automation #yourbrand",
+      "linkedin": "Most enquiries don't die on price. They die in the gap between the message and the first reply.\n\nAcross the businesses we work with, every lead makes the same six stops:\n\n1. Arrival: scattered across WhatsApp, DMs, missed calls and forms\n2. Acknowledgement: the one gap that costs nothing to close\n3. Qualification: three questions (what, when, who)\n4. Routing: hot, warm and cold need different speeds\n5. Follow-up: most deals are won after attempt four\n6. Record: if it isn't logged, it didn't happen\n\nThe three leaks show up every time: the night gap, no named owner, no record.\n\nWhich stop breaks first in your business?\n\n#LeadGeneration #SalesOps #SmallBusiness #Automation #YourBrand"
+    },
+    {
+      "slug": "pricing-models",
+      "title": "How you pay for AI work is changing",
+      "instagram": "Per-seat pricing made sense when people did the work. It doesn't when the work runs at 2am.\n\nThree models are replacing it: build fee, usage and outcome. Here's what each one is best for, and the four protections to ask for before you sign anything usage-based.\n\nSave this for your next proposal review.\n\nComment PRICING and we'll tell you which one fits your volume.\n\n#aiautomation #pricing #smallbusiness #aiagents #yourbrand",
+      "linkedin": "Per-seat pricing is losing its logic. When an agent does the work, a seat count stops measuring anything real.\n\nThree models are taking its place:\n\n→ Build fee: pay once, own it. Best for steady, predictable volume.\n→ Usage: pay per run. Best for volume that moves month to month.\n→ Outcome: pay per result. Best when the result is clear and countable.\n\nIf you go usage-based, ask for four things in writing: a monthly cap, an alert at 70%, a kill switch, and a dry-run estimate.\n\nWhich model are your vendors pushing you toward?\n\n#AIAutomation #Pricing #SaaS #AIAgents #YourBrand"
+    }
+  ]
+}

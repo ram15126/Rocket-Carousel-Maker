@@ -1,0 +1,24 @@
+{
+  "name": "rocket",
+  "handle": "@yourhandle",
+  "site": "yoursite.com",
+  "colors": {
+    "dark": "#1B3022",
+    "light": "#F4EFE6",
+    "accent": "#FF6542"
+  },
+  "accent_text": "light",
+  "fonts": {
+    "display": { "family": "Clash Display", "css": "https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" },
+    "body":    { "family": "Satoshi",       "css": "https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" },
+    "mono":    { "family": "Space Mono",    "css": "https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" },
+    "serif":   { "family": "Fraunces",      "css": "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,600&display=swap" }
+  },
+  "cta": {
+    "eyebrow": "<i>YOUR MOVE</i> · WORK WITH US",
+    "card_left": "comment this word",
+    "card_right": "on this post",
+    "list_caption": "what lands in your dms",
+    "fineprint": "free · no pitch · usually same day"
+  }
+}
