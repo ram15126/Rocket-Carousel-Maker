@@ -46,3 +46,8 @@ temp_docx_bva/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Rocket Carousel Maker v2 build output
+exports/
+decks/out/
+examples/out/
